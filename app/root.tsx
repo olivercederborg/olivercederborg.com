@@ -1,15 +1,18 @@
-import { Link, Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
 import type { LinksFunction } from 'remix'
-
+import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
+import Nav from '~/components/Nav'
 import tailwind from '~/styles/tailwind.css'
 
-// https://remix.run/api/app#links
 export let links: LinksFunction = () => {
-	return [{ rel: 'stylesheet', href: tailwind }]
+	return [
+		{ rel: 'stylesheet', href: tailwind },
+		{
+			rel: 'stylesheet',
+			href: 'https://fonts.googleapis.com/css2?family=Syne:wght@200;400;700;800;900&display=swap'
+		}
+	]
 }
 
-// https://remix.run/api/conventions#default-export
-// https://remix.run/api/conventions#route-filenames
 export default function App() {
 	return (
 		<Document>
@@ -57,7 +60,7 @@ export function CatchBoundary() {
 	return (
 		<Document title={`${caught.status} ${caught.statusText}`}>
 			<Layout>
-				<h1>
+				<h1 className='mt-40'>
 					{caught.status}: {caught.statusText}
 				</h1>
 				{message}
@@ -68,7 +71,7 @@ export function CatchBoundary() {
 
 function Document({ children, title }: { children: React.ReactNode; title?: string }) {
 	return (
-		<html lang='en'>
+		<html lang='en' className='scroll-smooth scroll-p-32'>
 			<head>
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
@@ -76,7 +79,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 				<Meta />
 				<Links />
 			</head>
-			<body className='bg-stone-900'>
+			<body className='bg-primary-dark text-white font-syne'>
 				{children}
 				<ScrollRestoration />
 				<Scripts />
@@ -89,12 +92,11 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className='remix-app'>
-			<div className='remix-app__main'>
-				<div className='container remix-app__main-content'>{children}</div>
-			</div>
-			<footer className='remix-app__footer'>
-				<div className='container remix-app__footer-content'>
-					<p>&copy; Oliver Cederborg</p>
+			<Nav />
+			<div>{children}</div>
+			<footer className='bg-primary-darker'>
+				<div className='container pb-10'>
+					<p className='text-stone-500'>&copy; Oliver Cederborg</p>
 				</div>
 			</footer>
 		</div>
