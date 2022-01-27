@@ -1,49 +1,55 @@
-import type { MetaFunction, LoaderFunction } from 'remix'
-import { useLoaderData, json, Link } from 'remix'
+import { withZod } from '@remix-validated-form/with-zod'
+import { useEffect, useRef } from 'react'
+import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useLoaderData, useTransition } from 'remix'
+import { ValidatedForm, validationError } from 'remix-validated-form'
+import { z } from 'zod'
+import About from '~/components/About'
+import Contact from '~/components/Contact'
+import Hero from '~/components/Hero'
+import { Input, SubmitButton, Textarea } from '~/components/Input'
+import Projects from '~/components/Projects'
+import { sendEmail } from '~/utils/send'
 
-type IndexData = {
-	resources: Array<{ name: string; url: string }>
-	demos: Array<{ name: string; to: string }>
+export const validator = withZod(
+	z.object({
+		name: z.string().nonempty('Please enter your name'),
+		email: z
+			.string()
+			.nonempty('I need to know where to reach you!')
+			.email("Uh oh, that doesn't look like an email address..."),
+		message: z.string().nonempty('You need to send me a message!')
+	})
+)
+
+type LoaderData = {
+	defaultValues: {
+		name: string
+		email: string
+		message: string
+	}
 }
 
-// Loaders provide data to components and are only ever called on the server, so
-// you can connect to a database or run any server side code you want right next
-// to the component that renders it.
-// https://remix.run/api/conventions#loader
-export let loader: LoaderFunction = () => {
-	let data: IndexData = {
-		resources: [
-			{
-				name: 'Remix Docs',
-				url: 'https://remix.run/docs'
-			},
-			{
-				name: 'React Router Docs',
-				url: 'https://reactrouter.com/docs'
-			},
-			{
-				name: 'Remix Discord',
-				url: 'https://discord.gg/VBePs6d'
-			}
-		],
-		demos: [
-			{
-				to: 'demos/actions',
-				name: 'Actions'
-			},
-			{
-				to: 'demos/about',
-				name: 'Nested Routes, CSS loading/unloading'
-			},
-			{
-				to: 'demos/params',
-				name: 'URL Params and Error Boundaries'
-			}
-		]
-	}
+export const loader: LoaderFunction = () => {
+	return json({
+		defaultValues: {
+			name: '',
+			email: '',
+			message: ''
+		}
+	})
+}
 
-	// https://remix.run/api/remix#json
-	return json(data)
+export const action: ActionFunction = async ({ request }) => {
+	const fieldValues = validator.validate(await request.formData())
+	if (fieldValues.error) return validationError(fieldValues.error)
+	const { name } = fieldValues.data
+
+	try {
+		await sendEmail(fieldValues.data)
+		return { successMessage: `Thank you for reaching out, ${name}. I will get back to you asap!` }
+	} catch (e) {
+		return { errorMessage: `Sorry ${name}, something went wrong. Please try again later 😔` }
+	}
 }
 
 // https://remix.run/api/conventions#meta
@@ -56,14 +62,43 @@ export let meta: MetaFunction = () => {
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
+	const { defaultValues } = useLoaderData<LoaderData>()
+	const actionData = useActionData()
+	const transition = useTransition()
+	const formRef = useRef<HTMLFormElement>(null)
+	const nameInputRef = useRef<HTMLInputElement>(null)
+
+	useEffect(() => {
+		if (transition.state === 'loading') {
+			formRef.current?.reset()
+			nameInputRef.current?.focus()
+		}
+	}, [transition])
+
 	return (
-		<div className='bg-stone-900'>
-			<main>
-				<h1>
-					<div>Hi, I'm Oliver </div>
-					<div>I design and develop applications.</div>
-				</h1>
-			</main>
-		</div>
+		<main>
+			<Hero />
+			<Projects />
+			<About />
+			<Contact>
+				<ValidatedForm
+					formRef={formRef}
+					validator={validator}
+					replace
+					method='post'
+					defaultValues={defaultValues}
+					resetAfterSubmit
+					className='space-y-10'
+				>
+					<Input ref={nameInputRef} name='name' label="What's your name?" placeholder='Elon Musk' />
+					<Input name='email' label='Where can I reach you?' placeholder='elon@tesla.com' />
+					<Textarea name='message' label="What's your message?" placeholder="Hi Oliver, let's work!" />
+					<SubmitButton>{transition.state === 'submitting' ? 'Sending...' : <>Send &rarr;</>}</SubmitButton>
+
+					{actionData?.successMessage && <p className='text-green-500'>{actionData.successMessage}</p>}
+					{actionData?.errorMessage && <p className='text-red-500'>{actionData.errorMessage}</p>}
+				</ValidatedForm>
+			</Contact>
+		</main>
 	)
 }
