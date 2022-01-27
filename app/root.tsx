@@ -5,6 +5,11 @@ import tailwind from '~/styles/tailwind.css'
 
 export let links: LinksFunction = () => {
 	return [
+		{
+			rel: 'icon',
+			href: '/assets/logo.svg',
+			type: 'image/svg'
+		},
 		{ rel: 'stylesheet', href: tailwind },
 		{
 			rel: 'stylesheet',
