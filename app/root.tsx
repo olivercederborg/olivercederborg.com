@@ -12,8 +12,17 @@ export let links: LinksFunction = () => {
 		},
 		{ rel: 'stylesheet', href: tailwind },
 		{
+			rel: 'preconnect',
+			href: 'https://fonts.googleapis.com'
+		},
+		{
+			rel: 'preconnect',
+			href: 'https://fonts.gstatic.com',
+			crossOrigin: 'anonymous'
+		},
+		{
 			rel: 'stylesheet',
-			href: 'https://fonts.googleapis.com/css2?family=Syne:wght@200;400;700;800;900&display=swap'
+			href: 'https://fonts.googleapis.com/css2?family=Epilogue:wght@300;400;500;600;700&display=swap'
 		}
 	]
 }
@@ -84,7 +93,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 				<Meta />
 				<Links />
 			</head>
-			<body className='bg-primary-dark font-syne text-white'>
+			<body className='bg-primary-dark text-white'>
 				{children}
 				<ScrollRestoration />
 				<Scripts />
