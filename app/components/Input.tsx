@@ -1,6 +1,5 @@
-import React, { forwardRef, ReactNode } from 'react'
+import { forwardRef, ReactNode } from 'react'
 import { useField } from 'remix-validated-form'
-import { useFormContext, useIsSubmitting } from 'remix-validated-form'
 
 type InputProps = {
 	name: string
@@ -12,7 +11,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, pl
 	const { error, getInputProps, touched } = useField(name)
 	return (
 		<div>
-			<label htmlFor={name} className='flex flex-col text-xl text-primary-brand'>
+			<label htmlFor={name} className='text-primary-brand flex flex-col text-xl'>
 				{label}
 			</label>
 			<input
@@ -22,16 +21,17 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, pl
 					error && 'border-red-400'
 				} ${touched && !error && 'border-green-400'}`}
 			/>
-			{error && <span className='my-error-class mt-4 text-red-400 block'>{error}</span>}
+			{error && <span className='my-error-class block mt-4 text-red-400'>{error}</span>}
 		</div>
 	)
 })
+Input.displayName = 'Input'
 
 export const Textarea = ({ name, label, placeholder }: InputProps) => {
 	const { error, getInputProps, touched } = useField(name)
 	return (
 		<div>
-			<label htmlFor={name} className='flex flex-col text-xl text-primary-brand'>
+			<label htmlFor={name} className='text-primary-brand flex flex-col text-xl'>
 				{label}
 			</label>
 			<textarea
@@ -40,7 +40,7 @@ export const Textarea = ({ name, label, placeholder }: InputProps) => {
 					error && 'border-red-400'
 				} ${touched && !error && 'border-green-400'}`}
 			></textarea>
-			{error && <span className='my-error-class mt-4 text-red-400 block'>{error}</span>}
+			{error && <span className='my-error-class block mt-4 text-red-400'>{error}</span>}
 		</div>
 	)
 }
@@ -49,7 +49,7 @@ export const SubmitButton = ({ children, ...props }: { children: ReactNode }) =>
 	return (
 		<button
 			type='submit'
-			className='disabled:text-stone-500 text-2xl uppercase font-semibold hover:text-primary-brand'
+			className='disabled:text-stone-500 hover:text-primary-brand text-2xl font-semibold uppercase'
 			{...props}
 		>
 			{children}
