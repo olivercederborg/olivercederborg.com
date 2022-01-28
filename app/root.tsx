@@ -1,7 +1,7 @@
 import type { LinksFunction } from 'remix'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
 import Nav from '~/components/Nav'
-import tailwind from '~/styles/tailwind.css'
+import tailwind from '~/tailwind.css'
 
 export let links: LinksFunction = () => {
 	return [
