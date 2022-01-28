@@ -9,9 +9,6 @@ module.exports = {
 			},
 			container: {
 				center: true
-			},
-			fontFamily: {
-				syne: ['Syne', 'sans-serif']
 			}
 		}
 	},
