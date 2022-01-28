@@ -2,6 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+	body {
+		font-family: 'Epilogue', -apple-system, 'Segoe UI', Helvetica Neue, Helvetica, Roboto, Arial, sans-serif,
+			system-ui, 'Apple Color Emoji', 'Segoe UI Emoji';
+	}
+}
+
 @layer components {
 	.nav-link {
 		@apply relative;
