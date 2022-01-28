@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+	.nav-link {
+		@apply relative;
+	}
+	.nav-link::before {
+		content: '';
+		@apply absolute left-0 bottom-0 w-full h-0.5 bg-primary-brand origin-right scale-x-0 transition-transform duration-300 ease-in-out;
+	}
+	.nav-link:hover::before,
+	.active-nav-link::before {
+		@apply scale-x-100 origin-left;
+	}
+}
