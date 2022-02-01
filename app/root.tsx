@@ -93,7 +93,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 				<Meta />
 				<Links />
 			</head>
-			<body className='bg-primary-dark text-white'>
+			<body className='bg-dark-850 text-white'>
 				{children}
 				<ScrollRestoration />
 				<Scripts />
