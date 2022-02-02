@@ -1,6 +1,7 @@
 import type { LinksFunction } from 'remix'
 import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
 import Nav from '~/components/Nav'
+import { ThemeProvider } from '~/hooks/useTheme'
 import tailwind from '~/tailwind.css'
 
 export let links: LinksFunction = () => {
@@ -29,11 +30,13 @@ export let links: LinksFunction = () => {
 
 export default function App() {
 	return (
-		<Document>
-			<Layout>
-				<Outlet />
-			</Layout>
-		</Document>
+		<ThemeProvider>
+			<Document>
+				<Layout>
+					<Outlet />
+				</Layout>
+			</Document>
+		</ThemeProvider>
 	)
 }
 
