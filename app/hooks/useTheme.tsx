@@ -1,4 +1,5 @@
-import { createContext, FC, useContext, useEffect, useState } from 'react'
+import Cookies from 'js-cookie'
+import { createContext, FC, useCallback, useContext, useEffect, useState } from 'react'
 
 const ThemeContext = createContext<{
 	isDarkMode: boolean
@@ -16,29 +17,22 @@ export const useTheme = () => {
 export const ThemeProvider: FC = ({ children }) => {
 	const [isDarkMode, setIsDarkMode] = useState(false)
 
-	const toggleTheme = () => {
-		setIsDarkMode(!isDarkMode)
-	}
+	const toggleTheme = useCallback(() => setIsDarkMode(!isDarkMode), [isDarkMode])
 
 	useEffect(() => {
-		if (typeof window !== 'undefined') {
-			const darkMode: boolean = !!window.localStorage.getItem('isDarkMode')
-			if (darkMode === true) {
-				setIsDarkMode(true)
-			} else {
-				setIsDarkMode(false)
-			}
-		}
+		const hasDarkModeCookie: boolean = !!Cookies.get('isDarkMode')
+		hasDarkModeCookie ? setIsDarkMode(true) : setIsDarkMode(false)
 	}, [])
 
 	useEffect(() => {
-		if (typeof window === 'undefined') return
 		if (isDarkMode) {
 			document.documentElement.classList.add('dark')
-			window.localStorage.setItem('isDarkMode', 'true')
+			Cookies.set('isDarkMode', 'true', {
+				expires: 365
+			})
 		} else {
 			document.documentElement.classList.remove('dark')
-			window.localStorage.removeItem('isDarkMode')
+			Cookies.remove('isDarkMode')
 		}
 	}, [isDarkMode])
 
