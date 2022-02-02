@@ -3,11 +3,9 @@ import { useEffect, useRef } from 'react'
 import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useLoaderData, useTransition } from 'remix'
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
-import About from '~/components/About'
 import Contact from '~/components/Contact'
 import Hero from '~/components/Hero'
 import { Input, SubmitButton, Textarea } from '~/components/Input'
-import Projects from '~/components/Projects'
 import { sendEmail } from '~/utils/send'
 
 export const validator = withZod(
@@ -78,8 +76,6 @@ export default function Index() {
 	return (
 		<main>
 			<Hero />
-			<Projects />
-			<About />
 			<Contact>
 				<ValidatedForm
 					formRef={formRef}
