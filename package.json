@@ -9,6 +9,7 @@
 		"dev": "concurrently \"npm run dev:css\" \"remix dev\"",
 		"dev:css": "tailwindcss -w -i ./styles/tailwind.css -o ./app/tailwind.css",
 		"postinstall": "remix setup node",
+		"start": "remix-serve ./build",
 		"lint": "eslint app/**/*.ts app/**/*.tsx"
 	},
 	"dependencies": {
@@ -19,6 +20,7 @@
 		"@sendgrid/mail": "^7.6.0",
 		"clsx": "^1.1.1",
 		"dotenv": "^14.3.0",
+		"js-cookie": "^3.0.1",
 		"react": "^17.0.2",
 		"react-dom": "^17.0.2",
 		"react-icons": "^4.3.1",
@@ -30,6 +32,7 @@
 	},
 	"devDependencies": {
 		"@remix-run/dev": "^1.0.6",
+		"@types/js-cookie": "^3.0.1",
 		"@types/react": "^17.0.24",
 		"@types/react-dom": "^17.0.9",
 		"@types/react-scrollspy": "^3.3.5",
