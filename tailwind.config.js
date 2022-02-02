@@ -20,6 +20,10 @@ module.exports = {
 			},
 			container: {
 				center: true
+			},
+			backgroundImage: {
+				'dark-hero': "url('/assets/dark-hero.png')",
+				'light-hero': "url('/assets/light-hero.png')"
 			}
 		}
 	},
