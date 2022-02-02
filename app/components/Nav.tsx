@@ -5,7 +5,7 @@ import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md'
 import { Logo } from '~/components/Logo'
 
 export default function Nav() {
-	const { isDarkMode, toggleTheme } = useTheme()
+	const { theme, toggleTheme } = useTheme()
 	return (
 		<nav className='fixed inset-x-0 top-0 z-50 w-full h-32'>
 			<section className='container flex items-center justify-between h-full'>
@@ -38,7 +38,7 @@ export default function Nav() {
 					</li>
 					<li className='hover:text-primary-brand nav-link'>
 						<button onClick={toggleTheme}>
-							{isDarkMode ? (
+							{theme === 'dark' ? (
 								<MdOutlineLightMode title='Light mode' size={24} />
 							) : (
 								<MdOutlineDarkMode title='Dark mode' size={24} />

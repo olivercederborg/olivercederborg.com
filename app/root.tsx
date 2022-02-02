@@ -1,8 +1,20 @@
-import type { LinksFunction } from 'remix'
-import { Links, LiveReload, Meta, Outlet, Scripts, ScrollRestoration, useCatch } from 'remix'
+import clsx from 'clsx'
+import {
+	Links,
+	LinksFunction,
+	LiveReload,
+	LoaderFunction,
+	Meta,
+	Outlet,
+	Scripts,
+	ScrollRestoration,
+	useCatch,
+	useLoaderData
+} from 'remix'
 import Nav from '~/components/Nav'
-import { ThemeProvider } from '~/hooks/useTheme'
+import { NonFlashOfWrongThemeEls, Theme, ThemeProvider, useTheme } from '~/hooks/useTheme'
 import tailwind from '~/tailwind.css'
+import { getThemeSession } from '~/utils/theme.server'
 
 export let links: LinksFunction = () => {
 	return [
@@ -28,9 +40,18 @@ export let links: LinksFunction = () => {
 	]
 }
 
+export type LoaderData = {
+	theme: Theme | null
+}
+
+export const loader: LoaderFunction = async ({ request }) => ({
+	theme: await (await getThemeSession(request)).getTheme()
+})
+
 export default function App() {
+	const { theme } = useLoaderData<LoaderData>()
 	return (
-		<ThemeProvider>
+		<ThemeProvider specifiedTheme={theme}>
 			<Document>
 				<Layout>
 					<Outlet />
@@ -87,14 +108,17 @@ export function CatchBoundary() {
 }
 
 function Document({ children, title }: { children: React.ReactNode; title?: string }) {
+	const { theme: loadedTheme } = useLoaderData<LoaderData>()
+	const { theme } = useTheme()
 	return (
-		<html lang='en' className='scroll-smooth scroll-p-32'>
+		<html lang='en' className={clsx('scroll-smooth scroll-p-32', theme === 'dark' && theme)}>
 			<head>
 				<meta charSet='utf-8' />
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
 				{title ? <title>{title}</title> : null}
 				<Meta />
 				<Links />
+				<NonFlashOfWrongThemeEls ssrTheme={Boolean(loadedTheme)} />
 			</head>
 			<body className='dark:bg-dark-850 bg-dark-50 text-dark-600 dark:text-dark-50 transition-colors duration-300 ease-in-out'>
 				{children}
