@@ -10,7 +10,7 @@ export default function About() {
 		<SectionShell id='about'>
 			<SectionHeader heading='About' />
 
-			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 relative grid grid-cols-12 mt-16 ml-24'>
+			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 md:ml-24 relative grid grid-cols-12 mt-16'>
 				<p className='text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8 col-span-full text-lg font-light leading-relaxed'>
 					Get a brief look at who I am and what I do. <br />
 					If you would like to know more about me and my interests, you can.
@@ -27,7 +27,7 @@ export default function About() {
 				</Link>
 			</section>
 
-			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 md:grid relative flex flex-col-reverse grid-cols-12 mt-24 ml-24'>
+			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 md:grid md:ml-24 relative flex flex-col-reverse grid-cols-12 mt-24'>
 				<section className='md:col-span-6 xl:col-span-8 col-span-full'>
 					<article>
 						<h3 className='text-dark-200 dark:text-dark-400 w-24 text-sm tracking-wider uppercase'>
