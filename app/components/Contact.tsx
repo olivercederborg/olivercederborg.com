@@ -1,22 +1,26 @@
-export default function Contact({ children }: { children: React.ReactNode }) {
-	return (
-		<section id='contact' className='lg:py-32 bg-primary-darker px-4 py-16'>
-			<article className='container'>
-				<p className='text-primary-brand text-xl font-semibold uppercase'>Contact</p>
-				<h2 className='uppercase md:text-4xl lg:text-5xl font-extrabold mt-6 text-3xl break-words !leading-[1.25]'>
-					Get in touch
-				</h2>
-			</article>
+import { FC } from 'react'
+import { SectionHeader } from '~/components/SectionHeader'
 
-			<div className='container flex gap-16 mt-12'>
-				<section className='w-1/2'>
-					<p className='text-stone-400 text-2xl'>
-						Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sint velit dolorem magni veritatis
-						recusandae.
+export const Contact: FC = ({ children }) => {
+	return (
+		<section id='about' className='container pb-56'>
+			<SectionHeader heading='Contact' />
+
+			<section className='flex flex-1 mt-16 ml-24'>
+				<div className='w-1/2'>
+					<p className='text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8 col-span-full text-lg font-light leading-relaxed'>
+						Do not hesitate to contact me through the form here or by direct email on{' '}
+						<a
+							href='mailto:hey@olivercederborg.com'
+							className='underline-offset-[6px] decoration-dark-200 hover:decoration-dark-300 dark:decoration-dark-500 dark:hover:decoration-dark-400 underline'
+						>
+							hey@olivercederborg.com
+						</a>{' '}
+						regardless of the subject.
 					</p>
-				</section>
-				<section className='w-1/2'>{children}</section>
-			</div>
+				</div>
+				<div className='w-1/2'>{children}</div>
+			</section>
 		</section>
 	)
 }
