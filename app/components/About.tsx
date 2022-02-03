@@ -46,8 +46,8 @@ export default function About() {
 							I enjoy the constant change in the technologies used in the area and love diving into new
 							frameworks and technologies.
 							<br />
-							<br />I try to challenge myself by diving head-first into the unknown, and learning the
-							skills along the way, needed to complete the task.
+							<br />I try to challenge myself by diving head-first into the unknown, learning the skills
+							along the way, needed to complete the task.
 						</p>
 					</article>
 
