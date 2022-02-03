@@ -134,7 +134,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className='remix-app'>
 			<Nav />
-			<div>{children}</div>
+			{children}
 			<footer className='bg-primary-darker'>
 				<div className='container pb-10'>
 					<p className='text-stone-500'>&copy; Oliver Cederborg</p>
