@@ -35,7 +35,7 @@ export default function Projects() {
 					<VscArrowRight className='text-dark-200 text-3xl md:text-4xl dark:text-dark-400 group-hover:-translate-x-1 group-hover:translate-y-1 group-hover:text-dark-300 transition duration-300 ease-in-out rotate-[135deg]' />
 				</Link>
 				<section className='md:gap-x-8 lg:gap-x-16 gap-y-12 md:gap-y-16 relative grid flex-1 grid-cols-12'>
-					{[...Array.of(3)].map(t => (
+					{[...Array(3).keys()].map(t => (
 						<Link
 							to='/projects/miinto'
 							key={t}
