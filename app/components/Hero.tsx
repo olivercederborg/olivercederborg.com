@@ -5,7 +5,7 @@ export default function Hero() {
 	return (
 		<header
 			id='intro'
-			className='lg:pt-48 pt-48 pb-80 bg-light-hero dark:bg-dark-hero xl:py-80 lg:pb-64 px-4 md:bg-[right_-12rem_bottom_-16rem] lg:bg-[right_-6rem_center] xl:bg-[right_-4rem_top_15rem] 2xl:bg-[right_20%_top_15rem] bg-[right_-5rem_bottom_-12rem] dark:shadow-[inset_0_-40px_15px_-10px_#171717] shadow-[inset_0_-40px_15px_-10px_#efefef] bg-no-repeat bg-[length:512px] md:bg-auto transition duration-300 ease-in-out'
+			className='lg:pt-48 pt-48 pb-80 bg-light-hero dark:bg-dark-hero xl:py-80 lg:pb-64 px-4 md:bg-[right_-12rem_bottom_-16rem] lg:bg-[right_-6rem_center] xl:bg-[right_-4rem_top_15rem] 2xl:bg-[right_20%_top_15rem] bg-[right_-5rem_bottom_-12rem] dark:shadow-[inset_0_-40px_15px_-10px_#171717] shadow-[inset_0_-40px_15px_-10px_#ededed] bg-no-repeat bg-[length:512px] md:bg-auto transition duration-300 ease-in-out'
 		>
 			<div className='container'>
 				<article className='lg:max-w-[60%]'>
