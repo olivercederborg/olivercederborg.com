@@ -19,7 +19,8 @@ module.exports = {
 				}
 			},
 			container: {
-				center: true
+				center: true,
+				padding: '1rem'
 			},
 			backgroundImage: {
 				'dark-hero': "url('/assets/dark-hero.png')",
