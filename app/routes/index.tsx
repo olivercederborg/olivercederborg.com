@@ -3,6 +3,7 @@ import { useEffect, useRef } from 'react'
 import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useLoaderData, useTransition } from 'remix'
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
+import About from '~/components/About'
 import Contact from '~/components/Contact'
 import Hero from '~/components/Hero'
 import { Input, SubmitButton, Textarea } from '~/components/Input'
@@ -66,9 +67,10 @@ export default function Index() {
 	const transition = useTransition()
 	const formRef = useRef<HTMLFormElement>(null)
 	const nameInputRef = useRef<HTMLInputElement>(null)
+	const emailSent = transition.state === 'loading' && transition.type === 'actionReload'
 
 	useEffect(() => {
-		if (transition.state === 'loading') {
+		if (emailSent) {
 			formRef.current?.reset()
 			nameInputRef.current?.focus()
 		}
@@ -78,6 +80,7 @@ export default function Index() {
 		<main>
 			<Hero />
 			<Projects />
+			<About />
 			<Contact>
 				<ValidatedForm
 					formRef={formRef}
