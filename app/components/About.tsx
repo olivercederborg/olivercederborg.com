@@ -18,7 +18,7 @@ export default function About() {
 					to='/projects'
 					className='text-dark-400 dark:text-dark-200 hover:text-dark-500 group md:col-start-7 xl:col-start-9 col-span-full flex items-center self-start text-3xl font-light transition duration-300 ease-in-out'
 				>
-					Dig deeper
+					More about me
 					<VscArrowRight
 						size={36}
 						className='text-dark-200 dark:text-dark-400 group-hover:translate-x-1 group-hover:translate-y-1 group-hover:text-dark-300 ml-3 transition duration-300 ease-in-out rotate-45'
@@ -33,8 +33,8 @@ export default function About() {
 							Who am I
 						</h3>
 						<p className='text-dark-400 dark:text-dark-200 mt-6 text-lg font-light leading-relaxed'>
-							My name is Oliver Cederborg. I am 24 years old, I live in Copenhagen, Denmark, and I’m a
-							self-taught designer and developer.
+							My name is Oliver Cederborg. I am 24 years old, I live in Copenhagen, Denmark, and I&apos;m
+							a self-taught designer and developer.
 							<br />
 							<br />
 							Digital design has been my main focus for many years, specifically UI/UX, but I have the
