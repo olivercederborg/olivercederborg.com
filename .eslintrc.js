@@ -4,7 +4,12 @@ module.exports = {
 		node: true
 	},
 	root: true,
-	extends: ['eslint:recommended', 'plugin:react/recommended', 'plugin:react/jsx-runtime'],
+	extends: [
+		'eslint:recommended',
+		'plugin:react/recommended',
+		'plugin:react/jsx-runtime',
+		'plugin:jsx-a11y/recommended'
+	],
 	globals: {
 		jsx: true,
 		React: true
@@ -22,7 +27,7 @@ module.exports = {
 			version: 'detect'
 		}
 	},
-	plugins: ['react', '@typescript-eslint'],
+	plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
 	rules: {},
 	overrides: [
 		{
