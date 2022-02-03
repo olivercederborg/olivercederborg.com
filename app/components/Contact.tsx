@@ -3,7 +3,7 @@ import { SectionHeader } from '~/components/SectionHeader'
 
 export const Contact: FC = ({ children }) => {
 	return (
-		<section id='about' className='container pb-56'>
+		<section id='contact' className='container pb-56'>
 			<SectionHeader heading='Contact' />
 
 			<section className='flex flex-1 mt-16 ml-24'>
