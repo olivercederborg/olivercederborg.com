@@ -1,4 +1,5 @@
-import { createContext, FC, useContext, useEffect, useRef, useState } from 'react'
+/* eslint-disable react/no-danger */
+import { createContext, FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useFetcher } from 'remix'
 
 export enum Theme {
@@ -23,7 +24,6 @@ export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({ specifiedT
 	const [theme, setTheme] = useState<Theme | null>(() => {
 		if (specifiedTheme) {
 			if (themes.includes(specifiedTheme)) return specifiedTheme
-			else return null
 		}
 
 		if (typeof window !== 'object') return null
@@ -31,7 +31,10 @@ export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({ specifiedT
 		return getPreferredTheme()
 	})
 
-	const toggleTheme = () => (theme === Theme.DARK ? setTheme(Theme.LIGHT) : setTheme(Theme.DARK))
+	const toggleTheme = useCallback(
+		() => (theme === Theme.DARK ? setTheme(Theme.LIGHT) : setTheme(Theme.DARK)),
+		[theme]
+	)
 
 	const persistTheme = useFetcher()
 	const persistThemeRef = useRef(persistTheme)
@@ -61,7 +64,9 @@ export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({ specifiedT
 		return () => mediaQuery.removeEventListener('change', handleChange)
 	}, [])
 
-	return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>
+	const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
+
+	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 const clientThemeCode = `
@@ -102,6 +107,10 @@ const clientThemeCode = `
   }
 })();
 `
+export const useTheme = () => {
+	const { theme, toggleTheme } = useContext(ThemeContext)
+	return { theme, toggleTheme }
+}
 
 export function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
 	const { theme } = useTheme()
@@ -112,18 +121,10 @@ export function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
 			this is correct before hydration.
 		 */}
 			<meta name='color-scheme' content={theme === 'light' ? 'light' : 'dark'} />
-			{/*
-			If we know what the theme is from the server then we don't need
-			to do fancy tricks prior to hydration to make things match.
-		 */}
+			{/* // eslint-disable-next-line react/no-danger */}
 			{ssrTheme ? null : <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />}
 		</>
 	)
-}
-
-export const useTheme = () => {
-	const { theme, toggleTheme } = useContext(ThemeContext)
-	return { theme, toggleTheme }
 }
 
 export function isTheme(value: unknown): value is Theme {

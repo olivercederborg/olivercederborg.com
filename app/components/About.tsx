@@ -1,8 +1,8 @@
 import { VscArrowRight } from 'react-icons/vsc'
 import { Link } from 'remix'
-import { SectionHeader } from '~/components/SectionHeader'
 import { IoLogoFigma } from 'react-icons/io5'
 import { SiVim, SiTailwindcss, SiTypescript, SiReact, SiVuedotjs, SiNextdotjs } from 'react-icons/si'
+import { SectionHeader } from '~/components/SectionHeader'
 import { SectionShell } from '~/components/SectionShell'
 
 export default function About() {

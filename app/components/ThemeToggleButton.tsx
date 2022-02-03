@@ -3,6 +3,20 @@ import { ComponentPropsWithRef, FC, useMemo } from 'react'
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md'
 import { useTheme } from '~/hooks/useTheme'
 
+type IconButtonProps = HTMLMotionProps<'button'> & ComponentPropsWithRef<'button'>
+const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (
+	<motion.button
+		{...props}
+		initial={{ opacity: 0, rotate: -65, originY: '150%', originX: 0.5 }}
+		animate={{ opacity: 1, rotate: 0 }}
+		exit={{ opacity: 0, rotate: 65 }}
+		transition={{ duration: 0.75, ease: 'backOut' }}
+	>
+		{children}
+	</motion.button>
+)
+IconButton.displayName = 'IconButton'
+
 export const ThemeToggleButton: FC = () => {
 	const { theme, toggleTheme } = useTheme()
 	const isDarkMode = useMemo(() => theme === 'dark', [theme])
@@ -29,17 +43,3 @@ export const ThemeToggleButton: FC = () => {
 		</AnimatePresence>
 	)
 }
-
-type IconButtonProps = HTMLMotionProps<'button'> & ComponentPropsWithRef<'button'>
-const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (
-	<motion.button
-		{...props}
-		initial={{ opacity: 0, rotate: -65, originY: '150%', originX: 0.5 }}
-		animate={{ opacity: 1, rotate: 0 }}
-		exit={{ opacity: 0, rotate: 65 }}
-		transition={{ duration: 0.75, ease: 'backOut' }}
-	>
-		{children}
-	</motion.button>
-)
-IconButton.displayName = 'IconButton'

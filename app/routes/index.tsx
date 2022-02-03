@@ -4,7 +4,7 @@ import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useL
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
 import About from '~/components/About'
-import { Contact } from '~/components/Contact'
+import Contact from '~/components/Contact'
 import Hero from '~/components/Hero'
 import { Input, SubmitButton, Textarea } from '~/components/Input'
 import Projects from '~/components/Projects'
@@ -29,15 +29,14 @@ type LoaderData = {
 	}
 }
 
-export const loader: LoaderFunction = () => {
-	return json({
+export const loader: LoaderFunction = () =>
+	json({
 		defaultValues: {
 			name: '',
 			email: '',
 			message: ''
 		}
 	})
-}
 
 export const action: ActionFunction = async ({ request }) => {
 	const fieldValues = validator.validate(await request.formData())
@@ -53,12 +52,10 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 // https://remix.run/api/conventions#meta
-export let meta: MetaFunction = () => {
-	return {
-		title: 'Oliver Cederborg - Front-end developer',
-		description: "Hi, I'm Oliver Cederborg, a front-end developer from Denmark."
-	}
-}
+export const meta: MetaFunction = () => ({
+	title: 'Oliver Cederborg - Front-end developer',
+	description: "Hi, I'm Oliver Cederborg, a front-end developer from Denmark."
+})
 
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
@@ -74,7 +71,7 @@ export default function Index() {
 			formRef.current?.reset()
 			nameInputRef.current?.focus()
 		}
-	}, [transition])
+	}, [emailSent])
 
 	return (
 		<main>

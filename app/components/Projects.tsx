@@ -38,10 +38,10 @@ export default function Projects() {
 					/>
 				</Link>
 				<section className='md:gap-x-8 lg:gap-x-16 gap-y-12 md:gap-y-16 relative grid flex-1 grid-cols-12'>
-					{[...Array(3)].map((_, i) => (
+					{[...Array(3)].map(t => (
 						<Link
 							to='/projects/miinto'
-							key={i}
+							key={t}
 							className='md:col-span-6 xl:col-span-4 flex flex-col col-span-12'
 						>
 							<img

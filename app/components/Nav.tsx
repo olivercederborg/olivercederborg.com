@@ -1,6 +1,6 @@
 import ScrollSpy from 'react-scrollspy'
 import { Link } from 'remix'
-import { Logo } from '~/components/Logo'
+import Logo from '~/components/Logo'
 import { ThemeToggleButton } from '~/components/ThemeToggleButton'
 
 export default function Nav() {

@@ -10,7 +10,7 @@ type InputProps = {
 	required?: boolean
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, placeholder, required }, ref) => {
+export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, placeholder, required = false }, ref) => {
 	const { error, getInputProps, touched } = useField(name)
 	return (
 		<div>
@@ -25,6 +25,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(({ name, label, pl
 			</label>
 			<input
 				ref={ref}
+				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...getInputProps({ id: name, placeholder })}
 				className={clsx(
 					'py-4 px-3 bg-transparent text-2xl text-dark-400 dark:text-dark-200 dark:placeholder:text-dark-500 font-light mt-2 border-b-[1px] border-dark-200 dark:border-dark-600 placeholder:text-dark-200 w-full focus-within:border-primary-brand outline-none',
@@ -52,31 +53,31 @@ export const Textarea = ({ name, label, placeholder, required }: InputProps) => 
 				{label}
 			</label>
 			<textarea
+				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...getInputProps({ id: name, placeholder })}
 				className={clsx(
 					'py-4 px-3 h-40 bg-transparent text-2xl text-dark-400 dark:text-dark-200 dark:placeholder:text-dark-500 font-light mt-2 border-b-[1px] border-dark-200 dark:border-dark-600 placeholder:text-dark-200 w-full focus-within:border-primary-brand outline-none',
 					error && 'border-red-500 dark:border-red-400',
 					touched && !error && 'border-green-500 dark:border-green-400'
 				)}
-			></textarea>
+			/>
 			{error && <span className='dark:text-red-400 block mt-4 font-light text-red-500'>{error}</span>}
 		</div>
 	)
 }
 Textarea.displayName = 'Textarea'
 
-export const SubmitButton: FC = ({ children, ...props }) => {
-	return (
-		<button
-			type='submit'
-			className='text-dark-400 dark:text-dark-200 hover:text-dark-500 group gap-x-2 flex items-center text-3xl font-light transition duration-300 ease-in-out'
-			{...props}
-		>
-			{children}
-			<VscArrowRight
-				size={36}
-				className='text-dark-200 dark:text-dark-400 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-dark-300 block mb-1 transition duration-300 ease-in-out -rotate-45'
-			/>
-		</button>
-	)
-}
+export const SubmitButton: FC = ({ children, ...props }) => (
+	<button
+		type='submit'
+		className='text-dark-400 dark:text-dark-200 hover:text-dark-500 group gap-x-2 flex items-center text-3xl font-light transition duration-300 ease-in-out'
+		// eslint-disable-next-line react/jsx-props-no-spreading
+		{...props}
+	>
+		{children}
+		<VscArrowRight
+			size={36}
+			className='text-dark-200 dark:text-dark-400 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-dark-300 block mb-1 transition duration-300 ease-in-out -rotate-45'
+		/>
+	</button>
+)

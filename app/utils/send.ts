@@ -1,6 +1,8 @@
-export const sendEmail = async (data: { name: string; email: string; message: string }) => {
-	const sgMail = require('@sendgrid/mail')
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
+const sgMail = require('@sendgrid/mail')
 
+export const sendEmail = async (data: { name: string; email: string; message: string }) => {
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 	const { name, email, message } = data
@@ -25,6 +27,7 @@ export const sendEmail = async (data: { name: string; email: string; message: st
 
 	try {
 		await sgMail.send(content)
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	} catch (error: any) {
 		throw new Error(error)
 	}
