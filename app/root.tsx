@@ -1,4 +1,5 @@
 import clsx from 'clsx'
+import { AnimatePresence } from 'framer-motion'
 import {
 	Links,
 	LinksFunction,
@@ -52,11 +53,13 @@ export default function App() {
 	const { theme } = useLoaderData<LoaderData>()
 	return (
 		<ThemeProvider specifiedTheme={theme}>
-			<Document>
-				<Layout>
-					<Outlet />
-				</Layout>
-			</Document>
+			<AnimatePresence exitBeforeEnter>
+				<Document>
+					<Layout>
+						<Outlet />
+					</Layout>
+				</Document>
+			</AnimatePresence>
 		</ThemeProvider>
 	)
 }
