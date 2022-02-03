@@ -38,16 +38,36 @@ export const loader: LoaderFunction = () =>
 		}
 	})
 
+type ActionData = {
+	status: 'success' | 'error'
+	fields: {
+		name?: string | null
+		email?: string | null
+		message?: string | null
+	}
+	errors: {
+		generalError?: string | null
+	}
+}
+
 export const action: ActionFunction = async ({ request }) => {
 	const fieldValues = validator.validate(await request.formData())
 	if (fieldValues.error) return validationError(fieldValues.error)
-	const { name } = fieldValues.data
+	const { ...fields } = fieldValues.data
 
 	try {
 		await sendEmail(fieldValues.data)
-		return { successMessage: `Thank you for reaching out, ${name}. I will get back to you asap!` }
-	} catch (e) {
-		return { errorMessage: `Sorry ${name}, something went wrong. Please try again later 😔` }
+		return json({
+			fields,
+			status: 'success',
+			errors: {}
+		})
+	} catch (error) {
+		return json({
+			fields,
+			status: 'error',
+			errors: { generalError: error }
+		})
 	}
 }
 
@@ -60,7 +80,7 @@ export const meta: MetaFunction = () => ({
 // https://remix.run/guides/routing#index-routes
 export default function Index() {
 	const { defaultValues } = useLoaderData<LoaderData>()
-	const actionData = useActionData()
+	const actionData = useActionData<ActionData>()
 	const transition = useTransition()
 	const formRef = useRef<HTMLFormElement>(null)
 	const nameInputRef = useRef<HTMLInputElement>(null)
@@ -98,8 +118,16 @@ export default function Index() {
 					/>
 					<SubmitButton>{transition.state === 'submitting' ? 'Sending...' : 'Send it'}</SubmitButton>
 
-					{actionData?.successMessage && <p className='text-green-500'>{actionData.successMessage}</p>}
-					{actionData?.errorMessage && <p className='text-red-500'>{actionData.errorMessage}</p>}
+					{actionData?.status === 'success' && (
+						<p className='text-green-500'>
+							Thank you for reaching out, {actionData.fields.name}. I will get back to you asap!
+						</p>
+					)}
+					{actionData?.status === 'error' && (
+						<p className='text-red-500'>
+							Sorry {actionData.fields.name}, something went wrong. Please try again. 😢
+						</p>
+					)}
 				</ValidatedForm>
 			</Contact>
 		</main>
