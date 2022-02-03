@@ -8,7 +8,7 @@ export default function Projects() {
 		<SectionShell id='projects'>
 			<SectionHeader heading='Projects' />
 
-			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 relative grid grid-cols-12 mt-16 ml-24'>
+			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 md:ml-24 relative grid grid-cols-12 mt-16'>
 				<p className='text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8 col-span-full text-lg font-light leading-relaxed'>
 					Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum modi maxime, nobis aperiam at
 					ducimus id praesentium ut itaque eos, suscipit doloremque quaerat deleniti officia accusamus.
@@ -28,13 +28,13 @@ export default function Projects() {
 			<div className='flex mt-24'>
 				<Link
 					to='/side-projects'
-					className='text-dark-400 dark:text-dark-200 hover:text-dark-500 group flex items-end self-start w-24 gap-3 text-3xl font-light transition duration-300 ease-in-out'
+					className='text-dark-400 dark:text-dark-200 hover:text-dark-500 group md:w-24 md:text-3xl w-14 flex items-end self-start gap-3 text-2xl font-light transition duration-300 ease-in-out'
 					style={{ writingMode: 'vertical-rl' }}
 				>
 					Side projects
 					<VscArrowRight
-						size={36}
-						className='text-dark-200 dark:text-dark-400 group-hover:-translate-x-1 group-hover:translate-y-1 group-hover:text-dark-300 transition duration-300 ease-in-out rotate-[135deg]'
+						// size={36}
+						className='text-dark-200 text-3xl md:text-4xl dark:text-dark-400 group-hover:-translate-x-1 group-hover:translate-y-1 group-hover:text-dark-300 transition duration-300 ease-in-out rotate-[135deg]'
 					/>
 				</Link>
 				<section className='md:gap-x-8 lg:gap-x-16 gap-y-12 md:gap-y-16 relative grid flex-1 grid-cols-12'>
