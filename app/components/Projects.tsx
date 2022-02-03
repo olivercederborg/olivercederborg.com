@@ -3,7 +3,7 @@ import { Link } from 'remix'
 
 export default function Projects() {
 	return (
-		<section id='projects' className='container px-4 pb-56'>
+		<section id='projects' className='container pb-56'>
 			<div className='flex items-center'>
 				<h2 className='text-dark-200 dark:text-dark-400 w-24 text-sm tracking-wider uppercase'>Projects</h2>
 				<div className='flex-1 h-[1px] bg-dark-100 dark:bg-dark-700' />
