@@ -4,7 +4,7 @@ import { ActionFunction, json, LoaderFunction, MetaFunction, useActionData, useL
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
 import About from '~/components/About'
-import Contact from '~/components/Contact'
+import { Contact } from '~/components/Contact'
 import Hero from '~/components/Hero'
 import { Input, SubmitButton, Textarea } from '~/components/Input'
 import Projects from '~/components/Projects'
@@ -91,10 +91,15 @@ export default function Index() {
 					resetAfterSubmit
 					className='space-y-10'
 				>
-					<Input ref={nameInputRef} name='name' label="What's your name?" placeholder='Elon Musk' />
-					<Input name='email' label='Where can I reach you?' placeholder='elon@tesla.com' />
-					<Textarea name='message' label="What's your message?" placeholder="Hi Oliver, let's work!" />
-					<SubmitButton>{transition.state === 'submitting' ? 'Sending...' : <>Send &rarr;</>}</SubmitButton>
+					<Input ref={nameInputRef} name='name' label="What's your name?" placeholder='Elon Musk' required />
+					<Input name='email' label='Where can I reach you?' placeholder='elon@tesla.com' required />
+					<Textarea
+						name='message'
+						label="What's your message?"
+						placeholder="Hi Oliver, let's work!"
+						required
+					/>
+					<SubmitButton>{transition.state === 'submitting' ? 'Sending...' : 'Send it'}</SubmitButton>
 
 					{actionData?.successMessage && <p className='text-green-500'>{actionData.successMessage}</p>}
 					{actionData?.errorMessage && <p className='text-red-500'>{actionData.errorMessage}</p>}
