@@ -1,21 +1,15 @@
 import { ComponentPropsWithRef, forwardRef } from 'react'
 
 type Props = {
-	subHeading: string
 	heading: string
-	description: string
-} & ComponentPropsWithRef<'article'>
+} & ComponentPropsWithRef<'header'>
 
-export const SectionHeader = forwardRef<HTMLElement, Props>(({ heading, subHeading, description, ...props }, ref) => {
+export const SectionHeader = forwardRef<HTMLElement, Props>(({ heading, ...props }, ref) => {
 	return (
-		<article ref={ref} {...props}>
-			<div>
-				<div className='' />
-				<p className='text-primary-brand text-xl font-medium'>{subHeading}</p>
-			</div>
-			<h2 className='md:text-4xl lg:text-5xl mt-10 text-3xl font-semibold break-words'>{heading}</h2>
-			<p className='text-stone-400 mt-10 text-2xl font-light'>{description}</p>
-		</article>
+		<header ref={ref} {...props} className='flex items-center'>
+			<h2 className='text-dark-200 dark:text-dark-400 w-24 text-sm tracking-wider uppercase'>{heading}</h2>
+			<div className='flex-1 h-[1px] bg-dark-100 dark:bg-dark-700' />
+		</header>
 	)
 })
 
