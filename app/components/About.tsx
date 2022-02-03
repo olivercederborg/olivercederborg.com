@@ -3,10 +3,11 @@ import { Link } from 'remix'
 import { SectionHeader } from '~/components/SectionHeader'
 import { IoLogoFigma } from 'react-icons/io5'
 import { SiVim, SiTailwindcss, SiTypescript, SiReact, SiVuedotjs, SiNextdotjs } from 'react-icons/si'
+import { SectionShell } from '~/components/SectionShell'
 
 export default function About() {
 	return (
-		<section id='about' className='container pb-56'>
+		<SectionShell id='about'>
 			<SectionHeader heading='About' />
 
 			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 relative grid grid-cols-12 mt-16 ml-24'>
@@ -72,6 +73,6 @@ export default function About() {
 					className='md:col-start-7 xl:col-start-9 md:col-span-full md:w-full w-2/3'
 				/>
 			</section>
-		</section>
+		</SectionShell>
 	)
 }

@@ -1,10 +1,11 @@
 import { VscArrowRight } from 'react-icons/vsc'
 import { Link } from 'remix'
 import { SectionHeader } from '~/components/SectionHeader'
+import { SectionShell } from '~/components/SectionShell'
 
 export default function Projects() {
 	return (
-		<section id='projects' className='container pb-56'>
+		<SectionShell id='projects'>
 			<SectionHeader heading='Projects' />
 
 			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 relative grid grid-cols-12 mt-16 ml-24'>
@@ -56,6 +57,6 @@ export default function Projects() {
 					))}
 				</section>
 			</div>
-		</section>
+		</SectionShell>
 	)
 }

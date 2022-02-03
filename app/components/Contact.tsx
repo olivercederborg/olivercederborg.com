@@ -1,9 +1,10 @@
 import { FC } from 'react'
 import { SectionHeader } from '~/components/SectionHeader'
+import { SectionShell } from '~/components/SectionShell'
 
 export const Contact: FC = ({ children }) => {
 	return (
-		<section id='contact' className='container pb-56'>
+		<SectionShell id='contact'>
 			<SectionHeader heading='Contact' />
 
 			<section className='flex flex-1 mt-16 ml-24'>
@@ -21,6 +22,6 @@ export const Contact: FC = ({ children }) => {
 				</div>
 				<div className='w-1/2'>{children}</div>
 			</section>
-		</section>
+		</SectionShell>
 	)
 }
