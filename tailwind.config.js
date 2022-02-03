@@ -25,6 +25,9 @@ module.exports = {
 			backgroundImage: {
 				'dark-hero': "url('/assets/dark-hero.png')",
 				'light-hero': "url('/assets/light-hero.png')"
+			},
+			screens: {
+				'2xl': '1440px'
 			}
 		}
 	},
