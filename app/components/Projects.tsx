@@ -1,13 +1,11 @@
 import { VscArrowRight } from 'react-icons/vsc'
 import { Link } from 'remix'
+import { SectionHeader } from '~/components/SectionHeader'
 
 export default function Projects() {
 	return (
 		<section id='projects' className='container pb-56'>
-			<div className='flex items-center'>
-				<h2 className='text-dark-200 dark:text-dark-400 w-24 text-sm tracking-wider uppercase'>Projects</h2>
-				<div className='flex-1 h-[1px] bg-dark-100 dark:bg-dark-700' />
-			</div>
+			<SectionHeader heading='Projects' />
 
 			<section className='md:gap-x-8 lg:gap-x-16 gap-y-10 relative grid grid-cols-12 mt-16 ml-24'>
 				<p className='text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8 col-span-full text-lg font-light leading-relaxed'>
