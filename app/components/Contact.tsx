@@ -7,8 +7,8 @@ export const Contact: FC = ({ children }) => {
 		<SectionShell id='contact'>
 			<SectionHeader heading='Contact' />
 
-			<section className='flex flex-1 mt-16 ml-24'>
-				<div className='w-1/2'>
+			<section className='gap-x-16 md:flex-row md:ml-24 gap-y-24 flex flex-col flex-1 mt-16'>
+				<div className='md:w-1/2'>
 					<p className='text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8 col-span-full text-lg font-light leading-relaxed'>
 						Do not hesitate to contact me through the form here or by direct email on{' '}
 						<a
@@ -20,7 +20,7 @@ export const Contact: FC = ({ children }) => {
 						regardless of the subject.
 					</p>
 				</div>
-				<div className='w-1/2'>{children}</div>
+				<div className='md:w-1/2'>{children}</div>
 			</section>
 		</SectionShell>
 	)
