@@ -1,11 +1,33 @@
+import { motion } from 'framer-motion'
 import ScrollSpy from 'react-scrollspy'
 import { Link } from 'remix'
 import Logo from '~/components/Logo'
 import { ThemeToggleButton } from '~/components/ThemeToggleButton'
 
+const navVariants = {
+	hidden: {
+		opacity: 0,
+		y: -100
+	},
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: {
+			delay: 0.25,
+			duration: 0.5,
+			ease: 'backOut'
+		}
+	}
+}
+
 export default function Nav() {
 	return (
-		<nav className='container fixed inset-x-0 top-0 z-50 flex items-center justify-between w-full h-32'>
+		<motion.nav
+			variants={navVariants}
+			initial='hidden'
+			animate='visible'
+			className='container fixed inset-x-0 top-0 z-50 flex items-center justify-between w-full h-32'
+		>
 			<Link to='/#' tabIndex={0}>
 				<Logo height={36} />
 			</Link>
@@ -32,6 +54,6 @@ export default function Nav() {
 
 				<ThemeToggleButton />
 			</ScrollSpy>
-		</nav>
+		</motion.nav>
 	)
 }
