@@ -15,7 +15,7 @@ const navVariants = {
 		transition: {
 			delay: 0.25,
 			duration: 0.5,
-			ease: 'backOut'
+			ease: 'circOut'
 		}
 	}
 }
