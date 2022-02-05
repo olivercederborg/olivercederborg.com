@@ -14,15 +14,12 @@
 		@apply relative text-dark-400 dark:text-dark-300 font-light text-base hover:text-dark-500 dark:hover:text-dark-200;
 	}
 	.mobile-nav-link {
-		@apply relative text-dark-500 dark:text-dark-200 font-light text-2xl hover:text-dark-600 dark:hover:text-dark-100;
+		@apply relative text-dark-400 dark:text-dark-200 font-light text-2xl hover:text-dark-500 dark:hover:text-dark-100;
 	}
 	.nav-link::before,
 	.mobile-nav-link::before {
 		content: '';
 		@apply absolute left-0 -bottom-0.5 w-full h-[1px] origin-right bg-dark-200 dark:bg-dark-400 scale-x-0 transition-transform duration-300 ease-in-out;
-	}
-	.mobile-nav-link::before {
-		@apply bg-dark-300;
 	}
 	.nav-link:hover::before,
 	.mobile-nav-link:hover::before,
