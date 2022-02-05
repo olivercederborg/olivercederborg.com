@@ -26,7 +26,7 @@ export default function Nav() {
 			variants={navVariants}
 			initial='hidden'
 			animate='visible'
-			className='container fixed inset-x-0 top-0 z-50 flex items-center justify-between w-full h-32'
+			className='md:flex container fixed inset-x-0 top-0 z-50 items-center justify-between hidden w-full h-32'
 		>
 			<Link to='/#' tabIndex={0}>
 				<Logo height={36} />
