@@ -60,7 +60,7 @@ export default function MobileNav() {
 	}, [isOpen])
 	return (
 		<>
-			<Link to='/#' className='top-8 left-4 fixed z-30'>
+			<Link to='/#' className='top-8 left-4 md:hidden fixed z-30'>
 				<Logo height={36} />
 			</Link>
 
