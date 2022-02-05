@@ -12,6 +12,7 @@ import {
 	useCatch,
 	useLoaderData
 } from 'remix'
+import MobileNav from '~/components/MobileNav'
 import Nav from '~/components/Nav'
 import { NonFlashOfWrongThemeEls, Theme, ThemeProvider, useTheme } from '~/hooks/useTheme'
 import tailwind from '~/tailwind.css'
@@ -74,6 +75,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className='remix-app'>
 			<Nav />
+			<MobileNav />
 			{children}
 			<footer className='bg-primary-darker'>
 				<div className='container pb-10'>
