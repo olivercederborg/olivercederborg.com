@@ -48,7 +48,7 @@ export default function MobileNav() {
 	const navRef = useRef<HTMLElement>(null)
 	const navToggleRef = useRef<HTMLButtonElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
-	const toggle = useCallback(() => setIsOpen(!isOpen), [isOpen])
+	const toggle = useCallback(() => setIsOpen(open => !open), [])
 	useClickOutside([navRef, navToggleRef], () => setIsOpen(false))
 
 	const location = useLocation()
