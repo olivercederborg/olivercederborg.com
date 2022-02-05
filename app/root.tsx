@@ -12,6 +12,7 @@ import {
 	useCatch,
 	useLoaderData
 } from 'remix'
+import Footer from '~/components/Footer'
 import MobileNav from '~/components/MobileNav'
 import Nav from '~/components/Nav'
 import { NonFlashOfWrongThemeEls, Theme, ThemeProvider, useTheme } from '~/hooks/useTheme'
@@ -77,11 +78,7 @@ function Layout({ children }: { children: React.ReactNode }) {
 			<Nav />
 			<MobileNav />
 			{children}
-			<footer className='bg-primary-darker'>
-				<div className='container pb-10'>
-					<p className='text-stone-500'>&copy; Oliver Cederborg</p>
-				</div>
-			</footer>
+			<Footer />
 		</div>
 	)
 }
