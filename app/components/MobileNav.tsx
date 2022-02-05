@@ -119,7 +119,7 @@ export default function MobileNav() {
 						<ScrollSpy
 							items={['intro', 'projects', 'about', 'contact']}
 							currentClassName='active-nav-link'
-							className='gap-y-14 flex flex-col items-start justify-center h-full'
+							className='gap-y-14 flex flex-col flex-wrap items-start justify-center h-full'
 							componentTag='div'
 							offset={-256}
 						>
