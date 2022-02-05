@@ -1,73 +1,91 @@
 /* eslint-disable react/no-danger */
-import { createContext, FC, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
-import { useFetcher } from 'remix'
+import {
+  createContext,
+  FC,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { useFetcher } from "remix";
 
 export enum Theme {
-	DARK = 'dark',
-	LIGHT = 'light'
+  DARK = "dark",
+  LIGHT = "light",
 }
-const themes: Array<Theme> = Object.values(Theme)
+const themes: Array<Theme> = Object.values(Theme);
 
 const ThemeContext = createContext<{
-	theme: Theme | null
-	toggleTheme: () => void
+  theme: Theme | null;
+  toggleTheme: () => void;
 }>({
-	theme: Theme.LIGHT,
-	toggleTheme: () => {}
-})
-ThemeContext.displayName = 'ThemeContext'
+  theme: Theme.LIGHT,
+  toggleTheme: () => {},
+});
+ThemeContext.displayName = "ThemeContext";
 
-const prefersLightMQ = '(prefers-color-scheme: light)'
-export const getPreferredTheme = () => (window.matchMedia(prefersLightMQ).matches ? Theme.LIGHT : Theme.DARK)
+const prefersLightMQ = "(prefers-color-scheme: light)";
+export const getPreferredTheme = () =>
+  window.matchMedia(prefersLightMQ).matches ? Theme.LIGHT : Theme.DARK;
 
-export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({ specifiedTheme, children }) => {
-	const [theme, setTheme] = useState<Theme | null>(() => {
-		if (specifiedTheme) {
-			if (themes.includes(specifiedTheme)) return specifiedTheme
-		}
+export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({
+  specifiedTheme,
+  children,
+}) => {
+  const [theme, setTheme] = useState<Theme | null>(() => {
+    if (specifiedTheme) {
+      if (themes.includes(specifiedTheme)) return specifiedTheme;
+    }
 
-		if (typeof window !== 'object') return null
+    if (typeof window !== "object") return null;
 
-		return getPreferredTheme()
-	})
+    return getPreferredTheme();
+  });
 
-	const toggleTheme = useCallback(
-		() => (theme === Theme.DARK ? setTheme(Theme.LIGHT) : setTheme(Theme.DARK)),
-		[theme]
-	)
+  const toggleTheme = useCallback(
+    () => (theme === Theme.DARK ? setTheme(Theme.LIGHT) : setTheme(Theme.DARK)),
+    [theme]
+  );
 
-	const persistTheme = useFetcher()
-	const persistThemeRef = useRef(persistTheme)
+  const persistTheme = useFetcher();
+  const persistThemeRef = useRef(persistTheme);
 
-	useEffect(() => {
-		persistThemeRef.current = persistTheme
-	}, [persistTheme])
+  useEffect(() => {
+    persistThemeRef.current = persistTheme;
+  }, [persistTheme]);
 
-	const mountRun = useRef(false)
+  const mountRun = useRef(false);
 
-	useEffect(() => {
-		if (!mountRun.current) {
-			mountRun.current = true
-			return
-		}
-		if (!theme) return
+  useEffect(() => {
+    if (!mountRun.current) {
+      mountRun.current = true;
+      return;
+    }
+    if (!theme) return;
 
-		persistThemeRef.current.submit({ theme }, { action: 'action/toggle-theme', method: 'post' })
-	}, [theme])
+    persistThemeRef.current.submit(
+      { theme },
+      { action: "action/toggle-theme", method: "post" }
+    );
+  }, [theme]);
 
-	useEffect(() => {
-		const mediaQuery = window.matchMedia(prefersLightMQ)
-		const handleChange = () => {
-			setTheme(mediaQuery.matches ? Theme.LIGHT : Theme.DARK)
-		}
-		mediaQuery.addEventListener('change', handleChange)
-		return () => mediaQuery.removeEventListener('change', handleChange)
-	}, [])
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(prefersLightMQ);
+    const handleChange = () => {
+      setTheme(mediaQuery.matches ? Theme.LIGHT : Theme.DARK);
+    };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => mediaQuery.removeEventListener("change", handleChange);
+  }, []);
 
-	const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme])
+  const value = useMemo(() => ({ theme, toggleTheme }), [theme, toggleTheme]);
 
-	return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
-}
+  return (
+    <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
+  );
+};
 
 const clientThemeCode = `
 // hi there dear reader 👋
@@ -106,27 +124,32 @@ const clientThemeCode = `
     );
   }
 })();
-`
+`;
 export const useTheme = () => {
-	const { theme, toggleTheme } = useContext(ThemeContext)
-	return { theme, toggleTheme }
-}
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  return { theme, toggleTheme };
+};
 
 export function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
-	const { theme } = useTheme()
-	return (
-		<>
-			{/*
+  const { theme } = useTheme();
+  return (
+    <>
+      {/*
 			On the server, "theme" might be `null`, so clientThemeCode ensures that
 			this is correct before hydration.
 		 */}
-			<meta name='color-scheme' content={theme === 'light' ? 'light' : 'dark'} />
-			{/* // eslint-disable-next-line react/no-danger */}
-			{ssrTheme ? null : <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />}
-		</>
-	)
+      <meta
+        name="color-scheme"
+        content={theme === "light" ? "light" : "dark"}
+      />
+      {/* // eslint-disable-next-line react/no-danger */}
+      {ssrTheme ? null : (
+        <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />
+      )}
+    </>
+  );
 }
 
 export function isTheme(value: unknown): value is Theme {
-	return typeof value === 'string' && themes.includes(value as Theme)
+  return typeof value === "string" && themes.includes(value as Theme);
 }
