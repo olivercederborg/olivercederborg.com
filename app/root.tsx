@@ -1,17 +1,17 @@
-import clsx from 'clsx'
-import { AnimatePresence } from 'framer-motion'
 import {
 	Links,
-	LinksFunction,
 	LiveReload,
-	LoaderFunction,
 	Meta,
 	Outlet,
 	Scripts,
 	ScrollRestoration,
 	useCatch,
 	useLoaderData,
-} from 'remix'
+} from '@remix-run/react'
+import { LinksFunction } from '@remix-run/react/routeModules'
+import clsx from 'clsx'
+import { AnimatePresence } from 'framer-motion'
+import { LoaderFunction } from 'remix'
 import Footer from '~/components/Footer'
 import MobileNav from '~/components/MobileNav'
 import Nav from '~/components/Nav'
