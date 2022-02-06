@@ -136,10 +136,12 @@ export function CatchBoundary() {
 	return (
 		<Document title={`${caught.status} ${caught.statusText}`}>
 			<Layout>
-				<h1 className='mt-40'>
-					{caught.status}: {caught.statusText}
-				</h1>
-				{message}
+				<div className='container'>
+					<h1 className='mt-40'>
+						{caught.status}: {caught.statusText}
+					</h1>
+					{message}
+				</div>
 			</Layout>
 		</Document>
 	)
