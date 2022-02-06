@@ -15,21 +15,21 @@ module.exports = {
 					700: '#292929',
 					800: '#1c1c1c',
 					850: '#171717',
-					900: '#0e0e0e'
-				}
+					900: '#0e0e0e',
+				},
 			},
 			container: {
 				center: true,
-				padding: '1rem'
+				padding: '1rem',
 			},
 			backgroundImage: {
 				'dark-hero': "url('/assets/dark-hero.png')",
-				'light-hero': "url('/assets/light-hero.png')"
+				'light-hero': "url('/assets/light-hero.png')",
 			},
 			screens: {
-				'2xl': '1440px'
-			}
-		}
+				'2xl': '1440px',
+			},
+		},
 	},
-	plugins: []
+	plugins: [],
 }
