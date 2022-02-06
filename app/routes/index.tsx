@@ -70,7 +70,7 @@ export const action: ActionFunction = async ({ request }) => {
 			status: 'success',
 			errors: {},
 		})
-	} catch (error) {
+	} catch (error: unknown) {
 		return json({
 			fields,
 			status: 'error',
