@@ -1,4 +1,4 @@
-import { HTMLMotionProps, motion } from 'framer-motion'
+import { HTMLMotionProps, motion, Variants } from 'framer-motion'
 import { ComponentPropsWithRef, forwardRef } from 'react'
 
 const lineVariants = {
@@ -30,11 +30,12 @@ const headerVariants = {
 	},
 }
 
-const parentVariants = {
+const parentVariants: Variants = {
 	visible: {
 		opacity: 1,
 		transition: {
 			staggerChildren: 0.25,
+			delayChildren: 0.25,
 		},
 	},
 	hidden: {
