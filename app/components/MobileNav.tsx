@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, Variants } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import ScrollSpy from 'react-scrollspy'
 import { Link, useLocation } from 'remix'
@@ -6,23 +6,23 @@ import Logo from '~/components/Logo'
 import { ThemeToggleButton } from '~/components/ThemeToggleButton'
 import { useClickOutside } from '~/hooks/useClickOutside'
 
-const navVariants = {
+const navVariants: Variants = {
 	hidden: {
 		x: '100%',
 		transition: {
 			duration: 0.3,
-			ease: 'circOut',
+			ease: [0.9, 0.1, 0.3, 0.96],
 			when: 'afterChildren',
-			staggerChildren: 0.1,
+			staggerChildren: 0.05,
 		},
 	},
 	visible: {
 		x: 0,
 		transition: {
 			duration: 0.3,
-			ease: 'circOut',
+			ease: [0.9, 0.1, 0.3, 0.96],
 			when: 'beforeChildren',
-			staggerChildren: 0.1,
+			staggerChildren: 0.05,
 		},
 	},
 }
@@ -114,7 +114,7 @@ export default function MobileNav() {
 						initial='hidden'
 						animate='visible'
 						exit='hidden'
-						className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col justify-between bg-dark-100 px-12 dark:bg-dark-700 md:hidden'
+						className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col justify-between bg-dark-100 px-12 transition-colors dark:bg-dark-700 md:hidden'
 					>
 						<ScrollSpy
 							items={['intro', 'projects', 'about', 'contact']}
