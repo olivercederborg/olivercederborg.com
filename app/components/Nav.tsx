@@ -1,24 +1,31 @@
-import { motion } from 'framer-motion'
+import { motion, Variants } from 'framer-motion'
 import ScrollSpy from 'react-scrollspy'
 import { Link } from 'remix'
 import Logo from '~/components/Logo'
 import { ThemeToggleButton } from '~/components/ThemeToggleButton'
 
-const navVariants = {
-	hidden: {
-		opacity: 0,
-		y: -100,
-	},
+const navVariants: Variants = {
 	visible: {
-		opacity: 1,
-		y: 0,
 		transition: {
-			delay: 0.25,
-			duration: 0.5,
-			ease: 'circOut',
+			staggerChildren: 0.05,
+			delayChildren: 1,
 		},
 	},
 }
+const linkVariants: Variants = {
+	hidden: {
+		opacity: 0,
+	},
+	visible: {
+		opacity: 1,
+		transition: {
+			duration: 1,
+			ease: 'easeInOut',
+		},
+	},
+}
+
+const AnimatedLink = motion(Link)
 
 export default function Nav() {
 	return (
@@ -28,9 +35,9 @@ export default function Nav() {
 			animate='visible'
 			className='container fixed inset-x-0 top-0 z-50 hidden h-32 w-full items-center justify-between md:flex'
 		>
-			<Link to='/#' tabIndex={0}>
+			<AnimatedLink to='/#' variants={linkVariants}>
 				<Logo height={36} />
-			</Link>
+			</AnimatedLink>
 
 			<ScrollSpy
 				items={['intro', 'projects', 'about', 'contact']}
@@ -39,20 +46,38 @@ export default function Nav() {
 				componentTag='div'
 				offset={-256}
 			>
-				<Link to='/#' className='hover:text-primary-brand nav-link'>
+				<AnimatedLink
+					to='/#'
+					variants={linkVariants}
+					className='hover:text-primary-brand nav-link'
+				>
 					Introduction
-				</Link>
-				<Link to='/#projects' className='hover:text-primary-brand nav-link'>
+				</AnimatedLink>
+				<AnimatedLink
+					to='/#projects'
+					variants={linkVariants}
+					className='hover:text-primary-brand nav-link'
+				>
 					Projects
-				</Link>
-				<Link to='/#about' className='hover:text-primary-brand nav-link'>
+				</AnimatedLink>
+				<AnimatedLink
+					to='/#about'
+					variants={linkVariants}
+					className='hover:text-primary-brand nav-link'
+				>
 					About
-				</Link>
-				<Link to='/#contact' className='hover:text-primary-brand nav-link'>
+				</AnimatedLink>
+				<AnimatedLink
+					to='/#contact'
+					variants={linkVariants}
+					className='hover:text-primary-brand nav-link'
+				>
 					Contact
-				</Link>
+				</AnimatedLink>
 
-				<ThemeToggleButton />
+				<motion.div variants={linkVariants}>
+					<ThemeToggleButton />
+				</motion.div>
 			</ScrollSpy>
 		</motion.nav>
 	)
