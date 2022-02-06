@@ -18,7 +18,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 				<label
 					htmlFor={name}
 					className={clsx(
-						'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200 ',
+						'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200',
 						required &&
 							"after:absolute after:-right-4 after:text-dark-300 after:content-['*']"
 					)}
@@ -27,10 +27,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 				</label>
 				<input
 					ref={ref}
-					// eslint-disable-next-line react/jsx-props-no-spreading
 					{...getInputProps({ id: name, placeholder })}
 					className={clsx(
-						'focus-within:border-primary-brand mt-2 w-full border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
+						'focus-within:border-primary-brand mt-2 w-full appearance-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
 						error && 'border-red-500 dark:border-red-400',
 						touched && !error && 'border-green-500 dark:border-green-400'
 					)}
@@ -58,10 +57,9 @@ export const Textarea = ({ name, label, placeholder, required }: InputProps) => 
 				{label}
 			</label>
 			<textarea
-				// eslint-disable-next-line react/jsx-props-no-spreading
 				{...getInputProps({ id: name, placeholder })}
 				className={clsx(
-					'focus-within:border-primary-brand mt-2 h-40 w-full border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
+					'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
 					error && 'border-red-500 dark:border-red-400',
 					touched && !error && 'border-green-500 dark:border-green-400'
 				)}
