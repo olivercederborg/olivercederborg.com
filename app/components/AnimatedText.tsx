@@ -31,8 +31,8 @@ export const AnimatedText = ({
 	return (
 		<Tag {...rest}>
 			<motion.span variants={variants}>
-				{words.map(word => (
-					<span key={word} className='inline-block overflow-hidden'>
+				{words.map((word, i) => (
+					<span key={i} className='inline-block overflow-hidden'>
 						<motion.span variants={variants} className='inline-block'>
 							{word}
 						</motion.span>
