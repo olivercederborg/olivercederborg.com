@@ -47,18 +47,17 @@ export default function About() {
 				</MotionLinkButton>
 			</motion.section>
 
-			<motion.section
-				variants={{
-					visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } },
-				}}
-				initial='hidden'
-				whileInView='visible'
-				exit='hidden'
-				viewport={{ once: true }}
-				className='relative mt-24 flex grid-cols-12 flex-col-reverse gap-y-10 md:ml-24 md:grid md:gap-x-8 lg:gap-x-16'
-			>
+			<section className='relative mt-24 flex grid-cols-12 flex-col-reverse gap-y-10 md:ml-24 md:grid md:gap-x-8 lg:gap-x-16'>
 				<section className='col-span-full md:col-span-6 xl:col-span-8'>
-					<article>
+					<motion.article
+						variants={{
+							visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } },
+						}}
+						initial='hidden'
+						whileInView='visible'
+						exit='hidden'
+						viewport={{ once: true }}
+					>
 						<AnimatedText
 							as='h3'
 							text='Who am I'
@@ -84,9 +83,18 @@ export default function About() {
 							text='I try to challenge myself by diving head-first into the unknown, learning the skills along the way, needed to complete the task.'
 							className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
 						/>
-					</article>
+					</motion.article>
 
-					<section className='col-span-full mt-14 overflow-hidden md:col-span-6 xl:col-span-8'>
+					<motion.section
+						variants={{
+							visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } },
+						}}
+						initial='hidden'
+						whileInView='visible'
+						exit='hidden'
+						viewport={{ once: true }}
+						className='col-span-full mt-14 overflow-hidden md:col-span-6 xl:col-span-8'
+					>
 						<AnimatedText
 							as='h3'
 							text='Tech I enjoy'
@@ -111,7 +119,7 @@ export default function About() {
 							<SiVuedotjs size={28} title='Vue.js' />
 							<SiNextdotjs size={28} title='Next.js' />
 						</motion.div>
-					</section>
+					</motion.section>
 				</section>
 
 				<motion.figure
@@ -129,6 +137,10 @@ export default function About() {
 							},
 						},
 					}}
+					initial='hidden'
+					whileInView='visible'
+					exit='hidden'
+					viewport={{ once: true }}
 					style={{ backgroundColor: '#d4d4d4' }}
 					className='mb-6 w-2/3 self-start md:col-span-full md:col-start-7 md:mb-0 md:w-full xl:col-start-9'
 				>
@@ -144,7 +156,7 @@ export default function About() {
 						alt='Portrait of Oliver Cederborg'
 					/>
 				</motion.figure>
-			</motion.section>
+			</section>
 		</SectionShell>
 	)
 }
