@@ -86,8 +86,8 @@ export default function Projects() {
 					viewport={{ once: true }}
 					className='relative grid flex-1 grid-cols-12 gap-y-12 md:gap-x-8 md:gap-y-16 lg:gap-x-16'
 				>
-					{projects.map(t => (
-						<ProjectItem key={t.name} project={t} />
+					{projects.map(project => (
+						<ProjectItem key={project.id} project={project} />
 					))}
 				</motion.section>
 			</motion.div>
