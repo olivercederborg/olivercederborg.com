@@ -1,20 +1,30 @@
-import { motion } from 'framer-motion'
+import { motion, MotionProps } from 'framer-motion'
+import { memo, useMemo } from 'react'
 import { Link } from 'remix'
 import { AnimatedText } from '~/components/AnimatedText'
+import useWindowDimensions from '~/hooks/useWindowDimension'
 import { Project } from '../../projects'
 
 type ProjectItemProps = {
 	project: Project
 }
 
-export const ProjectItem = ({ project }: ProjectItemProps) => {
-	const { name, area, link, image, imageAlt, color = '#EDEBE6' } = project
+export const ProjectItem = memo(({ project }: ProjectItemProps) => {
+	const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
+	const { width: windowWidth } = useWindowDimensions()
+	const isPhone = useMemo(() => (windowWidth && windowWidth < 768) ?? 0, [windowWidth])
+	const phoneMotionProps: MotionProps = useMemo(
+		() => ({
+			variants: { visible: { transition: { staggerChildren: 0.35 } } },
+			viewport: { once: true },
+			...(isPhone ? { initial: 'hidden', whileInView: 'visible', exit: 'hidden' } : {}),
+		}),
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+		[]
+	)
 	return (
 		<Link to={link} className='col-span-12 flex flex-col md:col-span-6 xl:col-span-4'>
-			<motion.article
-				variants={{ visible: { transition: { staggerChildren: 0.35 } } }}
-				viewport={{ once: true }}
-			>
+			<motion.article key={id} {...phoneMotionProps}>
 				<motion.figure
 					variants={{
 						hidden: { scaleX: 0, originX: 0 },
@@ -57,4 +67,5 @@ export const ProjectItem = ({ project }: ProjectItemProps) => {
 			</motion.article>
 		</Link>
 	)
-}
+})
+ProjectItem.displayName = 'ProjectItem'
