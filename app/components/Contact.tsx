@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import type { FC } from 'react'
 import { SectionHeader } from '~/components/SectionHeader'
 import { SectionShell } from '~/components/SectionShell'
 
