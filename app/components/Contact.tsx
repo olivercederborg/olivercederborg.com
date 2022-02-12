@@ -29,7 +29,18 @@ const Contact: FC = ({ children }) => (
 					regardless of the subject.
 				</p>
 			</div>
-			<div className='md:w-1/2'>{children}</div>
+			<motion.div
+				variants={{
+					visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } },
+				}}
+				initial='hidden'
+				whileInView='visible'
+				exit='hidden'
+				viewport={{ once: true }}
+				className='md:w-1/2'
+			>
+				{children}
+			</motion.div>
 		</motion.section>
 	</SectionShell>
 )
