@@ -1,9 +1,7 @@
-/* eslint-disable global-require */
-/* eslint-disable @typescript-eslint/no-var-requires */
-const sgMail = require('@sendgrid/mail')
+import sgMail from '@sendgrid/mail'
 
 export const sendEmail = async (data: { name: string; email: string; message: string }) => {
-	sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+	sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
 	const { name, email, message } = data
 
