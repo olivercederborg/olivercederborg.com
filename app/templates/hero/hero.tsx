@@ -1,8 +1,9 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { AnimatedLetters, AnimatedText } from '~/components/AnimatedText'
-import { MotionLinkButton } from '~/components/LinkButton'
 
-export default function Hero() {
+import { AnimatedLetters, AnimatedText } from '~/components/animated-text'
+import { MotionLinkButton } from '~/components/link-button'
+
+export const Hero = () => {
 	return (
 		<header
 			id='intro'

@@ -8,12 +8,13 @@ import {
 	SiVim,
 	SiVuedotjs,
 } from 'react-icons/si'
-import { AnimatedText } from '~/components/AnimatedText'
-import { MotionLinkButton } from '~/components/LinkButton'
-import { SectionHeader } from '~/components/SectionHeader'
-import { SectionShell } from '~/components/SectionShell'
 
-export default function About() {
+import { AnimatedText } from '~/components/animated-text'
+import { MotionLinkButton } from '~/components/link-button'
+import { SectionHeader } from '~/components/section-header'
+import { SectionShell } from '~/components/section-shell'
+
+export const About = () => {
 	return (
 		<SectionShell id='about'>
 			<SectionHeader heading='About' />

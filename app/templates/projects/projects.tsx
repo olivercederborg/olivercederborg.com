@@ -1,13 +1,15 @@
 import { motion } from 'framer-motion'
 import { VscArrowRight } from 'react-icons/vsc'
-import { AnimatedText } from '~/components/AnimatedText'
-import { MotionLinkButton } from '~/components/LinkButton'
-import { ProjectItem } from '~/components/ProjectItem'
-import { SectionHeader } from '~/components/SectionHeader'
-import { SectionShell } from '~/components/SectionShell'
-import { projects } from '../../projects'
 
-export default function Projects() {
+import { AnimatedText } from '~/components/animated-text'
+import { MotionLinkButton } from '~/components/link-button'
+import { ProjectItem } from '~/components/project-item'
+import { SectionHeader } from '~/components/section-header'
+import { SectionShell } from '~/components/section-shell'
+
+import { projects } from '../../../projects'
+
+export const Projects = () => {
 	return (
 		<SectionShell id='projects'>
 			<SectionHeader heading='Projects' />

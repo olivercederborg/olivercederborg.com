@@ -1,9 +1,13 @@
-import { motion, MotionProps } from 'framer-motion'
 import { memo, useMemo } from 'react'
 import { Link } from 'remix'
-import { AnimatedText } from '~/components/AnimatedText'
-import useWindowDimensions from '~/hooks/useWindowDimension'
-import { Project } from '../../projects'
+
+import type { MotionProps } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { useWindowSize } from 'react-use'
+
+import { AnimatedText } from '~/components/animated-text'
+
+import type { Project } from '../../projects'
 
 type ProjectItemProps = {
 	project: Project
@@ -11,7 +15,7 @@ type ProjectItemProps = {
 
 export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 	const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
-	const { width: windowWidth } = useWindowDimensions()
+	const { width: windowWidth } = useWindowSize()
 	const isPhone = useMemo(() => (windowWidth && windowWidth < 768) ?? 0, [windowWidth])
 	const phoneMotionProps: MotionProps = useMemo(
 		() => ({

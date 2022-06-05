@@ -1,10 +1,11 @@
-import { ComponentPropsWithoutRef } from 'react'
+import type { ComponentPropsWithoutRef } from 'react'
 
 type LogoProps = {
 	width?: number
 	height?: number
 } & ComponentPropsWithoutRef<'svg'>
-const Logo = ({ width = 50, height = 50, ...props }: LogoProps) => (
+
+export const Logo = ({ width = 50, height = 50, ...props }: LogoProps) => (
 	<svg
 		viewBox='0 0 53 36'
 		xmlns='http://www.w3.org/2000/svg'
@@ -22,5 +23,3 @@ const Logo = ({ width = 50, height = 50, ...props }: LogoProps) => (
 		/>
 	</svg>
 )
-
-export default Logo

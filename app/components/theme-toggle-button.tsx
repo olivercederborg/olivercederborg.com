@@ -1,7 +1,11 @@
-import { AnimatePresence, HTMLMotionProps, motion } from 'framer-motion'
-import { ComponentPropsWithRef, FC, useMemo } from 'react'
+import type { ComponentPropsWithRef, FC } from 'react'
+import { useMemo } from 'react'
+
+import type { HTMLMotionProps } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md'
-import { useTheme } from '~/hooks/useTheme'
+
+import { useTheme } from '~/hooks/use-theme'
 
 type IconButtonProps = HTMLMotionProps<'button'> & ComponentPropsWithRef<'button'>
 const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (

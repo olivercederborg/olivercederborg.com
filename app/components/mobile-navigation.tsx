@@ -1,10 +1,14 @@
-import { AnimatePresence, motion, Variants } from 'framer-motion'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import ScrollSpy from 'react-scrollspy'
 import { Link, useLocation } from 'remix'
-import Logo from '~/components/Logo'
-import { ThemeToggleButton } from '~/components/ThemeToggleButton'
-import { useClickOutside } from '~/hooks/useClickOutside'
+
+import type { Variants } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
+import ScrollSpy from 'react-scrollspy'
+
+import { useClickAway } from '~/hooks/use-click-away'
+
+import { Logo } from '~/components/logo'
+import { ThemeToggleButton } from '~/components/theme-toggle-button'
 
 const navVariants: Variants = {
 	hidden: {
@@ -49,14 +53,13 @@ export default function MobileNav() {
 	const navToggleRef = useRef<HTMLButtonElement>(null)
 	const [isOpen, setIsOpen] = useState(false)
 	const toggle = useCallback(() => setIsOpen(open => !open), [])
-	useClickOutside([navRef, navToggleRef], () => setIsOpen(false))
+	useClickAway([navRef, navToggleRef], () => setIsOpen(false))
 
 	const location = useLocation()
 	useEffect(() => setIsOpen(false), [location])
 
 	useEffect(() => {
-		if (isOpen) document.body.style.overflow = 'hidden'
-		else document.body.style.overflow = 'visible'
+		document.body.style.overflow = isOpen ? 'hidden' : 'visible'
 	}, [isOpen])
 	return (
 		<>

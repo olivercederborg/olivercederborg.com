@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prefer-module */
 module.exports = {
 	content: ['./app/**/*.{js,ts,jsx,tsx}'],
 	darkMode: 'class',

@@ -1,5 +1,8 @@
+import type { FC } from 'react'
+import { forwardRef } from 'react'
+
 import clsx from 'clsx'
-import { FC, forwardRef } from 'react'
+import { motion } from 'framer-motion'
 import { VscArrowRight } from 'react-icons/vsc'
 import { useField } from 'remix-validated-form'
 
@@ -15,8 +18,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 		const { error, getInputProps, touched } = useField(name)
 		return (
 			<div>
-				<label
+				<motion.label
 					htmlFor={name}
+					variants={{
+						hidden: { opacity: 0, y: 50 },
+						visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+					}}
 					className={clsx(
 						'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200',
 						required &&
@@ -24,8 +31,12 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 					)}
 				>
 					{label}
-				</label>
-				<input
+				</motion.label>
+				<motion.input
+					variants={{
+						hidden: { opacity: 0, y: 50 },
+						visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+					}}
 					ref={ref}
 					{...getInputProps({ id: name, placeholder })}
 					className={clsx(
@@ -47,7 +58,11 @@ export const Textarea = ({ name, label, placeholder, required }: InputProps) => 
 	const { error, getInputProps, touched } = useField(name)
 	return (
 		<div>
-			<label
+			<motion.label
+				variants={{
+					hidden: { opacity: 0, y: 50 },
+					visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+				}}
 				htmlFor={name}
 				className={clsx(
 					'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200 ',
@@ -55,8 +70,12 @@ export const Textarea = ({ name, label, placeholder, required }: InputProps) => 
 				)}
 			>
 				{label}
-			</label>
-			<textarea
+			</motion.label>
+			<motion.textarea
+				variants={{
+					hidden: { opacity: 0, y: 50 },
+					visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+				}}
 				{...getInputProps({ id: name, placeholder })}
 				className={clsx(
 					'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
@@ -73,16 +92,23 @@ export const Textarea = ({ name, label, placeholder, required }: InputProps) => 
 Textarea.displayName = 'Textarea'
 
 export const SubmitButton: FC = ({ children, ...props }) => (
-	<button
-		type='submit'
-		className='group flex items-center gap-x-2 text-3xl font-light text-dark-400 transition duration-300 ease-in-out hover:text-dark-500 dark:text-dark-200'
-		// eslint-disable-next-line react/jsx-props-no-spreading
-		{...props}
+	<motion.div
+		variants={{
+			hidden: { opacity: 0, y: 50 },
+			visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+		}}
 	>
-		{children}
-		<VscArrowRight
-			size={36}
-			className='mb-1 block -rotate-45 text-dark-200 transition duration-300 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-dark-300 dark:text-dark-400'
-		/>
-	</button>
+		<button
+			type='submit'
+			className='group flex items-center gap-x-2 text-3xl font-light text-dark-400 transition duration-300 ease-in-out hover:text-dark-500 dark:text-dark-200'
+			// eslint-disable-next-line react/jsx-props-no-spreading
+			{...props}
+		>
+			{children}
+			<VscArrowRight
+				size={36}
+				className='mb-1 block -rotate-45 text-dark-200 transition duration-300 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-dark-300 dark:text-dark-400'
+			/>
+		</button>
+	</motion.div>
 )

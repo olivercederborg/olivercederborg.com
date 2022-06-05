@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key */
-import { motion, Variants } from 'framer-motion'
-import { HTMLProps } from 'react'
+import type { HTMLProps } from 'react'
+
+import type { Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const textVariantsDefault: Variants = {
 	visible: {},
@@ -31,8 +33,8 @@ export const AnimatedText = ({
 	return (
 		<Tag {...rest}>
 			<motion.span variants={variants}>
-				{words.map((word, i) => (
-					<span key={i} className='inline-block overflow-hidden'>
+				{words.map((word, index) => (
+					<span key={index} className='inline-block overflow-hidden'>
 						<motion.span variants={variants} className='inline-block'>
 							{word}
 						</motion.span>
@@ -62,10 +64,10 @@ export const AnimatedLetters = ({
 	return (
 		<Tag {...rest}>
 			<motion.span variants={textVariants}>
-				{words.map((_, i) => (
-					<span key={i} className='inline-block whitespace-nowrap'>
-						{[...words[i]].flat().map((letter, j) => (
-							<span key={j} className='inline-block overflow-hidden'>
+				{words.map((_, index) => (
+					<span key={index} className='inline-block whitespace-nowrap'>
+						{[...words[index]].flat().map((letter, letterIndex) => (
+							<span key={letterIndex} className='inline-block overflow-hidden'>
 								<motion.span variants={letterVariants} className='inline-block'>
 									{letter}
 								</motion.span>
