@@ -1,6 +1,8 @@
+import type { FC } from 'react'
+import { forwardRef } from 'react'
+
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
-import { type FC, forwardRef } from 'react'
 import { VscArrowRight } from 'react-icons/vsc'
 import { useField } from 'remix-validated-form'
 

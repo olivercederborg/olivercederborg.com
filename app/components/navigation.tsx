@@ -1,8 +1,12 @@
-import { motion, Variants } from 'framer-motion'
-import ScrollSpy from 'react-scrollspy'
 import { Link } from 'remix'
-import Logo from '~/components/Logo'
-import { ThemeToggleButton } from '~/components/ThemeToggleButton'
+
+import type { Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import { useScrollspy } from '~/hooks/use-scrollspy'
+
+import { Logo } from '~/components/Logo'
+import { ThemeToggleButton } from '~/components/theme-toggle-button'
 
 const navVariants: Variants = {
 	visible: {
@@ -27,7 +31,14 @@ const linkVariants: Variants = {
 
 const AnimatedLink = motion(Link)
 
-export default function Nav() {
+export const Navigation = () => {
+	useScrollspy({
+		ids: ['intro', 'projects', 'about', 'contact'],
+		hrefs: ['/#intro', '/#projects', '/#about', '/#contact'],
+		offset: 'topCenter',
+		activeClass: 'active-nav-link',
+	})
+
 	return (
 		<motion.nav
 			variants={navVariants}
@@ -39,15 +50,9 @@ export default function Nav() {
 				<Logo height={36} />
 			</AnimatedLink>
 
-			<ScrollSpy
-				items={['intro', 'projects', 'about', 'contact']}
-				currentClassName='active-nav-link'
-				className='flex items-center justify-center gap-x-14 text-lg'
-				componentTag='div'
-				offset={-256}
-			>
+			<div className='flex items-center justify-center gap-x-14 text-lg'>
 				<AnimatedLink
-					to='/#'
+					to='/#intro'
 					variants={linkVariants}
 					className='hover:text-primary-brand nav-link'
 				>
@@ -78,7 +83,7 @@ export default function Nav() {
 				<motion.div variants={linkVariants}>
 					<ThemeToggleButton />
 				</motion.div>
-			</ScrollSpy>
+			</div>
 		</motion.nav>
 	)
 }

@@ -1,21 +1,14 @@
 import { withZod } from '@remix-validated-form/with-zod'
 import { useEffect, useRef } from 'react'
-import {
-	ActionFunction,
-	json,
-	LoaderFunction,
-	MetaFunction,
-	useActionData,
-	useLoaderData,
-	useTransition,
-} from 'remix'
+import type { ActionFunction, LoaderFunction, MetaFunction } from 'remix'
+import { json, useActionData, useLoaderData, useTransition } from 'remix'
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
-import About from '~/components/About'
-import Contact from '~/components/Contact'
-import Hero from '~/components/Hero'
+import { About } from '~/templates/about/about'
+import { Contact } from '~/templates/contact/contact'
+import { Hero } from '~/templates/hero/hero'
 import { Input, SubmitButton, Textarea } from '~/components/Input'
-import Projects from '~/components/Projects'
+import { Projects } from '~/templates/projects/projects'
 import { sendEmail } from '~/utils/send'
 
 export const validator = withZod(

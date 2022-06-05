@@ -1,5 +1,5 @@
 import { createCookieSessionStorage } from 'remix'
-import { Theme } from '~/hooks/useTheme'
+import { Theme } from '~/hooks/use-theme'
 
 const themeStorage = createCookieSessionStorage({
 	cookie: {

@@ -8,16 +8,21 @@ import {
 	useCatch,
 	useLoaderData,
 } from '@remix-run/react'
-import { LinksFunction } from '@remix-run/react/routeModules'
+import type { LinksFunction } from '@remix-run/react/routeModules'
+import type { LoaderFunction } from 'remix'
+
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
-import { LoaderFunction } from 'remix'
-import Footer from '~/components/Footer'
-import MobileNav from '~/components/MobileNav'
-import Nav from '~/components/Nav'
-import { NonFlashOfWrongThemeEls, Theme, ThemeProvider, useTheme } from '~/hooks/useTheme'
-import tailwind from '~/tailwind.css'
+
+import type { Theme } from '~/hooks/use-theme'
+import { NonFlashOfWrongThemeEls, ThemeProvider, useTheme } from '~/hooks/use-theme'
 import { getThemeSession } from '~/utils/theme.server'
+
+import { Footer } from '~/components/footer'
+import MobileNav from '~/components/mobile-navigation'
+import { Navigation } from '~/components/navigation'
+
+import tailwind from '~/tailwind.css'
 
 export const links: LinksFunction = () => [
 	{
@@ -46,6 +51,7 @@ export type LoaderData = {
 }
 
 export const loader: LoaderFunction = async ({ request }) => ({
+	// eslint-disable-next-line unicorn/no-await-expression-member
 	theme: await (await getThemeSession(request)).getTheme(),
 })
 
@@ -55,9 +61,9 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 	return (
 		<html lang='en' className={clsx('scroll-p-32 scroll-smooth', theme === 'dark' && theme)}>
 			<head>
-				<meta charSet='utf-8' />
+				<meta charSet='utf8' />
 				<meta name='viewport' content='width=device-width,initial-scale=1' />
-				{title ? <title>{title}</title> : null}
+				{title ? <title>{title}</title> : undefined}
 				<Meta />
 				<Links />
 				<NonFlashOfWrongThemeEls ssrTheme={Boolean(loadedTheme)} />
@@ -75,7 +81,7 @@ function Document({ children, title }: { children: React.ReactNode; title?: stri
 function Layout({ children }: { children: React.ReactNode }) {
 	return (
 		<div className='remix-app'>
-			<Nav />
+			<Navigation />
 			<MobileNav />
 			{children}
 			<Footer />

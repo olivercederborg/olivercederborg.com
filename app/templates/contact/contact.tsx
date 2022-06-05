@@ -1,9 +1,15 @@
-import { motion } from 'framer-motion'
-import type { FC } from 'react'
-import { SectionHeader } from '~/components/SectionHeader'
-import { SectionShell } from '~/components/SectionShell'
+import type { ReactNode } from 'react'
 
-const Contact: FC = ({ children }) => (
+import { motion } from 'framer-motion'
+
+import { SectionHeader } from '~/components/section-header'
+import { SectionShell } from '~/components/section-shell'
+
+type ContactProps = {
+	children: ReactNode
+}
+
+export const Contact = ({ children }: ContactProps) => (
 	<SectionShell id='contact'>
 		<SectionHeader heading='Contact' />
 
@@ -44,4 +50,3 @@ const Contact: FC = ({ children }) => (
 		</motion.section>
 	</SectionShell>
 )
-export default Contact

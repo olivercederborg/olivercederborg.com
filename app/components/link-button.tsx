@@ -1,9 +1,11 @@
-import { RemixLinkProps } from '@remix-run/react/components'
-import clsx from 'clsx'
-import { HTMLMotionProps, motion } from 'framer-motion'
+import type { RemixLinkProps } from '@remix-run/react/components'
 import { forwardRef } from 'react'
-import { VscArrowRight } from 'react-icons/vsc'
 import { Link } from 'remix'
+
+import clsx from 'clsx'
+import type { HTMLMotionProps } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { VscArrowRight } from 'react-icons/vsc'
 
 type LinkButtonProps = {
 	children?: string

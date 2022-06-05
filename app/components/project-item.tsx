@@ -1,9 +1,14 @@
-import { motion, MotionProps } from 'framer-motion'
 import { memo, useMemo } from 'react'
 import { Link } from 'remix'
-import { AnimatedText } from '~/components/AnimatedText'
-import useWindowDimensions from '~/hooks/useWindowDimension'
-import { Project } from '../../projects'
+
+import type { MotionProps } from 'framer-motion'
+import { motion } from 'framer-motion'
+
+import useWindowDimensions from '~/hooks/use-window-dimensions'
+
+import { AnimatedText } from '~/components/animated-text'
+
+import type { Project } from '../../projects'
 
 type ProjectItemProps = {
 	project: Project

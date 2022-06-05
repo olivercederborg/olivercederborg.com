@@ -1,14 +1,6 @@
 /* eslint-disable react/no-danger */
-import {
-	createContext,
-	FC,
-	useCallback,
-	useContext,
-	useEffect,
-	useMemo,
-	useRef,
-	useState,
-} from 'react'
+import type { FC } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { useFetcher } from 'remix'
 
 export enum Theme {
@@ -18,7 +10,7 @@ export enum Theme {
 const themes: Array<Theme> = Object.values(Theme)
 
 const ThemeContext = createContext<{
-	theme: Theme | null
+	theme: Theme | undefined
 	toggleTheme: () => void
 }>({
 	theme: Theme.LIGHT,
@@ -34,12 +26,10 @@ export const ThemeProvider: FC<{ specifiedTheme: Theme | null }> = ({
 	specifiedTheme,
 	children,
 }) => {
-	const [theme, setTheme] = useState<Theme | null>(() => {
-		if (specifiedTheme) {
-			if (themes.includes(specifiedTheme)) return specifiedTheme
-		}
+	const [theme, setTheme] = useState<Theme | undefined>(() => {
+		if (specifiedTheme && themes.includes(specifiedTheme)) return specifiedTheme
 
-		if (typeof window !== 'object') return null
+		if (typeof window !== 'object') return undefined
 
 		return getPreferredTheme()
 	})
@@ -135,7 +125,7 @@ export function NonFlashOfWrongThemeEls({ ssrTheme }: { ssrTheme: boolean }) {
 		 */}
 			<meta name='color-scheme' content={theme === 'light' ? 'light' : 'dark'} />
 			{/* // eslint-disable-next-line react/no-danger */}
-			{ssrTheme ? null : <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />}
+			{ssrTheme ? undefined : <script dangerouslySetInnerHTML={{ __html: clientThemeCode }} />}
 		</>
 	)
 }

@@ -8,7 +8,7 @@ function getWindowDimensions() {
 			height,
 		}
 	}
-	return { width: null, height: null }
+	return { width: undefined, height: undefined }
 }
 
 export default function useWindowDimensions() {

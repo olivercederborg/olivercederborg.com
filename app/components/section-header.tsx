@@ -1,5 +1,8 @@
-import { HTMLMotionProps, motion, Variants } from 'framer-motion'
-import { ComponentPropsWithRef, forwardRef } from 'react'
+import type { ComponentPropsWithRef } from 'react'
+import { forwardRef } from 'react'
+
+import type { HTMLMotionProps, Variants } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 const lineVariants = {
 	hidden: {
