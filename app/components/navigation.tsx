@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 
 import { useScrollspy } from '~/hooks/use-scrollspy'
 
-import { Logo } from '~/components/Logo'
+import { Logo } from '~/components/logo'
 import { ThemeToggleButton } from '~/components/theme-toggle-button'
 
 const navVariants: Variants = {

@@ -7,7 +7,7 @@ import ScrollSpy from 'react-scrollspy'
 
 import { useClickAway } from '~/hooks/use-click-away'
 
-import { Logo } from '~/components/Logo'
+import { Logo } from '~/components/logo'
 import { ThemeToggleButton } from '~/components/theme-toggle-button'
 
 const navVariants: Variants = {
