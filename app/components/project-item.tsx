@@ -3,8 +3,7 @@ import { Link } from 'remix'
 
 import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
-
-import useWindowDimensions from '~/hooks/use-window-dimensions'
+import { useWindowSize } from 'react-use'
 
 import { AnimatedText } from '~/components/animated-text'
 
@@ -16,7 +15,7 @@ type ProjectItemProps = {
 
 export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 	const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
-	const { width: windowWidth } = useWindowDimensions()
+	const { width: windowWidth } = useWindowSize()
 	const isPhone = useMemo(() => (windowWidth && windowWidth < 768) ?? 0, [windowWidth])
 	const phoneMotionProps: MotionProps = useMemo(
 		() => ({
