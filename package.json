@@ -17,7 +17,7 @@
 		"@remix-run/serve": "^1.5.1",
 		"@remix-run/vercel": "^1.5.1",
 		"@remix-validated-form/with-zod": "^1.0.2",
-		"@sendgrid/mail": "^7.6.0",
+		"@sendgrid/mail": "^7.7.0",
 		"clsx": "^1.1.1",
 		"dotenv": "^14.3.0",
 		"framer-motion": "^6.2.3",
