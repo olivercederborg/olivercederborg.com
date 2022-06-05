@@ -2,9 +2,7 @@ import { useCallback, useEffect } from 'react'
 
 const defaultEvents = ['mousedown', 'touchstart']
 
-export const useClickAway = <TEvent extends Event>(
-	references: React.RefObject<HTMLElement>[] | null,
-	onClickAway: (event: TEvent) => void
+export const useClickAway = <TEvent extends Event>( references: React.RefObject<HTMLElement>[] | null, onClickAway: (event: TEvent) => void
 ) => {
 	const handleClick = useCallback(
 		event => {
