@@ -15,8 +15,11 @@ type ProjectItemProps = {
 
 export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 	const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
+
 	const { width: windowWidth } = useWindowSize()
+
 	const isPhone = useMemo(() => (windowWidth && windowWidth < 768) ?? 0, [windowWidth])
+
 	const phoneMotionProps: MotionProps = useMemo(
 		() => ({
 			variants: { visible: { transition: { staggerChildren: 0.35 } } },
@@ -34,6 +37,7 @@ export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 						hidden: { scaleX: 0, originX: 0 },
 						visible: {
 							scaleX: 1,
+							originX: [0, 0, 0.5],
 							opacity: 1,
 							transition: {
 								duration: 0.75,
@@ -43,6 +47,8 @@ export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 							},
 						},
 					}}
+					whileHover={{ scale: 1.05, transition: { duration: 0.5, ease: 'circOut' } }}
+					whileTap={{ scale: 0.95 }}
 					style={{ backgroundColor: color }}
 				>
 					<motion.img
