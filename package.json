@@ -36,6 +36,7 @@
 	"devDependencies": {
 		"@remix-run/dev": "^1.5.1",
 		"@remix-run/eslint-config": "^1.5.1",
+		"@trivago/prettier-plugin-sort-imports": "^3.2.0",
 		"@types/js-cookie": "^3.0.1",
 		"@types/react": "^17.0.24",
 		"@types/react-dom": "^17.0.9",
