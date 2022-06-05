@@ -5,17 +5,7 @@ import { useMemo } from 'react'
 import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
 
-const textVariantsDefault: Variants = {
-	visible: {},
-}
-const letterVariantsDefault: Variants = {
-	hidden: { opacity: 0, y: 50 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { ease: 'circOut', duration: 0.5 },
-	},
-}
+import { defaultLetterVariants, defaultTextVariants } from '~/components/animated-text'
 
 type AnimatedTextOwnProps<C extends ElementType> = {
 	as?: C | ElementType
@@ -29,7 +19,7 @@ type AnimatedTextProps<C extends ElementType> = AnimatedTextOwnProps<C> &
 export const AnimatedText = <C extends ElementType = 'div'>({
 	as: Tag = 'div',
 	text,
-	variants = letterVariantsDefault,
+	variants = defaultLetterVariants,
 	...rest
 }: AnimatedTextProps<C>) => {
 	// Split the text into words and add a space after each word.
@@ -64,8 +54,8 @@ type AnimatedLettersProps = {
 export const AnimatedLetters = ({
 	as: Tag = 'div',
 	text,
-	textVariants = textVariantsDefault,
-	letterVariants = letterVariantsDefault,
+	textVariants = defaultTextVariants,
+	letterVariants = defaultLetterVariants,
 	...rest
 }: AnimatedLettersProps) => {
 	// Split the text into words and add a space after each word.
