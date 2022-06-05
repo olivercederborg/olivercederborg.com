@@ -37,7 +37,7 @@ export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 						hidden: { scaleX: 0, originX: 0 },
 						visible: {
 							scaleX: 1,
-							originX: [0, 0, 0.5],
+							originX: [0, 0, 0, 0, 0, 0, 0.5],
 							opacity: 1,
 							transition: {
 								duration: 0.75,
