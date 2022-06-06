@@ -1,46 +1,45 @@
 /* eslint-disable react/no-array-index-key */
-import type { HTMLProps } from 'react'
+import type { ComponentPropsWithoutRef, ElementType, HTMLProps } from 'react'
+import { useMemo } from 'react'
 
 import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
 
-const textVariantsDefault: Variants = {
-	visible: {},
-}
-const letterVariantsDefault: Variants = {
-	hidden: { opacity: 0, y: 50 },
-	visible: {
-		opacity: 1,
-		y: 0,
-		transition: { ease: 'circOut', duration: 0.5 },
-	},
-}
+import { defaultLetterVariants, defaultTextVariants } from '~/components/animated-text'
 
-type AnimatedTextProps = {
-	as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'
+type AnimatedTextOwnProps<C extends ElementType> = {
+	as?: C | ElementType
 	text: string
 	variants?: Variants
-} & HTMLProps<HTMLHeadingElement>
+}
 
-export const AnimatedText = ({
+type AnimatedTextProps<C extends ElementType> = AnimatedTextOwnProps<C> &
+	Omit<ComponentPropsWithoutRef<C>, keyof AnimatedTextOwnProps<C>>
+
+export const AnimatedText = <C extends ElementType = 'div'>({
 	as: Tag = 'div',
 	text,
-	variants = letterVariantsDefault,
+	variants = defaultLetterVariants,
 	...rest
-}: AnimatedTextProps) => {
+}: AnimatedTextProps<C>) => {
 	// Split the text into words and add a space after each word.
 	const words = text.split(' ').map(word => `${word}\u00A0`)
+
+	const renderWords = useMemo(
+		() =>
+			words.map((word, index) => (
+				<span key={index} className='inline-block overflow-hidden'>
+					<motion.span variants={variants} className='inline-block'>
+						{word}
+					</motion.span>
+				</span>
+			)),
+		[variants, words]
+	)
+
 	return (
 		<Tag {...rest}>
-			<motion.span variants={variants}>
-				{words.map((word, index) => (
-					<span key={index} className='inline-block overflow-hidden'>
-						<motion.span variants={variants} className='inline-block'>
-							{word}
-						</motion.span>
-					</span>
-				))}
-			</motion.span>
+			<motion.span variants={variants}>{renderWords}</motion.span>
 		</Tag>
 	)
 }
@@ -55,8 +54,8 @@ type AnimatedLettersProps = {
 export const AnimatedLetters = ({
 	as: Tag = 'div',
 	text,
-	textVariants = textVariantsDefault,
-	letterVariants = letterVariantsDefault,
+	textVariants = defaultTextVariants,
+	letterVariants = defaultLetterVariants,
 	...rest
 }: AnimatedLettersProps) => {
 	// Split the text into words and add a space after each word.

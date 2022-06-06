@@ -24,7 +24,13 @@ export const Contact = ({ children }: ContactProps) => (
 			className='mt-16 flex flex-1 flex-col gap-x-16 gap-y-24 md:ml-24 md:flex-row'
 		>
 			<div className='md:w-1/2'>
-				<p className='col-span-full text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8'>
+				<motion.p
+					variants={{
+						hidden: { opacity: 0, y: 50 },
+						visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+					}}
+					className='col-span-full text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8'
+				>
 					Do not hesitate to contact me through the form here or by direct email on{' '}
 					<a
 						href='mailto:hey@olivercederborg.com'
@@ -33,11 +39,11 @@ export const Contact = ({ children }: ContactProps) => (
 						hey@olivercederborg.com
 					</a>{' '}
 					regardless of the subject.
-				</p>
+				</motion.p>
 			</div>
 			<motion.div
 				variants={{
-					visible: { transition: { staggerChildren: 0.15, delayChildren: 0.25 } },
+					visible: { transition: { staggerChildren: 0.15, delayChildren: 0.5 } },
 				}}
 				initial='hidden'
 				whileInView='visible'
