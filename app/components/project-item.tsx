@@ -65,7 +65,6 @@ export const ProjectItem = memo(({ project }: ProjectItemProps) => {
 					/>
 				</motion.figure>
 				<AnimatedText
-					as='p'
 					text={area}
 					className='mt-6 text-sm font-light text-dark-300 dark:text-dark-400'
 				/>
