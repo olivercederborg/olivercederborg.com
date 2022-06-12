@@ -7,7 +7,7 @@ import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
 
 import { getErrorMessage } from '~/utils/get-error-message'
-import { sendEmail } from '~/utils/send-email-email'
+import { sendEmail } from '~/utils/send-email'
 
 import { Input, SubmitButton, Textarea } from '~/components/input'
 
