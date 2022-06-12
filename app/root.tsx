@@ -9,6 +9,8 @@ import {
 	useLoaderData,
 } from '@remix-run/react'
 import type { LinksFunction } from '@remix-run/react/routeModules'
+import type React from 'react'
+import { StrictMode } from 'react'
 import type { LoaderFunction } from 'remix'
 
 import clsx from 'clsx'
@@ -92,15 +94,17 @@ function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
 	const { theme } = useLoaderData<LoaderData>()
 	return (
-		<ThemeProvider specifiedTheme={theme}>
-			<AnimatePresence exitBeforeEnter>
-				<Document>
-					<Layout>
-						<Outlet />
-					</Layout>
-				</Document>
-			</AnimatePresence>
-		</ThemeProvider>
+		<StrictMode>
+			<ThemeProvider specifiedTheme={theme}>
+				<AnimatePresence exitBeforeEnter>
+					<Document>
+						<Layout>
+							<Outlet />
+						</Layout>
+					</Document>
+				</AnimatePresence>
+			</ThemeProvider>
+		</StrictMode>
 	)
 }
 

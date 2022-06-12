@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import type { ComponentPropsWithoutRef, ElementType, HTMLProps } from 'react'
+import type { ComponentPropsWithoutRef, ElementType } from 'react'
 import { useMemo } from 'react'
 
 import type { Variants } from 'framer-motion'
@@ -16,8 +16,8 @@ type AnimatedTextOwnProps<C extends ElementType> = {
 type AnimatedTextProps<C extends ElementType> = AnimatedTextOwnProps<C> &
 	Omit<ComponentPropsWithoutRef<C>, keyof AnimatedTextOwnProps<C>>
 
-export const AnimatedText = <C extends ElementType = 'div'>({
-	as: Tag = 'div',
+export const AnimatedText = <C extends ElementType = 'p'>({
+	as: Tag = 'p',
 	text,
 	variants = defaultLetterVariants,
 	...rest
@@ -44,20 +44,23 @@ export const AnimatedText = <C extends ElementType = 'div'>({
 	)
 }
 
-type AnimatedLettersProps = {
-	as?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div'
+export type AnimatedLettersOwnProps<C extends ElementType> = {
+	as?: C | ElementType
 	text: string
 	textVariants?: Variants
 	letterVariants?: Variants
-} & HTMLProps<HTMLHeadingElement>
+}
 
-export const AnimatedLetters = ({
+type AnimatedLettersProps<C extends ElementType> = AnimatedLettersOwnProps<C> &
+	Omit<ComponentPropsWithoutRef<C>, keyof AnimatedLettersOwnProps<C>>
+
+export const AnimatedLetters = <C extends ElementType = 'div'>({
 	as: Tag = 'div',
 	text,
 	textVariants = defaultTextVariants,
 	letterVariants = defaultLetterVariants,
 	...rest
-}: AnimatedLettersProps) => {
+}: AnimatedLettersProps<C>) => {
 	// Split the text into words and add a space after each word.
 	const words = text.split(' ').map(word => `${word}\u00A0`)
 	return (
