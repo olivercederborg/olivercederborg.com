@@ -6,7 +6,8 @@ import { withZod } from '@remix-validated-form/with-zod'
 import { ValidatedForm, validationError } from 'remix-validated-form'
 import { z } from 'zod'
 
-import { sendEmail } from '~/utils/send'
+import { getErrorMessage } from '~/utils/get-error-message'
+import { sendEmail } from '~/utils/send-email-email'
 
 import { Input, SubmitButton, Textarea } from '~/components/input'
 
@@ -22,6 +23,7 @@ export const validator = withZod(
 			.string()
 			.nonempty('I need to know where to reach you!')
 			.email("Uh oh, that doesn't look like an email address..."),
+		company: z.string(),
 		message: z.string().nonempty('You need to send me a message!'),
 	})
 )
@@ -30,6 +32,7 @@ type LoaderData = {
 	defaultValues: {
 		name: string
 		email: string
+		company: string
 		message: string
 	}
 }
@@ -39,6 +42,7 @@ export const loader: LoaderFunction = () =>
 		defaultValues: {
 			name: '',
 			email: '',
+			company: '',
 			message: '',
 		},
 	})
@@ -48,10 +52,11 @@ type ActionData = {
 	fields: {
 		name?: string | null
 		email?: string | null
+		company?: string | null
 		message?: string | null
 	}
 	errors: {
-		generalError?: string | null
+		sendError?: string | null
 	}
 }
 
@@ -62,21 +67,24 @@ export const action: ActionFunction = async ({ request }) => {
 
 	try {
 		await sendEmail(fieldValues.data)
-		return json({
+		return json<ActionData>({
 			fields,
 			status: 'success',
 			errors: {},
 		})
 	} catch (error: unknown) {
-		return json({
+		return json<ActionData>({
 			fields,
 			status: 'error',
-			errors: { generalError: error },
+			errors: {
+				sendError:
+					getErrorMessage(error) ??
+					`Sorry ${fields.name}, something went wrong. Please try again. 😢`,
+			},
 		})
 	}
 }
 
-// https://remix.run/api/conventions#meta
 export const meta: MetaFunction = () => ({
 	title: 'Oliver Cederborg - Front-end developer',
 	description: "Hi, I'm Oliver Cederborg, a front-end developer from Denmark.",
@@ -87,8 +95,10 @@ export default function Index() {
 	const { defaultValues } = useLoaderData<LoaderData>()
 	const actionData = useActionData<ActionData>()
 	const transition = useTransition()
+
 	const formRef = useRef<HTMLFormElement>(null)
 	const nameInputRef = useRef<HTMLInputElement>(null)
+
 	const emailSent = transition.state === 'loading' && transition.type === 'actionReload'
 
 	useEffect(() => {
@@ -126,6 +136,16 @@ export default function Index() {
 						placeholder='elon@tesla.com'
 						required
 					/>
+					{/* Prevent bots from auto-filling and spamming. */}
+					<label htmlFor='company' className='hidden'>
+						What company do you work for?
+						<input
+							type='text'
+							id='company'
+							name='company'
+							placeholder='No need to give me this information'
+						/>
+					</label>
 					<Textarea
 						name='message'
 						label="What's your message?"
@@ -143,9 +163,7 @@ export default function Index() {
 						</p>
 					)}
 					{actionData?.status === 'error' && (
-						<p className='text-red-500'>
-							Sorry {actionData.fields.name}, something went wrong. Please try again. 😢
-						</p>
+						<p className='text-red-500'>{actionData?.errors?.sendError}</p>
 					)}
 				</ValidatedForm>
 			</Contact>

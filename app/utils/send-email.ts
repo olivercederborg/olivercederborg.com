@@ -1,9 +1,14 @@
 import sgMail from '@sendgrid/mail'
 
-export const sendEmail = async (data: { name: string; email: string; message: string }) => {
+export const sendEmail = async (data: {
+	name: string
+	email: string
+	company: string
+	message: string
+}) => {
 	sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
-	const { name, email, message } = data
+	const { name, email, company, message } = data
 
 	const emailToFrom = {
 		to: 'hey@olivercederborg.com',
@@ -24,9 +29,9 @@ export const sendEmail = async (data: { name: string; email: string; message: st
 	}
 
 	try {
+		if (company) throw new Error('Bot detected, company name not allowed.')
 		await sgMail.send(content)
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
-	} catch (error: any) {
-		throw new Error(error)
+	} catch (error: unknown) {
+		throw new Error(error as unknown as string)
 	}
 }
