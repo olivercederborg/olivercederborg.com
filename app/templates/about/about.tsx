@@ -1,12 +1,12 @@
 import { motion } from 'framer-motion'
 import { IoLogoFigma } from 'react-icons/io5'
 import {
+  SiNeovim,
   SiNextdotjs,
+  SiPrisma,
   SiReact,
   SiTailwindcss,
   SiTypescript,
-  SiVim,
-  SiVuedotjs,
 } from 'react-icons/si'
 
 import { AnimatedText } from '~/components/animated-text'
@@ -113,12 +113,12 @@ export const About = () => {
               className='mt-6 flex flex-wrap gap-6 text-dark-300'
             >
               <IoLogoFigma size={28} title='Figma' />
-              <SiVim size={28} title='Vim' />
-              <SiTailwindcss size={28} title='TailwindCSS' />
+              <SiNeovim size={28} title='Neovim' />
               <SiTypescript size={28} title='TypeScript' />
               <SiReact size={28} title='React.js' />
-              <SiVuedotjs size={28} title='Vue.js' />
               <SiNextdotjs size={28} title='Next.js' />
+              <SiTailwindcss size={28} title='TailwindCSS' />
+              <SiPrisma size={28} title='Prisma' />
             </motion.div>
           </motion.section>
         </section>
