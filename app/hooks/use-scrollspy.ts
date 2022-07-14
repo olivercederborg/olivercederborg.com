@@ -35,15 +35,15 @@ type UseScrollspyParameters<Id extends string> = {
   throttleMs?: number
 }
 
-export const useScrollspy = <I extends string>({
+export const useScrollspy = <Id extends string>({
   ids,
   hrefs,
   offset = 0,
   activeClass = 'active-scrollspy-item',
   initialId = ids[0],
   throttleMs = 200,
-}: UseScrollspyParameters<I>) => {
-  const [activeId, setActiveId] = useState<I>(initialId)
+}: UseScrollspyParameters<Id>) => {
+  const [activeId, setActiveId] = useState<Id>(initialId)
   const { height } = useWindowSize()
 
   const applyActiveClass = (href: string) => {
