@@ -66,7 +66,7 @@ export const About = () => {
             />
             <AnimatedText
               as='p'
-              text="My name is Oliver Cederborg. I am 24 years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer."
+              text="My name is Oliver Cederborg. I am 25 years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer."
               className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
             />
             <AnimatedText
