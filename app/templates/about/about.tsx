@@ -81,7 +81,7 @@ export const About = () => {
             />
             <AnimatedText
               as='p'
-              text='I try to challenge myself by diving head-first into the unknown, learning the skills along the way, needed to complete the task.'
+              text='Spending time customizing, improving and tinkering with my work environment and tools is something I enjoy a lot, as it is something I use for many hours daily. It allows me to have it exactly as I desire. For instance, I use Neovim as my editor of choice, I have built multiple custom mechanical keyboards, and I use Colemak DHk as my keyboard layout.'
               className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
             />
           </motion.article>
