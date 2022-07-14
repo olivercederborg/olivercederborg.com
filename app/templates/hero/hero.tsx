@@ -25,7 +25,7 @@ export const Hero = () => {
             <AnimatedLetters
               as='h1'
               text='I design and develop applications.'
-              className='text-5xl font-medium !leading-tight md:text-6xl lg:text-7xl'
+              className='text-5xl font-medium md:text-6xl lg:text-7xl'
               textVariants={{
                 hidden: { transition: { staggerChildren: 0.015 } },
                 visible: { transition: { staggerChildren: 0.015 } },
