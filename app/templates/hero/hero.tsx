@@ -42,7 +42,7 @@ export const Hero = () => {
             <AnimatedText
               as='p'
               className='mt-10 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
-              text="I'm a full-time front-end developer with a passion for great design and user
+              text="I'm a full-time frontend developer with a passion for great design and user
 							experiences."
             />
           </article>
