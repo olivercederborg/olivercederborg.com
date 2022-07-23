@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Link, useLocation } from 'remix'
 
 import type { Variants } from 'framer-motion'
@@ -14,10 +14,9 @@ const navVariants: Variants = {
   hidden: {
     x: '100%',
     transition: {
-      duration: 0.3,
+      duration: 0.2,
       ease: [0.9, 0.1, 0.3, 0.96],
       when: 'afterChildren',
-      staggerChildren: 0.05,
     },
   },
   visible: {
@@ -52,7 +51,7 @@ export default function MobileNav() {
   const navRef = useRef<HTMLElement>(null)
   const navToggleRef = useRef<HTMLButtonElement>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const toggle = useCallback(() => setIsOpen(open => !open), [])
+  const toggle = () => setIsOpen(open => !open)
   useClickAway([navRef, navToggleRef], () => setIsOpen(false))
 
   const location = useLocation()
@@ -81,7 +80,7 @@ export default function MobileNav() {
           stroke='currentColor'
           className='h-8 w-8'
         >
-          <AnimatePresence exitBeforeEnter>
+          <AnimatePresence>
             {isOpen ? (
               <motion.path
                 key='close'
