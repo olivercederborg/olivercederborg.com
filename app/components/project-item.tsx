@@ -5,7 +5,7 @@ import { Link } from 'remix'
 import clsx from 'clsx'
 import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
-import { useWindowSize } from 'react-use'
+import { useMedia } from 'react-use'
 
 import { AnimatedText } from '~/components/animated-text'
 
@@ -18,9 +18,7 @@ type ProjectItemProps = ComponentPropsWithoutRef<'a'> & {
 export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
   const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
 
-  const { width: windowWidth } = useWindowSize()
-
-  const isPhone = useMemo(() => (windowWidth && windowWidth < 768) ?? 0, [windowWidth])
+  const isPhone = useMedia('(max-width: 768px)')
 
   const phoneMotionProps: MotionProps = useMemo(
     () => ({
