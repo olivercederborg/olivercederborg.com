@@ -65,11 +65,7 @@ export default function Sideprojects() {
         className='relative grid flex-1 grid-cols-12 gap-y-12 md:gap-x-8 md:gap-y-16 lg:gap-x-16 mt-16'
       >
         {projects.map(project => (
-          <SideProjectItem
-            key={project.id}
-            project={project}
-            className='col-span-12 flex flex-col md:col-span-6 xl:col-span-3'
-          />
+          <SideProjectItem key={project.id} project={project} />
         ))}
       </motion.section>
     </main>
