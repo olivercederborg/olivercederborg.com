@@ -3,7 +3,7 @@ import type { MetaFunction } from 'remix'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { AnimatedLetters, AnimatedText } from '~/components/animated-text'
-import { ProjectItem } from '~/components/project-item'
+import { SideProjectItem } from '~/components/side-project-item'
 
 import { projects } from '../../sideprojects'
 
@@ -65,7 +65,7 @@ export default function Sideprojects() {
         className='relative grid flex-1 grid-cols-12 gap-y-12 md:gap-x-8 md:gap-y-16 lg:gap-x-16 mt-16'
       >
         {projects.map(project => (
-          <ProjectItem
+          <SideProjectItem
             key={project.id}
             project={project}
             className='col-span-12 flex flex-col md:col-span-6 xl:col-span-3'
