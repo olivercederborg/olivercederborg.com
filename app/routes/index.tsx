@@ -86,9 +86,9 @@ export const action: ActionFunction = async ({ request }) => {
 }
 
 export const meta: MetaFunction = () => ({
-  title: 'Oliver Cederborg - Front-end developer',
+  title: 'Oliver Cederborg - Frontend developer',
   description:
-    "I'm a 25 year old self-taught designer & front-end developer, focused on user experience, accessibility and modern web technologies.",
+    "I'm a 25 year old self-taught designer & frontend developer, focused on user experience, accessibility and modern web technologies.",
 })
 
 // https://remix.run/guides/routing#index-routes

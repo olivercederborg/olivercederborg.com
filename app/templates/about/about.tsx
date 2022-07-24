@@ -71,7 +71,7 @@ export const About = () => {
             />
             <AnimatedText
               as='p'
-              text='Digital design has been my main focus for many years, specifically UI/UX, but I have the past years shifted my focus to front-end development, which I have developed a great passion for.'
+              text='Digital design has been my main focus for many years, specifically UI/UX, but I have the past years shifted my focus to frontend development, which I have developed a great passion for.'
               className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
             />
             <AnimatedText

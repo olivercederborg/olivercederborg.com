@@ -14,7 +14,7 @@ const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (
     initial={{ opacity: 0, rotate: -65, originY: '150%', originX: 0.5 }}
     animate={{ opacity: 1, rotate: 0 }}
     exit={{ opacity: 0, rotate: 65 }}
-    transition={{ duration: 0.75, ease: 'backOut' }}
+    transition={{ duration: 0.4, ease: 'backOut' }}
   >
     {children}
   </motion.button>
