@@ -31,6 +31,8 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
   return (
     <a
       href={link}
+      target='_blank'
+      rel='noopener noreferrer'
       className={clsx('col-span-12 flex flex-col md:col-span-6 xl:col-span-3', props.className)}
     >
       <motion.article key={id} {...phoneMotionProps}>
