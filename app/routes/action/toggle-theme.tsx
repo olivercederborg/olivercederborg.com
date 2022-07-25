@@ -1,4 +1,5 @@
-import { ActionFunction, json, redirect } from 'remix'
+import type { ActionFunction } from 'remix'
+import { json, redirect } from 'remix'
 
 import { isTheme } from '~/hooks/use-theme'
 import { getThemeSession } from '~/utils/theme.server'
