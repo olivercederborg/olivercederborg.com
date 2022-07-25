@@ -55,20 +55,6 @@ export const loader: LoaderFunction = () => ({
     company: '',
     message: '',
   },
-  heroImages: {
-    dark: {
-      base: '/assets/hero-base-dark.png',
-      notification: '/assets/hero-notif-widget-dark.png',
-      heart: '/assets/hero-heart-widget-dark.png',
-      bigWidget: '/assets/hero-big-widget-dark.png',
-    },
-    light: {
-      base: '/assets/hero-base-light.png',
-      notification: '/assets/hero-notif-widget-light.png',
-      heart: '/assets/hero-heart-widget-light.png',
-      bigWidget: '/assets/hero-big-widget-light.png',
-    },
-  },
 })
 
 type ActionData = {
