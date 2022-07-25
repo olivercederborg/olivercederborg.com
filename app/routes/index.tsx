@@ -28,24 +28,34 @@ export const validator = withZod(
   })
 )
 
-type LoaderData = {
+type HeroImageSet = {
+  base: string
+  notification: string
+  heart: string
+  bigWidget: string
+}
+
+export type LoaderData = {
   defaultValues: {
     name: string
     email: string
     company: string
     message: string
   }
+  heroImages: {
+    dark: HeroImageSet
+    light: HeroImageSet
+  }
 }
 
-export const loader: LoaderFunction = () =>
-  json({
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
-    },
-  })
+export const loader: LoaderFunction = () => ({
+  defaultValues: {
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  },
+})
 
 type ActionData = {
   status: 'success' | 'error'
@@ -91,7 +101,6 @@ export const meta: MetaFunction = () => ({
     "I'm a 25 year old self-taught designer & frontend developer, focused on user experience, accessibility and modern web technologies.",
 })
 
-// https://remix.run/guides/routing#index-routes
 export default function Index() {
   const { defaultValues } = useLoaderData<LoaderData>()
   const actionData = useActionData<ActionData>()

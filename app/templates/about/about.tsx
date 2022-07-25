@@ -155,6 +155,8 @@ export const About = () => {
             }}
             src='/assets/olivercederborg-portrait.jpg'
             alt='Portrait of Oliver Cederborg'
+            height={400}
+            width={400}
           />
         </motion.figure>
       </section>
