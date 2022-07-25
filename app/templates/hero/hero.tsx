@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { AnimatedLetters, AnimatedText } from '~/components/animated-text'
+import { HeroIllustration } from '~/components/hero-illustration'
 import { MotionLinkButton } from '~/components/link-button'
 
 export const Hero = () => {
   return (
     <header
       id='intro'
-      className='bg-light-hero bg-[length:512px] bg-[right_-5rem_bottom_-12rem] bg-no-repeat pt-40 pb-80 shadow-[inset_0_-40px_15px_-10px_#ededed] transition duration-300 ease-in-out dark:bg-dark-hero dark:shadow-[inset_0_-40px_15px_-10px_#171717] md:bg-auto md:bg-[right_-12rem_bottom_-16rem] lg:bg-[right_-6rem_center] lg:pt-48 lg:pb-64 xl:bg-[right_-4rem_top_15rem] xl:py-80 2xl:bg-[right_20%_top_15rem]'
+      className='relative pt-40 pb-80 shadow-[inset_0_-40px_15px_-10px_#ededed] transition duration-300 ease-in-out dark:shadow-[inset_0_-40px_15px_-10px_#171717] md:bg-auto lg:pt-48 lg:pb-64 xl:py-80 overflow-hidden'
     >
       <motion.div
         variants={{
@@ -65,6 +66,8 @@ export const Hero = () => {
           Explore my projects
         </MotionLinkButton>
       </motion.div>
+
+      <HeroIllustration />
     </header>
   )
 }
