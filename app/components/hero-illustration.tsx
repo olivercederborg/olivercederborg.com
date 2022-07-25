@@ -92,6 +92,7 @@ export const HeroIllustration = () => {
           src={image.notification.png}
           loading='lazy'
           height={82}
+          width={220}
           alt='Hero notification widget'
           className='absolute right-96 top-24'
         />
@@ -114,7 +115,8 @@ export const HeroIllustration = () => {
           }}
           src={image.bigWidget.png}
           loading='lazy'
-          height={82}
+          height={154}
+          width={173}
           alt='Hero big widget'
           className='absolute right-[28rem] top-[19rem]'
         />
@@ -137,7 +139,8 @@ export const HeroIllustration = () => {
           }}
           src={image.bigWidget.png}
           loading='lazy'
-          height={82}
+          height={154}
+          width={173}
           alt='Hero big widget'
           className='absolute right-[8rem] top-[9rem]'
         />
@@ -161,6 +164,7 @@ export const HeroIllustration = () => {
           src={image.heart.png}
           loading='lazy'
           height={82}
+          width={220}
           alt='Hero like widget'
           className='absolute right-[5.5rem] top-[25.5rem]'
         />
