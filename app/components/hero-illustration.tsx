@@ -51,7 +51,7 @@ export const HeroIllustration = () => {
   const image = imageMap[theme ?? 'light']
 
   return (
-    <figure className='z-[-10] absolute scale-[0.6] -bottom-[18rem] right-[50%] translate-x-[50%] md:translate-x-0 md:scale-[0.8] md:-bottom-60 md:-right-32 lg:-right-28 xl:-right-6 2xl:right-[5%] lg:inset-y-[20%] lg:scale-100'>
+    <section className='z-[-10] absolute scale-[0.6] -bottom-[18rem] right-[50%] translate-x-[50%] md:translate-x-0 md:scale-[0.8] md:-bottom-60 md:-right-32 lg:-right-28 xl:-right-6 2xl:right-[5%] lg:inset-y-[20%] lg:scale-100'>
       <picture>
         <source type='image/webp' srcSet={image.base.webp} />
         <source type='image/png' srcSet={image.base.png} />
@@ -67,10 +67,10 @@ export const HeroIllustration = () => {
           }}
           src={image.base.png}
           loading='lazy'
-          width={700}
-          height={700}
+          width={693}
+          height={706}
           alt='Hero illustration'
-          className='object-cover w-full min-w-[700px]'
+          className='object-cover w-full min-w-[693px] h-full min-h-[706px]'
         />
       </picture>
       <picture>
@@ -91,8 +91,8 @@ export const HeroIllustration = () => {
           }}
           src={image.notification.png}
           loading='lazy'
-          height={82}
-          width={220}
+          height={114}
+          width={252}
           alt='Hero notification widget'
           className='absolute right-96 top-24'
         />
@@ -115,8 +115,8 @@ export const HeroIllustration = () => {
           }}
           src={image.bigWidget.png}
           loading='lazy'
-          height={154}
-          width={173}
+          height={186}
+          width={205}
           alt='Hero big widget'
           className='absolute right-[28rem] top-[19rem]'
         />
@@ -139,8 +139,8 @@ export const HeroIllustration = () => {
           }}
           src={image.bigWidget.png}
           loading='lazy'
-          height={154}
-          width={173}
+          height={186}
+          width={205}
           alt='Hero big widget'
           className='absolute right-[8rem] top-[9rem]'
         />
@@ -163,12 +163,12 @@ export const HeroIllustration = () => {
           }}
           src={image.heart.png}
           loading='lazy'
-          height={82}
-          width={220}
+          height={113}
+          width={255}
           alt='Hero like widget'
           className='absolute right-[5.5rem] top-[25.5rem]'
         />
       </picture>
-    </figure>
+    </section>
   )
 }
