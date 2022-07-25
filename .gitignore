@@ -8,3 +8,5 @@ node_modules
 public/build
 api/_build
 /app/tailwind.css
+
+.DS_Store
