@@ -28,24 +28,48 @@ export const validator = withZod(
   })
 )
 
-type LoaderData = {
+type HeroImageSet = {
+  base: string
+  notification: string
+  heart: string
+  bigWidget: string
+}
+
+export type LoaderData = {
   defaultValues: {
     name: string
     email: string
     company: string
     message: string
   }
+  heroImages: {
+    dark: HeroImageSet
+    light: HeroImageSet
+  }
 }
 
-export const loader: LoaderFunction = () =>
-  json({
-    defaultValues: {
-      name: '',
-      email: '',
-      company: '',
-      message: '',
+export const loader: LoaderFunction = () => ({
+  defaultValues: {
+    name: '',
+    email: '',
+    company: '',
+    message: '',
+  },
+  heroImages: {
+    dark: {
+      base: '/assets/hero-base-dark.png',
+      notification: '/assets/hero-notif-widget-dark.png',
+      heart: '/assets/hero-heart-widget-dark.png',
+      bigWidget: '/assets/hero-big-widget-dark.png',
     },
-  })
+    light: {
+      base: '/assets/hero-base-light.png',
+      notification: '/assets/hero-notif-widget-light.png',
+      heart: '/assets/hero-heart-widget-light.png',
+      bigWidget: '/assets/hero-big-widget-light.png',
+    },
+  },
+})
 
 type ActionData = {
   status: 'success' | 'error'
@@ -91,7 +115,6 @@ export const meta: MetaFunction = () => ({
     "I'm a 25 year old self-taught designer & frontend developer, focused on user experience, accessibility and modern web technologies.",
 })
 
-// https://remix.run/guides/routing#index-routes
 export default function Index() {
   const { defaultValues } = useLoaderData<LoaderData>()
   const actionData = useActionData<ActionData>()
