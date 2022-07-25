@@ -137,13 +137,13 @@ export default function Index() {
             ref={nameInputRef}
             name='name'
             label="What's your name?"
-            placeholder='Elon Musk'
+            placeholder='Oliver Cederborg'
             required
           />
           <Input
             name='email'
             label='Where can I reach you?'
-            placeholder='elon@tesla.com'
+            placeholder='hey@olivercederborg.com'
             required
           />
           {/* Prevent bots from auto-filling and spamming. */}
