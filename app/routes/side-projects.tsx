@@ -15,7 +15,7 @@ export const meta: MetaFunction = () => ({
 
 export default function Sideprojects() {
   return (
-    <main className='container pt-40'>
+    <main className='container py-40'>
       <motion.article
         variants={{
           hidden: { transition: { staggerChildren: 0.25, delayChildren: 0.25 } },
