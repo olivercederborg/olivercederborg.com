@@ -8,9 +8,9 @@ export const Hero = () => {
   return (
     <header
       id='intro'
-      className='relative pt-40 pb-80 shadow-[inset_0_-40px_15px_-10px_#ededed] transition duration-300 ease-in-out dark:shadow-[inset_0_-40px_15px_-10px_#171717] md:bg-auto lg:pt-48 lg:pb-64 xl:py-80 overflow-hidden'
+      className='pt-40 pb-80 shadow-[inset_0_-40px_15px_-10px_#ededed] transition duration-300 ease-in-out dark:shadow-[inset_0_-40px_15px_-10px_#171717] md:bg-auto lg:pt-48 lg:pb-64 xl:py-80 overflow-hidden'
     >
-      <motion.div
+      <motion.section
         variants={{
           hidden: { transition: { staggerChildren: 0.25, delayChildren: 0.25 } },
           visible: { transition: { staggerChildren: 0.25, delayChildren: 0.25 } },
@@ -19,7 +19,7 @@ export const Hero = () => {
         whileInView='visible'
         exit='hidden'
         viewport={{ once: true }}
-        className='container'
+        className='container relative'
       >
         <AnimatePresence>
           <article className='lg:max-w-[60%]'>
@@ -65,9 +65,9 @@ export const Hero = () => {
         >
           Explore my projects
         </MotionLinkButton>
-      </motion.div>
 
-      <HeroIllustration />
+        <HeroIllustration />
+      </motion.section>
     </header>
   )
 }
