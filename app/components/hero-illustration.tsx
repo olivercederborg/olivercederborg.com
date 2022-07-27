@@ -1,8 +1,9 @@
+import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
 
 import { useTheme } from '~/hooks/use-theme'
 
-const widgetVariants = {
+const bigWidgetVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 10,
@@ -10,6 +11,17 @@ const widgetVariants = {
   visible: {
     opacity: 1,
     y: 0,
+  },
+}
+
+const smallWidgetVariants: Variants = {
+  hidden: {
+    opacity: 0,
+    x: 20,
+  },
+  visible: {
+    opacity: 1,
+    x: 0,
   },
 }
 
@@ -56,12 +68,15 @@ export const HeroIllustration = () => {
         <source type='image/webp' srcSet={image.base.webp} />
         <source type='image/png' srcSet={image.base.png} />
         <motion.img
-          variants={widgetVariants}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1 },
+          }}
           initial='hidden'
           animate='visible'
           exit='hidden'
           transition={{
-            duration: 1,
+            duration: 0.75,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: 1,
           }}
@@ -77,12 +92,12 @@ export const HeroIllustration = () => {
         <source type='image/webp' srcSet={image.notification.webp} />
         <source type='image/png' srcSet={image.notification.png} />
         <motion.img
-          variants={widgetVariants}
+          variants={smallWidgetVariants}
           initial='hidden'
           animate='visible'
           exit='hidden'
           transition={{
-            duration: 1,
+            duration: 0.75,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: 2,
             repeat: Number.POSITIVE_INFINITY,
@@ -101,12 +116,12 @@ export const HeroIllustration = () => {
         <source type='image/webp' srcSet={image.bigWidget.webp} />
         <source type='image/png' srcSet={image.bigWidget.png} />
         <motion.img
-          variants={widgetVariants}
+          variants={bigWidgetVariants}
           initial='hidden'
           animate='visible'
           exit='hidden'
           transition={{
-            duration: 1,
+            duration: 0.75,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: 10,
             repeat: Number.POSITIVE_INFINITY,
@@ -118,19 +133,19 @@ export const HeroIllustration = () => {
           height={186}
           width={205}
           alt='Hero big widget'
-          className='absolute right-[28rem] top-[19rem]'
+          className='absolute left-[5rem] top-[19rem]'
         />
       </picture>
       <picture>
         <source type='image/webp' srcSet={image.bigWidget.webp} />
         <source type='image/png' srcSet={image.bigWidget.png} />
         <motion.img
-          variants={widgetVariants}
+          variants={bigWidgetVariants}
           initial='hidden'
           animate='visible'
           exit='hidden'
           transition={{
-            duration: 1,
+            duration: 0.75,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: 6,
             repeat: Number.POSITIVE_INFINITY,
@@ -142,19 +157,19 @@ export const HeroIllustration = () => {
           height={186}
           width={205}
           alt='Hero big widget'
-          className='absolute right-[8rem] top-[9rem]'
+          className='absolute right-[8rem] top-[8.25rem]'
         />
       </picture>
       <picture>
         <source type='image/webp' srcSet={image.heart.webp} />
         <source type='image/png' srcSet={image.heart.png} />
         <motion.img
-          variants={widgetVariants}
+          variants={smallWidgetVariants}
           initial='hidden'
           animate='visible'
           exit='hidden'
           transition={{
-            duration: 1,
+            duration: 0.75,
             ease: [0.455, 0.03, 0.515, 0.955],
             delay: 14,
             repeat: Number.POSITIVE_INFINITY,
@@ -166,7 +181,7 @@ export const HeroIllustration = () => {
           height={113}
           width={255}
           alt='Hero like widget'
-          className='absolute right-[5.5rem] top-[25.5rem]'
+          className='absolute right-[5.5rem] top-[24.75rem]'
         />
       </picture>
     </section>
