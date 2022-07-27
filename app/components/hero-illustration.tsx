@@ -63,7 +63,7 @@ export const HeroIllustration = () => {
   const image = imageMap[theme ?? 'light']
 
   return (
-    <section className='z-[-10] absolute scale-[0.6] -bottom-[18rem] right-[50%] translate-x-[50%] md:translate-x-0 md:scale-[0.8] md:-bottom-60 md:-right-32 lg:-right-28 xl:-right-6 2xl:right-[5%] lg:inset-y-[20%] lg:scale-100'>
+    <section className='z-[-10] absolute scale-[0.6] -bottom-[38rem] right-[50%] translate-x-[50%] md:translate-x-0 md:scale-[0.8] md:bottom-auto md:top-52 md:-right-40 lg:-right-36 lg:top-16 xl:-top-24 xl:-right-20 2xl:-right-16 lg:scale-100'>
       <picture>
         <source type='image/webp' srcSet={image.base.webp} />
         <source type='image/png' srcSet={image.base.png} />
