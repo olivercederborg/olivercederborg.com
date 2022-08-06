@@ -5,6 +5,7 @@ import type { Variants } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { useClickAway } from '~/hooks/use-click-away'
+import { useScrollspy } from '~/hooks/use-scrollspy'
 
 import { Logo } from '~/components/logo'
 import { ThemeToggleButton } from '~/components/theme-toggle-button'
@@ -52,6 +53,13 @@ export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const toggle = () => setIsOpen(open => !open)
   useClickAway([navRef, navToggleRef], () => setIsOpen(false))
+
+  useScrollspy({
+    ids: ['intro', 'projects', 'about', 'contact'],
+    hrefs: ['/#intro', '/#projects', '/#about', '/#contact'],
+    offset: 'topCenter',
+    activeClass: 'active-nav-link',
+  })
 
   const location = useLocation()
   useEffect(() => setIsOpen(false), [location])
@@ -115,9 +123,9 @@ export default function MobileNav() {
             initial='hidden'
             animate='visible'
             exit='hidden'
-            className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col justify-between bg-dark-100 px-12 transition-colors dark:bg-dark-700 md:hidden'
+            className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col bg-dark-100 px-12 transition-colors dark:bg-dark-700 md:hidden h-full flex-wrap items-start justify-center gap-y-14'
           >
-            <MotionLink to='/#' variants={linkVariants} className='mobile-nav-link'>
+            <MotionLink to='/#intro' variants={linkVariants} className='mobile-nav-link'>
               Introduction
             </MotionLink>
             <MotionLink to='/#projects' variants={linkVariants} className='mobile-nav-link'>
