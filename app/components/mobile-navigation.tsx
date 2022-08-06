@@ -3,7 +3,6 @@ import { Link, useLocation } from 'remix'
 
 import type { Variants } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
-import ScrollSpy from 'react-scrollspy'
 
 import { useClickAway } from '~/hooks/use-click-away'
 
@@ -118,29 +117,21 @@ export default function MobileNav() {
             exit='hidden'
             className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col justify-between bg-dark-100 px-12 transition-colors dark:bg-dark-700 md:hidden'
           >
-            <ScrollSpy
-              items={['intro', 'projects', 'about', 'contact']}
-              currentClassName='active-nav-link'
-              className='flex h-full flex-col flex-wrap items-start justify-center gap-y-14'
-              componentTag='div'
-              offset={-256}
-            >
-              <MotionLink to='/#' variants={linkVariants} className='mobile-nav-link'>
-                Introduction
-              </MotionLink>
-              <MotionLink to='/#projects' variants={linkVariants} className='mobile-nav-link'>
-                Projects
-              </MotionLink>
-              <MotionLink to='/#about' variants={linkVariants} className='mobile-nav-link'>
-                About
-              </MotionLink>
-              <MotionLink to='/#contact' variants={linkVariants} className='mobile-nav-link'>
-                Contact
-              </MotionLink>
-              <motion.div variants={linkVariants}>
-                <ThemeToggleButton />
-              </motion.div>
-            </ScrollSpy>
+            <MotionLink to='/#' variants={linkVariants} className='mobile-nav-link'>
+              Introduction
+            </MotionLink>
+            <MotionLink to='/#projects' variants={linkVariants} className='mobile-nav-link'>
+              Projects
+            </MotionLink>
+            <MotionLink to='/#about' variants={linkVariants} className='mobile-nav-link'>
+              About
+            </MotionLink>
+            <MotionLink to='/#contact' variants={linkVariants} className='mobile-nav-link'>
+              Contact
+            </MotionLink>
+            <motion.div variants={linkVariants}>
+              <ThemeToggleButton />
+            </motion.div>
           </motion.nav>
         )}
       </AnimatePresence>
