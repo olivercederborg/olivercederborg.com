@@ -27,7 +27,7 @@ export const Projects = () => {
         <AnimatedText
           as='p'
           className='col-span-full text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8'
-          text='Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum modi maxime, nobis aperiam at ducimus id praesentium ut itaque eos, suscipit doloremque quaerat deleniti officia accusamus.'
+          text='Check out a few of the main projects I have worked on, or some of my side projects on the left-hand side.'
         />
 
         <MotionLinkButton
