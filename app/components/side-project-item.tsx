@@ -6,16 +6,16 @@ import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
 import { useMedia } from 'react-use'
 
+import type { Sideproject } from '~/routes/side-projects'
+
 import { AnimatedText } from '~/components/animated-text'
 
-import type { Project } from '../../sideprojects'
-
 type SideProjectItemProps = ComponentPropsWithoutRef<'a'> & {
-  project: Project
+  project: Sideproject
 }
 
 export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps) => {
-  const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
+  const { id, name, area, url, stars, image, imageAlt, color = '#ededed' } = project
 
   const isPhone = useMedia('(max-width: 768px)')
 
@@ -30,7 +30,7 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
   )
   return (
     <a
-      href={link}
+      href={url}
       target='_blank'
       rel='noopener noreferrer'
       className={clsx('col-span-12 flex flex-col md:col-span-6 xl:col-span-3', props.className)}
@@ -69,13 +69,22 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
             className='object-cover w-full h-full'
           />
         </motion.figure>
-        <AnimatedText
-          text={area}
-          className='mt-6 text-sm font-light text-dark-300 dark:text-dark-400'
-        />
+        <section className='flex justify-between items-center mt-6'>
+          <AnimatedText
+            text={area}
+            className='text-sm font-light text-dark-300 dark:text-dark-400'
+          />
+          {!!stars && (
+            <AnimatedText
+              as='span'
+              text={`★ ${stars}`}
+              className='text-sm font-light text-dark-300 dark:text-dark-400'
+            />
+          )}
+        </section>
         <AnimatedText
           as='h3'
-          text={name}
+          text={name || 'Untitled'}
           className='mt-3 text-3xl text-dark-400 dark:text-dark-200'
         />
       </motion.article>
