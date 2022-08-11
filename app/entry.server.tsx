@@ -1,5 +1,5 @@
 import { RemixServer } from '@remix-run/react'
-import type { EntryContext } from '@remix-run/react/entry'
+import type { EntryContext } from 'remix'
 
 import 'dotenv/config'
 import { renderToString } from 'react-dom/server'

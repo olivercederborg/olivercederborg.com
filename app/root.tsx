@@ -8,10 +8,9 @@ import {
   useCatch,
   useLoaderData,
 } from '@remix-run/react'
-import type { LinksFunction } from '@remix-run/react/routeModules'
 import type React from 'react'
 import { StrictMode } from 'react'
-import type { LoaderFunction } from 'remix'
+import type { LinksFunction, LoaderFunction } from 'remix'
 
 import clsx from 'clsx'
 import { AnimatePresence } from 'framer-motion'
