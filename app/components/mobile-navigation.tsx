@@ -3,9 +3,9 @@ import { Link, useLocation } from 'remix'
 
 import type { Variants } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
+import { useScrollspy } from 'use-scrollspy'
 
 import { useClickAway } from '~/hooks/use-click-away'
-import { useScrollspy } from '~/hooks/use-scrollspy'
 
 import { Logo } from '~/components/logo'
 import { ThemeToggleButton } from '~/components/theme-toggle-button'

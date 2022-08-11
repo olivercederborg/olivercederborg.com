@@ -32,6 +32,7 @@
     "react-use": "^17.4.0",
     "remix": "^1.6.7",
     "remix-validated-form": "^3.4.2",
+    "use-scrollspy": "^1.2.0",
     "zod": "^3.17.10",
     "zod-form-data": "^1.2.1"
   },
