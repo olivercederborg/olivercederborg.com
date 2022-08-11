@@ -4,7 +4,7 @@ import { memo, useMemo } from 'react'
 import clsx from 'clsx'
 import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
-import { useMedia } from 'react-use'
+import useMedia from 'react-use/lib/useMedia'
 
 import type { Sideproject } from '~/routes/side-projects'
 
