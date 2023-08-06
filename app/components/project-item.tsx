@@ -18,7 +18,7 @@ type ProjectItemProps = ComponentPropsWithoutRef<'a'> & {
 export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
   const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
 
-  const isPhone = useMedia('(max-width: 768px)', true)
+  const isPhone = useMedia('(max-width: 768px)', false)
 
   const phoneMotionProps: MotionProps = useMemo(
     () => ({
