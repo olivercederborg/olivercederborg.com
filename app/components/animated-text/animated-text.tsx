@@ -1,11 +1,13 @@
+'use client'
+
 /* eslint-disable react/no-array-index-key */
 import type { ComponentPropsWithoutRef, ElementType } from 'react'
-import { useMemo } from 'react'
+import { useId, useMemo } from 'react'
 
 import type { Variants } from 'framer-motion'
 import { motion } from 'framer-motion'
 
-import { defaultLetterVariants, defaultTextVariants } from '~/components/animated-text'
+import { defaultLetterVariants, defaultTextVariants } from '@components/animated-text'
 
 type AnimatedTextOwnProps<C extends ElementType> = {
   as?: C | ElementType
@@ -63,18 +65,26 @@ export const AnimatedLetters = <C extends ElementType = 'div'>({
 }: AnimatedLettersProps<C>) => {
   // Split the text into words and add a space after each word.
   const words = text.split(' ').map(word => `${word}\u00A0`)
+
+  const id = useId()
+
   return (
     <Tag {...rest}>
       <motion.span variants={textVariants}>
-        {words.map((_, index) => (
-          <span key={index} className='inline-block whitespace-nowrap'>
-            {[...words[index]].flat().map((letter, letterIndex) => (
-              <span key={letterIndex} className='inline-block overflow-hidden'>
-                <motion.span variants={letterVariants} className='inline-block'>
-                  {letter}
-                </motion.span>
-              </span>
-            ))}
+        {words.map((word, index) => (
+          <span key={`${word}-${id}-${index}`} className='inline-block whitespace-nowrap'>
+            {Array.from(word)
+              .flat()
+              .map((letter, letterIndex) => (
+                <span
+                  key={`${letter}-${id}-${letterIndex}`}
+                  className='inline-block overflow-hidden'
+                >
+                  <motion.span variants={letterVariants} className='inline-block'>
+                    {letter}
+                  </motion.span>
+                </span>
+              ))}
           </span>
         ))}
       </motion.span>

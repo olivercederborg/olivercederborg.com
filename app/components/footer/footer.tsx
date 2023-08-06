@@ -1,8 +1,10 @@
+'use client'
+
 import { motion } from 'framer-motion'
 
-import { footerItemVariants, footerVariants } from '~/components/footer'
+import { footerItemVariants, footerVariants } from '@components/footer'
 
-export const Footer = () => {
+export function Footer() {
   return (
     <motion.footer
       variants={footerVariants}
@@ -45,7 +47,7 @@ export const Footer = () => {
         variants={footerItemVariants}
         className='font-light text-dark-300 dark:text-dark-400'
       >
-        &copy; Oliver Cederborg
+        &copy; Oliver Cederborg {new Date().getFullYear()}
       </motion.p>
     </motion.footer>
   )

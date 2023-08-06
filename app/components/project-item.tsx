@@ -1,15 +1,15 @@
 import type { ComponentPropsWithoutRef } from 'react'
 import { memo, useMemo } from 'react'
-import { Link } from 'remix'
 
 import clsx from 'clsx'
 import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
 import useMedia from 'react-use/lib/useMedia'
 
-import { AnimatedText } from '~/components/animated-text'
+import { AnimatedText } from '@components/animated-text'
 
 import type { Project } from '../../projects'
+import Link from 'next/link'
 
 type ProjectItemProps = ComponentPropsWithoutRef<'a'> & {
   project: Project
@@ -18,7 +18,7 @@ type ProjectItemProps = ComponentPropsWithoutRef<'a'> & {
 export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
   const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
 
-  const isPhone = useMedia('(max-width: 768px)')
+  const isPhone = useMedia('(max-width: 768px)', true)
 
   const phoneMotionProps: MotionProps = useMemo(
     () => ({
@@ -31,7 +31,7 @@ export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
   )
   return (
     <Link
-      to={link}
+      href={link}
       className={clsx(
         'col-span-12 flex flex-col md:col-span-6 xl:col-span-4',
         props.className && props.className

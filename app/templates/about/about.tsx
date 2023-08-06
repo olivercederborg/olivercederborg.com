@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { IoLogoFigma } from 'react-icons/io5'
 import {
@@ -9,10 +11,11 @@ import {
   SiTypescript,
 } from 'react-icons/si'
 
-import { AnimatedText } from '~/components/animated-text'
-import { MotionLinkButton } from '~/components/link-button'
-import { SectionHeader } from '~/components/section-header'
-import { SectionShell } from '~/components/section-shell'
+import { AnimatedText } from '@components/animated-text'
+import { MotionLinkButton } from '@components/link-button'
+import { SectionHeader } from '@components/section-header'
+import { SectionShell } from '@components/section-shell'
+import { age } from '@lib/age'
 
 export const About = () => {
   return (
@@ -35,7 +38,7 @@ export const About = () => {
           text='Get a brief look at who I am and what I do. If you would like to know more about me and my interests, you can.'
         />
         <MotionLinkButton
-          to='/about'
+          href='/about'
           motionProps={{
             variants: {
               hidden: { opacity: 0, y: 50 },
@@ -66,7 +69,7 @@ export const About = () => {
             />
             <AnimatedText
               as='p'
-              text="My name is Oliver Cederborg. I am 25 years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer."
+              text={`My name is Oliver Cederborg. I am ${age()} years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer.`}
               className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
             />
             <AnimatedText

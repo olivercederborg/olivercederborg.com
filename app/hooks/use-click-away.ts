@@ -1,27 +1,48 @@
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useRef } from 'react'
 
 const defaultEvents = ['mousedown', 'touchstart']
 
-export const useClickAway = <TEvent extends Event>(
+export function on<T extends Window | Document | HTMLElement | EventTarget>(
+  obj: T | null,
+  ...args: Parameters<T['addEventListener']> | [string, Function | null, ...any]
+): void {
+  if (obj && obj.addEventListener) {
+    obj.addEventListener(...(args as Parameters<HTMLElement['addEventListener']>))
+  }
+}
+
+export function off<T extends Window | Document | HTMLElement | EventTarget>(
+  obj: T | null,
+  ...args: Parameters<T['removeEventListener']> | [string, Function | null, ...any]
+): void {
+  if (obj && obj.removeEventListener) {
+    obj.removeEventListener(...(args as Parameters<HTMLElement['removeEventListener']>))
+  }
+}
+
+export const useClickAway = <TEvent extends Event = Event>(
   references: React.RefObject<HTMLElement>[] | null,
   onClickAway: (event: TEvent) => void
 ) => {
-  const handleClick = useCallback(
-    event => {
+  const savedCallback = useRef(onClickAway)
+  useEffect(() => {
+    savedCallback.current = onClickAway
+  }, [onClickAway])
+
+  useEffect(() => {
+    const handler = (event: TEvent) => {
       if (references?.some(ref => ref.current && ref.current.contains(event.target as Node))) return
       onClickAway(event)
-    },
-    [references, onClickAway]
-  )
-  useEffect(() => {
+    }
+
     for (const event of defaultEvents) {
-      document.addEventListener(event, handleClick)
+      on(document, event, handler)
     }
 
     return () => {
       for (const event of defaultEvents) {
-        document.removeEventListener(event, handleClick)
+        off(document, event, handler)
       }
     }
-  }, [handleClick])
+  }, [references])
 }

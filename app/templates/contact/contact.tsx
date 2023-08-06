@@ -1,9 +1,11 @@
+'use client'
+
 import type { ReactNode } from 'react'
 
 import { motion } from 'framer-motion'
 
-import { SectionHeader } from '~/components/section-header'
-import { SectionShell } from '~/components/section-shell'
+import { SectionHeader } from '@components/section-header'
+import { SectionShell } from '@components/section-shell'
 
 type ContactProps = {
   children: ReactNode

@@ -1,8 +1,10 @@
+'use client'
+
 import { AnimatePresence, motion } from 'framer-motion'
 
-import { AnimatedLetters, AnimatedText } from '~/components/animated-text'
-import { HeroIllustration } from '~/components/hero-illustration'
-import { MotionLinkButton } from '~/components/link-button'
+import { AnimatedLetters, AnimatedText } from '@components/animated-text'
+import { HeroIllustration } from '@components/hero-illustration'
+import { MotionLinkButton } from '@components/link-button'
 
 export const Hero = () => {
   return (
@@ -43,14 +45,13 @@ export const Hero = () => {
             <AnimatedText
               as='p'
               className='mt-10 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
-              text="I'm a full-time frontend developer with a passion for great design and user
-							experiences."
+              text="I'm a full-time frontend developer with a passion for great design and user experiences."
             />
           </article>
         </AnimatePresence>
 
         <MotionLinkButton
-          to='#projects'
+          href='#projects'
           motionProps={{
             variants: {
               hidden: { opacity: 0, y: 50 },

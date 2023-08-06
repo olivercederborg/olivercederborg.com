@@ -6,18 +6,18 @@ import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
 import useMedia from 'react-use/lib/useMedia'
 
-import type { Sideproject } from '~/routes/side-projects'
+/* import type { Sideproject } from '@routes/side-projects' */
 
-import { AnimatedText } from '~/components/animated-text'
+import { AnimatedText } from '@components/animated-text'
 
 type SideProjectItemProps = ComponentPropsWithoutRef<'a'> & {
-  project: Sideproject
+  project: any
 }
 
 export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps) => {
   const { id, name, area, url, stars, image, imageAlt, color = '#ededed' } = project
 
-  const isPhone = useMedia('(max-width: 768px)')
+  const isPhone = useMedia('(max-width: 768px)', true)
 
   const phoneMotionProps: MotionProps = useMemo(
     () => ({

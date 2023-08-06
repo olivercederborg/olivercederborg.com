@@ -1,11 +1,13 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import { VscArrowRight } from 'react-icons/vsc'
 
-import { AnimatedText } from '~/components/animated-text'
-import { MotionLinkButton } from '~/components/link-button'
-import { ProjectItem } from '~/components/project-item'
-import { SectionHeader } from '~/components/section-header'
-import { SectionShell } from '~/components/section-shell'
+import { AnimatedText } from '@components/animated-text'
+import { MotionLinkButton } from '@components/link-button'
+import { ProjectItem } from '@components/project-item'
+import { SectionHeader } from '@components/section-header'
+import { SectionShell } from '@components/section-shell'
 
 import { projects } from '../../../projects'
 
@@ -31,7 +33,7 @@ export const Projects = () => {
         />
 
         <MotionLinkButton
-          to='/projects'
+          href='/projects'
           motionProps={{
             variants: {
               hidden: { opacity: 0, y: 50 },
@@ -59,7 +61,7 @@ export const Projects = () => {
         className='mt-24 flex'
       >
         <MotionLinkButton
-          to='/side-projects'
+          href='/side-projects'
           motionProps={{
             variants: {
               hidden: { opacity: 0, x: -50 },
