@@ -7,11 +7,11 @@ import { motion } from 'framer-motion'
 import { SectionHeader } from '@components/section-header'
 import { SectionShell } from '@components/section-shell'
 
-type ContactProps = {
+type ContactShellProps = {
   children: ReactNode
 }
 
-export const Contact = ({ children }: ContactProps) => (
+export const ContactShell = ({ children }: ContactShellProps) => (
   <SectionShell id='contact'>
     <SectionHeader heading='Contact' />
 

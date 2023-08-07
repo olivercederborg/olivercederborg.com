@@ -9,7 +9,7 @@ import { ProjectItem } from '@components/project-item'
 import { SectionHeader } from '@components/section-header'
 import { SectionShell } from '@components/section-shell'
 
-import { projects } from '../../../projects'
+import { projects } from '../../projects'
 
 export const Projects = () => {
   return (

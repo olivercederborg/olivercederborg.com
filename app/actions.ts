@@ -1,11 +1,10 @@
-import sgMail from '@sendgrid/mail'
+'use server'
 
-export const sendEmail = async (data: {
-  name: string
-  email: string
-  company: string
-  message: string
-}) => {
+import { ContactFormData } from '@components/contact-form'
+import sgMail from '@sendgrid/mail'
+import invariant from 'tiny-invariant'
+
+export async function sendEmail(data: ContactFormData) {
   sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
 
   const { name, email, company, message } = data
@@ -29,7 +28,7 @@ export const sendEmail = async (data: {
   }
 
   try {
-    if (company) throw new Error('Bot detected, company name not allowed.')
+    if (company) throw new Error('I see you like honey... Try again if you are human.')
     await sgMail.send(content)
   } catch (error: unknown) {
     throw new Error(error as unknown as string)

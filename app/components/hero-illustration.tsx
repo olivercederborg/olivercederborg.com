@@ -73,8 +73,6 @@ export const HeroIllustration = () => {
   const mounted = useMounted()
   const activeTheme = resolvedTheme === 'dark' ? 'dark' : 'light'
 
-  console.log('activeTheme', activeTheme)
-
   const image = imageMap[activeTheme]
 
   if (!mounted) return null
