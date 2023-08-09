@@ -1,3 +1,5 @@
+'use client'
+
 import type { ComponentPropsWithoutRef } from 'react'
 import { memo, useMemo } from 'react'
 
@@ -6,16 +8,24 @@ import type { MotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
 import useMedia from 'react-use/lib/useMedia'
 
-/* import type { Sideproject } from '@routes/side-projects' */
-
 import { AnimatedText } from '@components/animated-text'
+import Link from 'next/link'
+import { cn } from '@utils/cn'
+import { useTheme } from '@hooks/use-theme'
+import { useMounted } from '@hooks/use-mounted'
 
 type SideProjectItemProps = ComponentPropsWithoutRef<'a'> & {
   project: any
 }
 
-export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps) => {
-  const { id, name, area, url, stars, image, imageAlt, color = '#ededed' } = project
+export const SideProjectItem = memo(function SideProjectItem({
+  project,
+  ...props
+}: SideProjectItemProps) {
+  const { theme } = useTheme()
+  const mounted = useMounted()
+
+  const { id, name, area, url, stars, image, imageAlt } = project
 
   const isPhone = useMedia('(max-width: 768px)', false)
 
@@ -28,8 +38,10 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
+  if (!mounted) return
+
   return (
-    <a
+    <Link
       href={url}
       target='_blank'
       rel='noopener noreferrer'
@@ -53,8 +65,10 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
           }}
           whileHover={{ scale: 1.05, transition: { duration: 0.5, ease: 'circOut' } }}
           whileTap={{ scale: 0.95 }}
-          style={{ backgroundColor: color }}
-          className='aspect-[4/3] w-full'
+          className={cn('aspect-[4/3] w-full', {
+            'bg-dark-100': theme === 'light',
+            'bg-dark-700': theme === 'dark',
+          })}
         >
           <motion.img
             variants={{
@@ -88,7 +102,6 @@ export const SideProjectItem = memo(({ project, ...props }: SideProjectItemProps
           className='mt-3 text-3xl text-dark-400 dark:text-dark-200'
         />
       </motion.article>
-    </a>
+    </Link>
   )
 })
-SideProjectItem.displayName = 'ProjectItem'
