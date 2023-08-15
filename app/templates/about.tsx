@@ -12,12 +12,20 @@ import {
 } from 'react-icons/si'
 
 import { AnimatedText } from '@components/animated-text'
-import { MotionLinkButton } from '@components/link-button'
 import { SectionHeader } from '@components/section-header'
 import { SectionShell } from '@components/section-shell'
 import { age } from '@lib/age'
+import Image from 'next/image'
+import { useMounted } from '@hooks/use-mounted'
+import { useTheme } from '@hooks/use-theme'
+import { cn } from '@utils/cn'
+const MotionImage = motion(Image)
 
 export const About = () => {
+  const { theme } = useTheme()
+  const mounted = useMounted()
+
+  if (!mounted) return null
   return (
     <SectionShell id='about'>
       <SectionHeader heading='About' />
@@ -37,18 +45,18 @@ export const About = () => {
           className='col-span-full text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200 md:col-span-6 xl:col-span-8'
           text='Get a brief look at who I am and what I do. If you would like to know more about me and my interests, you can.'
         />
-        <MotionLinkButton
-          href='/about'
-          motionProps={{
-            variants: {
-              hidden: { opacity: 0, y: 50 },
-              visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
-            },
-          }}
-          className='col-span-full md:col-start-7 xl:col-start-9'
-        >
-          More about me
-        </MotionLinkButton>
+        {/* <MotionLinkButton */}
+        {/*   href='/about' */}
+        {/*   motionProps={{ */}
+        {/*     variants: { */}
+        {/*       hidden: { opacity: 0, y: 50 }, */}
+        {/*       visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } }, */}
+        {/*     }, */}
+        {/*   }} */}
+        {/*   className='col-span-full md:col-start-7 xl:col-start-9' */}
+        {/* > */}
+        {/*   More about me */}
+        {/* </MotionLinkButton> */}
       </motion.section>
 
       <section className='relative mt-24 flex grid-cols-12 flex-col-reverse gap-y-10 md:ml-24 md:grid md:gap-x-8 lg:gap-x-16'>
@@ -145,10 +153,15 @@ export const About = () => {
           whileInView='visible'
           exit='hidden'
           viewport={{ once: true }}
-          style={{ backgroundColor: '#d4d4d4' }}
-          className='mb-6 w-2/3 self-start md:col-span-full md:col-start-7 md:mb-0 md:w-full xl:col-start-9'
+          className={cn(
+            'mb-6 w-2/3 self-start md:col-span-full md:col-start-7 md:mb-0 md:w-full xl:col-start-9 relative aspect-square',
+            {
+              'bg-dark-100': theme === 'light',
+              'bg-dark-700': theme === 'dark',
+            }
+          )}
         >
-          <motion.img
+          <MotionImage
             variants={{
               hidden: { opacity: 0 },
               visible: {
@@ -156,10 +169,11 @@ export const About = () => {
                 transition: { duration: 0.5, ease: [0.6, 0.5, 0.5, 0.9] },
               },
             }}
-            src='/assets/olivercederborg-portrait.jpg'
+            fill
+            quality={95}
+            src='/assets/oliver-cederborg-portrait_black-and-white.jpg'
             alt='Portrait of Oliver Cederborg'
-            height={400}
-            width={400}
+            loading='lazy'
           />
         </motion.figure>
       </section>
