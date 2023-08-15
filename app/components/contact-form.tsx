@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 import { Input, Label, SubmitButton, Textarea } from '@components/input'
 import * as z from 'zod'
 import { sendEmail } from '@actions'
-import { useRef, useState } from 'react'
+import { useState } from 'react'
 import { getErrorMessage } from '@utils/get-error-message'
 
 const schema = z.object({
