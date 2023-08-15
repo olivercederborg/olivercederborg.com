@@ -1,11 +1,12 @@
-import type { ComponentPropsWithRef, FC } from 'react'
-import { useMemo } from 'react'
+'use client'
+
+import { useState, type ComponentPropsWithRef, type FC, useEffect } from 'react'
 
 import type { HTMLMotionProps } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
 import { MdOutlineDarkMode, MdOutlineLightMode } from 'react-icons/md'
-
-import { useTheme } from '~/hooks/use-theme'
+import { useTheme } from '@hooks/use-theme'
+import { useMounted } from '@hooks/use-mounted'
 
 type IconButtonProps = HTMLMotionProps<'button'> & ComponentPropsWithRef<'button'>
 const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (
@@ -23,10 +24,14 @@ IconButton.displayName = 'IconButton'
 
 export const ThemeToggleButton: FC = () => {
   const { theme, toggleTheme } = useTheme()
-  const isDarkMode = useMemo(() => theme === 'dark', [theme])
+  const mounted = useMounted()
+
+  const isDarkMode = theme === 'dark'
+
+  if (!mounted) return null
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode='wait'>
       {isDarkMode ? (
         <IconButton
           key='light-mode'

@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import type { Project } from '../../projects'
 
 type ProjectHeaderProps = {
@@ -21,7 +22,7 @@ export const ProjectHeaderMDX = ({ project }: ProjectHeaderProps) => (
     </section>
 
     <figure className='h-full w-full mb-8 lg:mt-0 lg:w-1/2 aspect-[4/3]'>
-      <img src={project.image} alt={project.imageAlt} className='w-full h-full object-cover' />
+      <Image src={project.image} alt={project.imageAlt} className='w-full h-full object-cover' />
     </figure>
   </header>
 )

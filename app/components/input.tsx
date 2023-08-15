@@ -1,96 +1,85 @@
-import type { FC } from 'react'
+'use client'
+
+import type { FC, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
-import clsx from 'clsx'
-import { motion } from 'framer-motion'
+import { HTMLMotionProps, motion } from 'framer-motion'
 import { VscArrowRight } from 'react-icons/vsc'
-import { useField } from 'remix-validated-form'
+import { cn } from '@utils/cn'
 
-type InputProps = {
-  name: string
-  label: string
-  placeholder: string
+export type LabelProps = HTMLMotionProps<'label'> & {
   required?: boolean
 }
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ name, label, placeholder, required = false }, ref) => {
-    const { error, getInputProps, touched } = useField(name)
-    return (
-      <div>
-        <motion.label
-          htmlFor={name}
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
-          }}
-          className={clsx(
-            'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200',
-            required && "after:absolute after:-right-4 after:text-dark-300 after:content-['*']"
-          )}
-        >
-          {label}
-        </motion.label>
-        <motion.input
-          variants={{
-            hidden: { opacity: 0, y: 50 },
-            visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
-          }}
-          ref={ref}
-          {...getInputProps({ id: name, placeholder })}
-          className={clsx(
-            'focus-within:border-primary-brand mt-2 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
-            error && 'border-red-500 dark:border-red-400',
-            touched && !error && 'border-green-500 dark:border-green-400'
-          )}
-        />
-        {error && (
-          <span className='mt-4 block font-light text-red-500 dark:text-red-400'>{error}</span>
-        )}
-      </div>
-    )
-  }
-)
-Input.displayName = 'Input'
-
-export const Textarea = ({ name, label, placeholder, required }: InputProps) => {
-  const { error, getInputProps, touched } = useField(name)
+export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
+  { children, className, required, ...props },
+  ref
+) {
   return (
-    <div>
-      <motion.label
+    <motion.label
+      {...props}
+      ref={ref}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+      }}
+      className={cn(
+        'relative block flex-col text-xl font-light text-dark-400 dark:text-dark-200',
+        className
+      )}
+    >
+      {children}
+    </motion.label>
+  )
+})
+
+export type InputProps = HTMLMotionProps<'input'>
+
+export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { className, ...props },
+  ref
+) {
+  return (
+    <>
+      <motion.input
+        {...props}
+        ref={ref}
         variants={{
           hidden: { opacity: 0, y: 50 },
           visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
         }}
-        htmlFor={name}
-        className={clsx(
-          'relative inline-flex flex-col text-xl font-light text-dark-400 dark:text-dark-200 ',
-          required && "after:absolute after:-right-4 after:text-dark-300 after:content-['*']"
-        )}
-      >
-        {label}
-      </motion.label>
-      <motion.textarea
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
-        }}
-        {...getInputProps({ id: name, placeholder })}
-        className={clsx(
-          'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
-          error && 'border-red-500 dark:border-red-400',
-          touched && !error && 'border-green-500 dark:border-green-400'
+        className={cn(
+          'focus-within:border-primary-brand mt-2 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
+          className
         )}
       />
-      {error && (
-        <span className='mt-4 block font-light text-red-500 dark:text-red-400'>{error}</span>
-      )}
-    </div>
+    </>
   )
-}
-Textarea.displayName = 'Textarea'
+})
 
-export const SubmitButton: FC = ({ children, ...props }) => (
+export type TextareaProps = HTMLMotionProps<'textarea'>
+
+export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
+  { className, ...props },
+  ref
+) {
+  return (
+    <motion.textarea
+      {...props}
+      ref={ref}
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+      }}
+      className={cn(
+        'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
+        className
+      )}
+    />
+  )
+})
+
+export const SubmitButton: FC<{ children: ReactNode }> = ({ children, ...props }) => (
   <motion.div
     variants={{
       hidden: { opacity: 0, y: 50 },

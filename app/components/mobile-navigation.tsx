@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from 'react'
-import { Link, useLocation } from 'remix'
+'use client'
 
 import type { Variants } from 'framer-motion'
 import { AnimatePresence, motion } from 'framer-motion'
+import Link from 'next/link'
 import { useScrollspy } from 'use-scrollspy'
 
-import { useClickAway } from '~/hooks/use-click-away'
+import { useEffect, useRef, useState } from 'react'
 
-import { Logo } from '~/components/logo'
-import { ThemeToggleButton } from '~/components/theme-toggle-button'
+import { Logo } from '@components/logo'
+import { ThemeToggleButton } from '@components/theme-toggle-button'
+import { useClickAway } from '@hooks/use-click-away'
+import { usePathname } from 'next/navigation'
 
 const navVariants: Variants = {
   hidden: {
@@ -47,7 +49,7 @@ const linkVariants = {
 
 const MotionLink = motion(Link)
 
-export default function MobileNav() {
+export function MobileNav() {
   const navRef = useRef<HTMLElement>(null)
   const navToggleRef = useRef<HTMLButtonElement>(null)
   const [isOpen, setIsOpen] = useState(false)
@@ -61,15 +63,16 @@ export default function MobileNav() {
     activeClass: 'active-nav-link',
   })
 
-  const location = useLocation()
-  useEffect(() => setIsOpen(false), [location])
+  const pathname = usePathname()
+
+  useEffect(() => setIsOpen(false), [pathname])
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : 'visible'
   }, [isOpen])
   return (
     <>
-      <Link to='/#' className='fixed top-8 left-4 z-30 md:hidden'>
+      <Link href='/#' className='fixed top-8 left-4 z-30 md:hidden'>
         <Logo height={36} />
       </Link>
 
@@ -125,16 +128,16 @@ export default function MobileNav() {
             exit='hidden'
             className='fixed inset-y-0 right-0 z-20 flex w-9/12 flex-col bg-dark-100 px-12 transition-colors dark:bg-dark-700 md:hidden h-full flex-wrap items-start justify-center gap-y-14'
           >
-            <MotionLink to='/#intro' variants={linkVariants} className='mobile-nav-link'>
+            <MotionLink href='/#intro' variants={linkVariants} className='mobile-nav-link'>
               Introduction
             </MotionLink>
-            <MotionLink to='/#projects' variants={linkVariants} className='mobile-nav-link'>
+            <MotionLink href='/#projects' variants={linkVariants} className='mobile-nav-link'>
               Projects
             </MotionLink>
-            <MotionLink to='/#about' variants={linkVariants} className='mobile-nav-link'>
+            <MotionLink href='/#about' variants={linkVariants} className='mobile-nav-link'>
               About
             </MotionLink>
-            <MotionLink to='/#contact' variants={linkVariants} className='mobile-nav-link'>
+            <MotionLink href='/#contact' variants={linkVariants} className='mobile-nav-link'>
               Contact
             </MotionLink>
             <motion.div variants={linkVariants}>

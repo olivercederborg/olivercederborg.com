@@ -1,19 +1,22 @@
 import type { ComponentPropsWithRef, ReactNode } from 'react'
 import { forwardRef } from 'react'
-import { Link } from 'remix'
 
 import clsx from 'clsx'
 import type { HTMLMotionProps } from 'framer-motion'
 import { motion } from 'framer-motion'
 import { VscArrowRight } from 'react-icons/vsc'
+import Link from 'next/link'
 
 type LinkButtonProps = ComponentPropsWithRef<typeof Link> & {
   children?: ReactNode
   icon?: ReactNode
 }
 
-export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
-  ({ children = 'Button', icon: Icon, ...rest }, ref) => (
+export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(function LinkButton(
+  { children = 'Button', icon: Icon, ...rest },
+  ref
+) {
+  return (
     <Link
       ref={ref}
       {...rest}
@@ -31,16 +34,18 @@ export const LinkButton = forwardRef<HTMLAnchorElement, LinkButtonProps>(
       )}
     </Link>
   )
-)
+})
 
 type MotionLinkButtonProps = LinkButtonProps & {
   motionProps?: HTMLMotionProps<'div'>
 }
 
 export const MotionLinkButton = forwardRef<HTMLDivElement, MotionLinkButtonProps>(
-  ({ children, motionProps, ...rest }, ref) => (
-    <motion.div {...motionProps} ref={ref} className={rest.className} style={rest.style}>
-      <LinkButton {...rest}>{children}</LinkButton>
-    </motion.div>
-  )
+  function MotionLinkButton({ children, motionProps, ...rest }, ref) {
+    return (
+      <motion.div {...motionProps} ref={ref} className={rest.className} style={rest.style}>
+        <LinkButton {...rest}>{children}</LinkButton>
+      </motion.div>
+    )
+  }
 )

@@ -1,23 +1,20 @@
 {
-	"jsxSingleQuote": true,
-	"quoteProps": "as-needed",
-	"arrowParens": "avoid",
-	"semi": false,
-	"singleQuote": true,
-	"trailingComma": "es5",
-	"printWidth": 100,
-	"bracketSameLine": false,
-	"bracketSpacing": true,
-	"importOrderSeparation": true,
-	"importOrderSortSpecifiers": true,
-	"importOrder": [
-		"^react$|^remix$|^@remix-run/",
-		"<THIRD_PARTY_MODULES>",
-		"^~/app/?(.*)$",
-		"^~/(hooks|utils|lib|routes|typings)/?(.*)$",
-		"^~/(components)/?(.*)$",
-		"^~/(public)/?(.*)$",
-		"^(../)+",
-		"^(./)"
-	]
+  "jsxSingleQuote": true,
+  "quoteProps": "as-needed",
+  "arrowParens": "avoid",
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "es5",
+  "printWidth": 100,
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true,
+  "importOrder": [
+    "^next|^react",
+    "<THIRD_PARTY_MODULES>",
+    "^@(hooks|utils|lib|typings)/?(.*)$",
+    "^@(components|templates)/?(.*)$",
+    "^[./]"
+  ]
 }
