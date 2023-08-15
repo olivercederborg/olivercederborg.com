@@ -32,22 +32,22 @@ export const Projects = () => {
           text='Check out a few of the main projects I have worked on, or some of my side projects on the left-hand side.'
         />
 
-        <MotionLinkButton
-          href='/projects'
-          motionProps={{
-            variants: {
-              hidden: { opacity: 0, y: 50 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { ease: 'circOut', duration: 0.5 },
-              },
-            },
-          }}
-          className='col-span-full md:col-start-7 xl:col-start-9'
-        >
-          All projects
-        </MotionLinkButton>
+        {/* <MotionLinkButton */}
+        {/*   href='/projects' */}
+        {/*   motionProps={{ */}
+        {/*     variants: { */}
+        {/*       hidden: { opacity: 0, y: 50 }, */}
+        {/*       visible: { */}
+        {/*         opacity: 1, */}
+        {/*         y: 0, */}
+        {/*         transition: { ease: 'circOut', duration: 0.5 }, */}
+        {/*       }, */}
+        {/*     }, */}
+        {/*   }} */}
+        {/*   className='col-span-full md:col-start-7 xl:col-start-9' */}
+        {/* > */}
+        {/*   All projects */}
+        {/* </MotionLinkButton> */}
       </motion.section>
 
       <motion.div

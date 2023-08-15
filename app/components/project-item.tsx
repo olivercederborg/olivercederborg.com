@@ -10,13 +10,19 @@ import { AnimatedText } from '@components/animated-text'
 
 import type { Project } from '../../projects'
 import Link from 'next/link'
+import { cn } from '@utils/cn'
+import { useTheme } from '@hooks/use-theme'
+import { useMounted } from '@hooks/use-mounted'
 
 type ProjectItemProps = ComponentPropsWithoutRef<'a'> & {
   project: Project
 }
 
 export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
-  const { id, name, area, link, image, imageAlt, color = '#ededed' } = project
+  const { id, name, area, link, image, imageAlt } = project
+
+  const { theme } = useTheme()
+  const mounted = useMounted()
 
   const isPhone = useMedia('(max-width: 768px)', false)
 
@@ -29,6 +35,8 @@ export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     []
   )
+  if (!mounted) return null
+
   return (
     <Link
       href={link}
@@ -55,7 +63,10 @@ export const ProjectItem = memo(({ project, ...props }: ProjectItemProps) => {
           }}
           whileHover={{ scale: 1.05, transition: { duration: 0.5, ease: 'circOut' } }}
           whileTap={{ scale: 0.95 }}
-          style={{ backgroundColor: color }}
+          className={cn({
+            'bg-dark-100': theme === 'light',
+            'bg-dark-700': theme === 'dark',
+          })}
         >
           <motion.img
             variants={{

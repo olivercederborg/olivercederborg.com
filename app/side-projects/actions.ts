@@ -1,5 +1,7 @@
 'use server'
 
+import { Octokit } from 'octokit'
+
 export type Sideproject = {
   id: number
   name: string
@@ -36,17 +38,6 @@ export async function getProjects() {
       color: '#23393D',
     },
     {
-      id: 2,
-      name: 'Poimandres-wezterm',
-      area: 'WezTerm Color Scheme',
-      image:
-        'https://user-images.githubusercontent.com/47901349/179416018-ba8e24a6-3590-4eff-93cb-806d41378a0d.png',
-      imageAlt: 'Poimandres WezTerm color scheme by Oliver Cederborg',
-      repo: 'olivercederborg/poimandres-wezterm',
-      url: 'https://github.com/olivercederborg/poimandres-wezterm',
-      color: '#23393D',
-    },
-    {
       id: 3,
       name: 'Modern Monokai',
       area: 'VSCode Color Scheme',
@@ -58,19 +49,22 @@ export async function getProjects() {
     },
   ]
 
-  // Optimized project fetching with Promise.all
-  const projects = await Promise.all(
+  const projects = await Promise.allSettled(
     sideProjects.map(async project => {
       if (project.repo) {
-        const data = await fetch(`https://api.github.com/repos/${project.repo}`, {
+        const octokit = new Octokit({
+          auth: process.env.GITHUB_TOKEN,
+        })
+
+        const {
+          data: { stargazers_count: stars },
+        } = await octokit.request('GET /repos/{owner}/{repo}', {
+          owner: project.repo.split('/')[0],
+          repo: project.repo.split('/')[1],
           headers: {
-            Accept: 'application/vnd.github.v3+json',
-            Authorization: `token ${process.env.GITHUB_TOKEN}`,
+            'X-GitHub-Api-Version': '2022-11-28',
           },
         })
-        const { stargazers_count: stars } = (await data.json()) as unknown as {
-          stargazers_count: number
-        }
 
         return {
           ...project,
@@ -81,28 +75,9 @@ export async function getProjects() {
       }
     })
   )
+  const successfulProjects = projects.filter(
+    project => project.status === 'fulfilled'
+  ) as PromiseFulfilledResult<Sideproject>[]
 
-  // Sequential project fetching
-  /* for await (const project of sideProjects) { */
-  /*   if (project.repo) { */
-  /*     const data = await fetch(`https://api.github.com/repos/${project.repo}`, { */
-  /*       headers: { */
-  /*         Accept: 'application/vnd.github.v3+json', */
-  /*         Authorization: `token ${process.env.GITHUB_TOKEN}`, */
-  /*       }, */
-  /*     }) */
-  /*     const { stargazers_count: stars } = (await data.json()) as unknown as { */
-  /*       stargazers_count: number */
-  /*     } */
-  /**/
-  /*     projects.push({ */
-  /*       ...project, */
-  /*       stars, */
-  /*     }) */
-  /*   } else { */
-  /*     projects.push(project) */
-  /*   } */
-  /* } */
-
-  return projects
+  return successfulProjects.map(project => project.value)
 }
