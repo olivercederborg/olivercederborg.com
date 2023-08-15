@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { Analytics } from '@vercel/analytics/react'
 
 import localFont from 'next/font/local'
 
@@ -45,6 +46,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navigation />
           <MobileNav />
           {children}
+          <Analytics />
           <Footer />
         </Providers>
       </body>
