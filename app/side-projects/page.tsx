@@ -6,3 +6,5 @@ export default async function Page() {
 
   return projects.map(project => <SideProjectItem key={project.id} project={project} />)
 }
+
+export const revalidate = 3600
