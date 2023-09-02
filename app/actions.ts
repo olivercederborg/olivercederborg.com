@@ -1,22 +1,19 @@
 'use server'
 
 import { ContactFormData } from '@components/contact-form'
-import sgMail from '@sendgrid/mail'
+import { env } from '@env'
+import { Resend } from 'resend'
+import { CreateEmailOptions } from 'resend/build/src/emails/interfaces'
+
+const resend = new Resend(env.RESEND_API_KEY)
 
 export async function sendEmail(data: ContactFormData) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
-
   const { name, email, company, message } = data
 
-  const emailToFrom = {
+  const content: CreateEmailOptions = {
+    from: 'website@olivercederborg.com',
     to: 'hey@olivercederborg.com',
-    from: 'hey@olivercederborg.com',
-  }
-
-  const content = {
-    to: emailToFrom.to,
-    from: emailToFrom.from,
-    replyTo: email,
+    reply_to: email,
     subject: `New Message From: ${name}`,
     text: message,
     html: `<p><strong>Name: ${name}<br>
@@ -28,19 +25,8 @@ export async function sendEmail(data: ContactFormData) {
 
   try {
     if (company) throw new Error('I see you like honey... Try again if you are human.')
-    await sgMail.send(content)
+    resend.emails.send(content)
   } catch (error: unknown) {
     throw new Error(error as unknown as string)
   }
-}
-export type Sideproject = {
-  id: number
-  name: string
-  area: string
-  url: string
-  image: string
-  imageAlt: string
-  color?: string
-  repo?: string
-  stars?: number
 }
