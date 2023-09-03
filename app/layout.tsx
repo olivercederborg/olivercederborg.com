@@ -4,7 +4,7 @@ import { Analytics } from '@vercel/analytics/react'
 import localFont from 'next/font/local'
 
 import clsx from 'clsx'
-import { age } from '@lib/age'
+import { getAge } from '@utils/get-age'
 
 import { Footer } from '@components/footer'
 import { MobileNav } from '@components/mobile-navigation'
@@ -30,7 +30,7 @@ const epilogue = localFont({
 
 export const metadata: Metadata = {
   title: 'Oliver Cederborg - Frontend developer',
-  description: `I'm a ${age()} year old self-taught designer & frontend developer, focused on user experience, accessibility and modern web technologies.`,
+  description: `I'm a ${getAge()} year old self-taught designer & frontend developer, focused on user experience, accessibility and modern web technologies.`,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -49,6 +49,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Analytics />
           <Footer />
         </Providers>
+
+        <Analytics />
       </body>
     </html>
   )

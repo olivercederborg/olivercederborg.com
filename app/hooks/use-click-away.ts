@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 const defaultEvents = ['mousedown', 'touchstart']
 
@@ -20,10 +20,10 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
   }
 }
 
-export const useClickAway = <TEvent extends Event = Event>(
+export function useClickAway<TEvent extends Event = Event>(
   references: React.RefObject<HTMLElement>[] | null,
   onClickAway: (event: TEvent) => void
-) => {
+) {
   const savedCallback = useRef(onClickAway)
   useEffect(() => {
     savedCallback.current = onClickAway
@@ -44,5 +44,5 @@ export const useClickAway = <TEvent extends Event = Event>(
         off(document, event, handler)
       }
     }
-  }, [references])
+  }, [onClickAway, references])
 }

@@ -14,7 +14,7 @@ import {
 import { AnimatedText } from '@components/animated-text'
 import { SectionHeader } from '@components/section-header'
 import { SectionShell } from '@components/section-shell'
-import { age } from '@lib/age'
+import { getAge } from '@utils/get-age'
 import Image from 'next/image'
 import { useMounted } from '@hooks/use-mounted'
 import { useTheme } from '@hooks/use-theme'
@@ -77,7 +77,7 @@ export const About = () => {
             />
             <AnimatedText
               as='p'
-              text={`My name is Oliver Cederborg. I am ${age()} years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer.`}
+              text={`My name is Oliver Cederborg. I am ${getAge()} years old, I live in Copenhagen, Denmark, and I'm a self-taught designer and developer.`}
               className='mt-6 text-lg font-light leading-relaxed text-dark-400 dark:text-dark-200'
             />
             <AnimatedText

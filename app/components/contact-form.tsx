@@ -4,28 +4,15 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { cn } from '@utils/cn'
 import { useForm } from 'react-hook-form'
 import { Input, Label, SubmitButton, Textarea } from '@components/input'
-import * as z from 'zod'
-import { sendEmail } from '@actions'
 import { useState } from 'react'
-import { getErrorMessage } from '@utils/get-error-message'
-
-const schema = z.object({
-  name: z.string().nonempty('I need to know your name').min(2, 'Your name is too short'),
-  email: z
-    .string()
-    .nonempty('I need to know where to reach you!')
-    .email("Uh oh, that doesn't look like an email address..."),
-  company: z.string(),
-  message: z.string().nonempty('You need to send me a message!'),
-})
-
-export type ContactFormData = z.infer<typeof schema>
+import { ContactFormData, contactSchema } from '@side-projects/schemas'
+import { send } from '@actions'
 
 export function ContactForm() {
   const [formResponse, setFormResponse] = useState<{
-    status: 'success' | 'error' | null
+    status?: 'success' | 'error'
     message?: string
-  }>({ status: null })
+  }>()
 
   const {
     register,
@@ -33,32 +20,22 @@ export function ContactForm() {
     formState: { errors, isValid, isSubmitting, isSubmitSuccessful },
     reset,
   } = useForm<ContactFormData>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(contactSchema),
   })
 
   async function handleFormSubmit(data: ContactFormData) {
-    const { name } = data
-
-    try {
-      await sendEmail(data)
-      setFormResponse({
-        status: 'success',
-        message: `Thank you for reaching out, ${name}. I will get back to you asap!`,
-      })
-      reset()
-    } catch (error: unknown) {
-      setFormResponse({
-        status: 'error',
-        message:
-          getErrorMessage(error) ?? `Sorry ${name}, something went wrong. Please try again. 😢`,
-      })
-    }
+    const { message, ok } = await send(data)
+    setFormResponse({
+      status: ok ? 'success' : 'error',
+      message,
+    })
+    ok && reset()
   }
 
   return (
     <form
       className='space-y-10'
-      onSubmit={handleSubmit(handleFormSubmit, () => setFormResponse({ status: null }))}
+      onSubmit={handleSubmit(handleFormSubmit, () => setFormResponse({}))}
     >
       <Label required>
         What&apos;s your name?
@@ -128,7 +105,7 @@ export function ContactForm() {
 
       <SubmitButton>{isSubmitting ? 'Sending...' : 'Send it'}</SubmitButton>
 
-      {formResponse.status && (
+      {formResponse?.status && (
         <p
           className={cn({
             'text-green-500': formResponse.status === 'success' && isSubmitSuccessful,

@@ -1,4 +1,4 @@
-export const age = () => {
+export const getAge = () => {
   const birthday = new Date(1997, 6, 21)
   const today = new Date()
   const age = today.getFullYear() - birthday.getFullYear()

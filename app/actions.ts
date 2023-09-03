@@ -1,22 +1,20 @@
 'use server'
 
-import { ContactFormData } from '@components/contact-form'
-import sgMail from '@sendgrid/mail'
+import { env } from '@env'
+import { ContactFormData, contactSchema } from '@side-projects/schemas'
+import { getErrorMessage } from '@utils/get-error-message'
+import { Resend } from 'resend'
+import { CreateEmailOptions } from 'resend/build/src/emails/interfaces'
 
-export async function sendEmail(data: ContactFormData) {
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY as string)
+const resend = new Resend(env.RESEND_API_KEY)
 
-  const { name, email, company, message } = data
+export async function send(formData: ContactFormData) {
+  const { name, email, company, message } = contactSchema.parse(formData)
 
-  const emailToFrom = {
+  const content: CreateEmailOptions = {
+    from: 'website@olivercederborg.com',
     to: 'hey@olivercederborg.com',
-    from: 'hey@olivercederborg.com',
-  }
-
-  const content = {
-    to: emailToFrom.to,
-    from: emailToFrom.from,
-    replyTo: email,
+    reply_to: email,
     subject: `New Message From: ${name}`,
     text: message,
     html: `<p><strong>Name: ${name}<br>
@@ -27,20 +25,21 @@ export async function sendEmail(data: ContactFormData) {
   }
 
   try {
-    if (company) throw new Error('I see you like honey... Try again if you are human.')
-    await sgMail.send(content)
+    // honey pot :)))
+    if (company) {
+      return { message: 'I see you like honey 🍯 Try again if you are a human.', ok: false }
+    }
+
+    await resend.emails.send(content)
+    return {
+      ok: true,
+      message: `Thank you for reaching out, ${name}. I will get back to you asap!`,
+    }
   } catch (error: unknown) {
-    throw new Error(error as unknown as string)
+    return {
+      message: 'Something went wrong, please try again later',
+      error: getErrorMessage(error),
+      ok: false,
+    }
   }
-}
-export type Sideproject = {
-  id: number
-  name: string
-  area: string
-  url: string
-  image: string
-  imageAlt: string
-  color?: string
-  repo?: string
-  stars?: number
 }
