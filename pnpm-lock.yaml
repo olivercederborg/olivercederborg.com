@@ -6,7 +6,7 @@ settings:
 
 dependencies:
   '@hookform/resolvers':
-    specifier: ^3.2.0
+    specifier: ^3.3.1
     version: 3.3.1(react-hook-form@7.45.4)
   '@types/node':
     specifier: 20.4.8
@@ -33,7 +33,7 @@ dependencies:
     specifier: 13.4.12
     version: 13.4.12(eslint@8.46.0)(typescript@5.1.6)
   framer-motion:
-    specifier: ^10.15.0
+    specifier: ^10.16.2
     version: 10.16.2(react-dom@18.2.0)(react@18.2.0)
   lodash:
     specifier: ^4.17.21
@@ -78,7 +78,7 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0(react@18.2.0)
   zod:
-    specifier: ^3.21.4
+    specifier: ^3.22.2
     version: 3.22.2
 
 devDependencies:
@@ -86,7 +86,7 @@ devDependencies:
     specifier: ^4.2.0
     version: 4.2.0(prettier@3.0.3)
   prettier:
-    specifier: ^3.0.1
+    specifier: ^3.0.3
     version: 3.0.3
   prettier-plugin-tailwindcss:
     specifier: ^0.4.1
