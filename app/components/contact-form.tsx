@@ -7,10 +7,27 @@ import { Input, Label, SubmitButton, Textarea } from '@components/input'
 import { useState } from 'react'
 import { ContactFormData, contactSchema } from '@side-projects/schemas'
 import { send } from '@actions'
+import { Variants, motion } from 'framer-motion'
+
+const errorVariants: Variants = {
+  hidden: { y: -50, opacity: 0 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { ease: 'circOut', duration: 0.5 },
+  },
+}
+
+const defaultValues = {
+  name: '',
+  email: '',
+  company: '',
+  message: '',
+}
 
 export function ContactForm() {
   const [formResponse, setFormResponse] = useState<{
-    status?: 'success' | 'error'
+    ok?: boolean
     message?: string
   }>()
 
@@ -21,27 +38,36 @@ export function ContactForm() {
     reset,
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
+    defaultValues,
   })
 
   async function handleFormSubmit(data: ContactFormData) {
+    setFormResponse(undefined)
     const { message, ok } = await send(data)
-    setFormResponse({
-      status: ok ? 'success' : 'error',
-      message,
-    })
-    ok && reset()
+    setFormResponse({ ok, message })
+    if (ok) {
+      reset()
+    }
+  }
+
+  function handleInvalidSubmit() {
+    setFormResponse(undefined)
   }
 
   return (
-    <form
+    <motion.form
       className='space-y-10'
-      onSubmit={handleSubmit(handleFormSubmit, () => setFormResponse({}))}
+      onSubmit={handleSubmit(handleFormSubmit, handleInvalidSubmit)}
+      initial='hidden'
+      animate='visible'
+      exit='hidden'
     >
       <Label required>
         What&apos;s your name?
         <Input
           {...register('name')}
           name='name'
+          type='text'
           placeholder='Oliver Cederborg'
           className={cn({
             'border-red-500 dark:border-red-400': errors.name?.message,
@@ -49,9 +75,12 @@ export function ContactForm() {
           })}
         />
         {errors.name && (
-          <span className='mt-4 block font-light text-red-500 dark:text-red-400'>
+          <motion.span
+            className='mt-4 block font-light text-red-500 dark:text-red-400'
+            variants={errorVariants}
+          >
             {errors.name.message}
-          </span>
+          </motion.span>
         )}
       </Label>
 
@@ -60,6 +89,7 @@ export function ContactForm() {
         <Input
           {...register('email')}
           name='email'
+          type='text'
           placeholder='hey@olivercederborg.com'
           className={cn({
             'border-red-500 dark:border-red-400': errors.email?.message,
@@ -67,23 +97,25 @@ export function ContactForm() {
           })}
         />
         {errors.email && (
-          <span className='mt-4 block font-light text-red-500 dark:text-red-400'>
+          <motion.span
+            className='mt-4 block font-light text-red-500 dark:text-red-400'
+            variants={errorVariants}
+          >
             {errors.email.message}
-          </span>
+          </motion.span>
         )}
       </Label>
 
-      {/* Prevent bots from auto-filling and spamming. */}
-      <label htmlFor='company' className='hidden'>
+      {/* Honeypot */}
+      <Label className='hidden'>
         What company do you work for?
-        <input
+        <Input
           {...register('company')}
-          type='text'
-          id='company'
           name='company'
+          type='text'
           placeholder='No need to give me this information'
         />
-      </label>
+      </Label>
 
       <Label required>
         What&apos;s your message?
@@ -97,24 +129,28 @@ export function ContactForm() {
           })}
         />
         {errors.message && (
-          <span className='mt-4 block font-light text-red-500 dark:text-red-400'>
+          <motion.span
+            className='mt-4 block font-light text-red-500 dark:text-red-400'
+            variants={errorVariants}
+          >
             {errors.message.message}
-          </span>
+          </motion.span>
         )}
       </Label>
 
       <SubmitButton>{isSubmitting ? 'Sending...' : 'Send it'}</SubmitButton>
 
-      {formResponse?.status && (
-        <p
+      {formResponse?.message && (
+        <motion.p
           className={cn({
-            'text-green-500': formResponse.status === 'success' && isSubmitSuccessful,
-            'text-red-500': formResponse.status === 'error',
+            'text-green-500 dark:text-green-400': formResponse.ok && isSubmitSuccessful,
+            'text-red-500 dark:text-red-400': !formResponse.ok,
           })}
+          variants={errorVariants}
         >
           {formResponse.message}
-        </p>
+        </motion.p>
       )}
-    </form>
+    </motion.form>
   )
 }
