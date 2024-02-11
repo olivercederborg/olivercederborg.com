@@ -50,7 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Providers>
 
         <Analytics />
-        <div className='bg-[url(/assets/noise.png)] opacity-20 overflow-hidden inset-0 w-full h-full fixed pointer-events-none' />
+        <div className='bg-[url(/assets/noise.png)] opacity-[0.12] overflow-hidden inset-0 w-full h-full fixed pointer-events-none' />
       </body>
     </html>
   )
