@@ -1,6 +1,6 @@
 'use client'
 
-import type { FC, ReactNode } from 'react'
+import type { ComponentPropsWithRef, FC, ReactNode } from 'react'
 import { forwardRef } from 'react'
 
 import { HTMLMotionProps, motion } from 'framer-motion'
@@ -33,49 +33,53 @@ export const Label = forwardRef<HTMLLabelElement, LabelProps>(function Label(
   )
 })
 
-export type InputProps = HTMLMotionProps<'input'>
+export type InputProps = ComponentPropsWithRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { className, ...props },
   ref
 ) {
   return (
-    <>
-      <motion.input
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
+      }}
+    >
+      <input
         {...props}
         ref={ref}
-        variants={{
-          hidden: { opacity: 0, y: 50 },
-          visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
-        }}
         className={cn(
           'focus-within:border-primary-brand mt-2 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
           className
         )}
       />
-    </>
+    </motion.div>
   )
 })
 
-export type TextareaProps = HTMLMotionProps<'textarea'>
+export type TextareaProps = ComponentPropsWithRef<'textarea'>
 
 export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(function Textarea(
   { className, ...props },
   ref
 ) {
   return (
-    <motion.textarea
-      {...props}
-      ref={ref}
+    <motion.div
       variants={{
         hidden: { opacity: 0, y: 50 },
         visible: { opacity: 1, y: 0, transition: { ease: 'circOut', duration: 0.5 } },
       }}
-      className={cn(
-        'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
-        className
-      )}
-    />
+    >
+      <textarea
+        {...props}
+        ref={ref}
+        className={cn(
+          'focus-within:border-primary-brand mt-2 h-40 w-full appearance-none rounded-none border-b-[1px] border-dark-200 bg-transparent py-4 px-3 text-2xl font-light text-dark-400 outline-none placeholder:text-dark-200 dark:border-dark-600 dark:text-dark-200 dark:placeholder:text-dark-500',
+          className
+        )}
+      />
+    </motion.div>
   )
 })
 

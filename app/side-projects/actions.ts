@@ -18,16 +18,6 @@ export async function getProjects() {
   const sideProjects: Sideproject[] = [
     {
       id: 0,
-      name: 'use-scrollspy',
-      area: 'React Hook',
-      image: 'https://mj-gallery.com/6c010f60-f86b-4a99-84b0-b98177497205/grid_0.png',
-      imageAlt: 'scrollspy hook by Oliver Cederborg',
-      repo: 'olivercederborg/use-scrollspy',
-      url: 'https://github.com/olivercederborg/use-scrollspy',
-      color: '#4D4E52',
-    },
-    {
-      id: 1,
       name: 'Poimandres.nvim',
       area: 'Neovim Plugin',
       image:
@@ -38,14 +28,14 @@ export async function getProjects() {
       color: '#23393D',
     },
     {
-      id: 3,
-      name: 'Modern Monokai',
-      area: 'VSCode Color Scheme',
-      image: 'https://github.com/olivercederborg/modern-monokai/raw/master/assets/screen1.png',
-      imageAlt: 'Modern Monokai color scheme by Oliver Cederborg',
-      repo: 'olivercederborg/modern-monokai',
-      url: 'https://marketplace.visualstudio.com/items?itemName=OliverCederborg.modern-monokai',
-      color: '#292E36',
+      id: 1,
+      name: 'use-scrollspy',
+      area: 'React Hook',
+      image: 'https://mj-gallery.com/6c010f60-f86b-4a99-84b0-b98177497205/grid_0.png',
+      imageAlt: 'scrollspy hook by Oliver Cederborg',
+      repo: 'olivercederborg/use-scrollspy',
+      url: 'https://github.com/olivercederborg/use-scrollspy',
+      color: '#4D4E52',
     },
   ]
 

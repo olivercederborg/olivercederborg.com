@@ -3,15 +3,15 @@
 import { useTheme as useNextTheme } from 'next-themes'
 
 export function useTheme() {
-  const { theme, setTheme, ...rest } = useNextTheme()
+  const { resolvedTheme, setTheme, ...rest } = useNextTheme()
 
   const toggleTheme = () => {
-    if (theme === 'dark') {
+    if (resolvedTheme === 'dark') {
       setTheme('light')
     } else {
       setTheme('dark')
     }
   }
 
-  return { theme, toggleTheme, ...rest }
+  return { resolvedTheme, toggleTheme, ...rest }
 }

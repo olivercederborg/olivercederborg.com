@@ -23,10 +23,10 @@ const IconButton: FC<IconButtonProps> = ({ children, ...props }) => (
 IconButton.displayName = 'IconButton'
 
 export const ThemeToggleButton: FC = () => {
-  const { theme, toggleTheme } = useTheme()
+  const { resolvedTheme, toggleTheme } = useTheme()
   const mounted = useMounted()
 
-  const isDarkMode = theme === 'dark'
+  const isDarkMode = resolvedTheme === 'dark'
 
   if (!mounted) return null
 
