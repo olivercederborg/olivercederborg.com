@@ -58,9 +58,13 @@ export function ContactForm() {
     <motion.form
       className='space-y-10'
       onSubmit={handleSubmit(handleFormSubmit, handleInvalidSubmit)}
+      variants={{
+        visible: { transition: { staggerChildren: 0.15, delayChildren: 0.5 } },
+      }}
       initial='hidden'
-      animate='visible'
+      whileInView='visible'
       exit='hidden'
+      viewport={{ once: true }}
     >
       <Label required>
         What&apos;s your name?
@@ -76,6 +80,9 @@ export function ContactForm() {
         />
         {errors.name && (
           <motion.span
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
             className='mt-4 block font-light text-red-500 dark:text-red-400'
             variants={errorVariants}
           >
@@ -98,6 +105,9 @@ export function ContactForm() {
         />
         {errors.email && (
           <motion.span
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
             className='mt-4 block font-light text-red-500 dark:text-red-400'
             variants={errorVariants}
           >
@@ -130,6 +140,9 @@ export function ContactForm() {
         />
         {errors.message && (
           <motion.span
+            initial='hidden'
+            animate='visible'
+            exit='hidden'
             className='mt-4 block font-light text-red-500 dark:text-red-400'
             variants={errorVariants}
           >
@@ -142,6 +155,9 @@ export function ContactForm() {
 
       {formResponse?.message && (
         <motion.p
+          initial='hidden'
+          animate='visible'
+          exit='hidden'
           className={cn({
             'text-green-500 dark:text-green-400': formResponse.ok && isSubmitSuccessful,
             'text-red-500 dark:text-red-400': !formResponse.ok,

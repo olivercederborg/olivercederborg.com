@@ -43,18 +43,7 @@ export const ContactShell = ({ children }: ContactShellProps) => (
           regardless of the subject.
         </motion.p>
       </div>
-      <motion.div
-        variants={{
-          visible: { transition: { staggerChildren: 0.15, delayChildren: 0.5 } },
-        }}
-        initial='hidden'
-        whileInView='visible'
-        exit='hidden'
-        viewport={{ once: true }}
-        className='md:w-1/2'
-      >
-        {children}
-      </motion.div>
+      <div className='md:w-1/2'>{children}</div>
     </motion.section>
   </SectionShell>
 )
