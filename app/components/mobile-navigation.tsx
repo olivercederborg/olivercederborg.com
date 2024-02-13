@@ -10,6 +10,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Logo } from '@components/logo'
 import { ThemeToggleButton } from '@components/theme-toggle-button'
 import { useClickAway } from '@hooks/use-click-away'
+import { useLockBody } from '@hooks/use-lock-body'
 import { usePathname } from 'next/navigation'
 
 const navVariants: Variants = {
@@ -53,23 +54,22 @@ export function MobileNav() {
   const navRef = useRef<HTMLElement>(null)
   const navToggleRef = useRef<HTMLButtonElement>(null)
   const [isOpen, setIsOpen] = useState(false)
-  const toggle = () => setIsOpen(open => !open)
-  useClickAway([navRef, navToggleRef], () => setIsOpen(false))
+  const pathname = usePathname()
 
-  useScrollspy({
+  const toggle = () => setIsOpen(open => !open)
+
+  const activeId = useScrollspy({
     ids: ['intro', 'projects', 'about', 'contact'],
     hrefs: ['/#intro', '/#projects', '/#about', '/#contact'],
     offset: 'topCenter',
     activeClass: 'active-nav-link',
   })
 
-  const pathname = usePathname()
+  useClickAway([navRef, navToggleRef], () => setIsOpen(false))
 
-  useEffect(() => setIsOpen(false), [pathname])
+  useEffect(() => setIsOpen(false), [activeId, pathname])
 
-  useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : 'visible'
-  }, [isOpen])
+  useLockBody(isOpen)
   return (
     <>
       <Link href='/#' className='fixed top-8 left-4 z-30 md:hidden'>
