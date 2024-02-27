@@ -14,12 +14,12 @@ export type Sideproject = {
   stars?: number
 }
 
-export async function getProjects() {
+export async function getProjects(categories: string[] = []) {
   const sideProjects: Sideproject[] = [
     {
       id: 0,
       name: 'Poimandres.nvim',
-      area: 'Neovim Plugin',
+      area: 'Neovim Plugins',
       image:
         'https://user-images.githubusercontent.com/47901349/180445055-92480553-0652-4155-8d41-835fec27245b.png',
       imageAlt: 'Poimandres Neovim color scheme by Oliver Cederborg',
@@ -30,7 +30,7 @@ export async function getProjects() {
     {
       id: 1,
       name: 'use-scrollspy',
-      area: 'React Hook',
+      area: 'React Hooks',
       image: 'https://mj-gallery.com/6c010f60-f86b-4a99-84b0-b98177497205/grid_0.png',
       imageAlt: 'scrollspy hook by Oliver Cederborg',
       repo: 'olivercederborg/use-scrollspy',
@@ -68,6 +68,12 @@ export async function getProjects() {
   const successfulProjects = projects.filter(
     project => project.status === 'fulfilled'
   ) as PromiseFulfilledResult<Sideproject>[]
+
+  if (categories.length) {
+    return successfulProjects
+      .filter(project => categories.includes(project.value.area.replace(/\s/g, '-').toLowerCase()))
+      .map(project => project.value)
+  }
 
   return successfulProjects.map(project => project.value)
 }

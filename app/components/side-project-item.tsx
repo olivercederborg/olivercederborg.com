@@ -1,7 +1,7 @@
 'use client'
 
 import type { ComponentPropsWithoutRef } from 'react'
-import { memo, useMemo } from 'react'
+import { memo, use, useEffect, useMemo } from 'react'
 
 import clsx from 'clsx'
 import type { MotionProps } from 'framer-motion'
@@ -13,6 +13,7 @@ import Link from 'next/link'
 import { cn } from '@utils/cn'
 import { useTheme } from '@hooks/use-theme'
 import { useMounted } from '@hooks/use-mounted'
+import { useSearchParams } from 'next/navigation'
 
 type SideProjectItemProps = ComponentPropsWithoutRef<'a'> & {
   project: any
@@ -24,20 +25,24 @@ export const SideProjectItem = memo(function SideProjectItem({
 }: SideProjectItemProps) {
   const { theme } = useTheme()
   const mounted = useMounted()
+  const searchParams = useSearchParams()
 
   const { id, name, area, url, stars, image, imageAlt } = project
 
   const isPhone = useMedia('(max-width: 768px)', false)
 
-  const phoneMotionProps: MotionProps = useMemo(
+  const motionProps: MotionProps = useMemo(
     () => ({
-      variants: { visible: { transition: { staggerChildren: 0.35 } } },
+      variants: {
+        visible: { transition: { staggerChildren: 0.35 } },
+      },
       viewport: { once: true },
-      ...(isPhone ? { initial: 'hidden', whileInView: 'visible', exit: 'hidden' } : {}),
+      ...(true ? { initial: 'hidden', whileInView: 'visible', exit: 'hidden' } : {}),
     }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    []
+    [mounted]
   )
+
   if (!mounted) return
 
   return (
@@ -47,10 +52,20 @@ export const SideProjectItem = memo(function SideProjectItem({
       rel='noopener noreferrer'
       className={clsx('col-span-12 flex flex-col md:col-span-6 xl:col-span-3', props.className)}
     >
-      <motion.article key={id} {...phoneMotionProps}>
+      <motion.article key={id} layout {...motionProps}>
         <motion.figure
           variants={{
-            hidden: { scaleX: 0, originX: 0 },
+            hidden: {
+              opacity: 0,
+              scaleX: 0,
+              originX: [0, 0, 0, 0, 0, 0, 0.5],
+              transition: {
+                duration: 0.35,
+                ease: [0.9, 0.1, 0.3, 0.96],
+                when: 'afterChildren',
+                delayChildren: 0.1,
+              },
+            },
             visible: {
               scaleX: 1,
               originX: [0, 0, 0, 0, 0, 0, 0.5],
