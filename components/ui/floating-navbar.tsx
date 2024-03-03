@@ -1,5 +1,6 @@
 "use client"
 
+import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 import {
    AnimatePresence,
@@ -57,12 +58,14 @@ export const FloatingNav = ({
                duration: 0.2,
             }}
             className={cn(
-               "fixed inset-x-0 top-10 z-[5000] mx-auto flex max-w-screen-md items-center justify-between space-x-4 rounded-3xl border border-white border-opacity-[0.03] bg-white bg-opacity-75 px-8 py-4 filter backdrop-blur-sm dark:bg-neutral-950/[0.9]",
+               "fixed inset-x-0 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between space-x-4 rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-100 bg-opacity-75 px-8 py-3 filter backdrop-blur-sm dark:border-white dark:border-opacity-[0.03] dark:bg-neutral-950/[0.9]",
                className,
             )}
          >
-            <div>OC</div>
             <div className="flex space-x-4">
+               {/* <Link href="/">
+                  <Logo className="mr-4" />
+               </Link> */}
                {navItems.map((navItem, idx: number) => (
                   <Link
                      key={`link=${idx}`}
@@ -79,6 +82,8 @@ export const FloatingNav = ({
                   </Link>
                ))}
             </div>
+
+            <ThemeToggle />
          </motion.div>
       </AnimatePresence>
    )
