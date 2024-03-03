@@ -11,7 +11,7 @@ import { Footer } from "@/components/layouts/footer"
 const epilogue = Epilogue({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-   title: "Full-stack Developer - Oliver Cederborg",
+   title: "Oliver Cederborg - Full-stack Developer",
    description: "Coming soon...",
 }
 
