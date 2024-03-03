@@ -12,13 +12,16 @@ export default function Home() {
             <p>
                I&apos;m a developer with a passion for building beautiful and
                functional applications. I currently{" "}
-               <Link href={"/work"}>
-                  <span className="text-neutral-700">/</span>work
+               <Link
+                  href={"/work"}
+                  className="text-neutral-900 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300"
+               >
+                  <span className="text-neutral-400">/</span>work
                </Link>{" "}
                at{" "}
                <a
                   href="https://hifranklin.com"
-                  className="border-orange-300 text-neutral-50 hover:border-b"
+                  className="border-orange-300 text-neutral-900 after:text-sm after:content-['_↗'] hover:border-b dark:text-neutral-50"
                >
                   Franklin
                </a>{" "}

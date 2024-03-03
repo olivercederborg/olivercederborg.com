@@ -73,7 +73,7 @@ export function LocationCard() {
    }, [r, resolvedTheme])
 
    return (
-      <div className="shadow-feature-card dark:shadow-feature-card-dark relative col-span-2 col-start-6 row-span-2 row-start-2 flex h-40 flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 dark:bg-neutral-800">
+      <div className="relative col-span-2 col-start-6 row-span-2 row-start-2 flex h-40 flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 dark:bg-neutral-900">
          <div className="z-10 flex items-center gap-2">
             <Globe className="size-[18px]" />
             <h2 className="text-sm font-light">Copenhagen</h2>
