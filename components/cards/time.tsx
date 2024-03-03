@@ -13,7 +13,7 @@ export function TimeCard() {
    }, [])
 
    return (
-      <div className="row-span-0 col-span-2 col-start-4 flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out hover:bg-neutral-50 dark:bg-neutral-900 dark:hover:bg-neutral-800">
+      <div className="row-span-0 card-border relative col-span-2 col-start-4 flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out hover:bg-neutral-50 dark:bg-neutral-900 dark:hover:bg-neutral-800">
          <h2 className="text-xl font-medium text-neutral-700 dark:text-white">
             {time.toLocaleTimeString("da-DK", {
                hour: "2-digit",

@@ -27,6 +27,7 @@ export function LocationCard() {
    React.useEffect(() => {
       let width = 0
       let phi = 3
+      let direction = 1
 
       const onResize = () => {
          if (canvasRef.current && (width = canvasRef.current.offsetWidth)) {
@@ -48,7 +49,6 @@ export function LocationCard() {
          mapSamples: 36_000,
          mapBrightness: 2.5,
          baseColor: resolvedTheme === "dark" ? [0.5, 0.5, 0.5] : [1, 1, 1],
-         // markerColor: [1, 0.6, 0.2],
          markerColor: [251 / 255, 100 / 255, 35 / 255],
          glowColor:
             resolvedTheme === "dark" ? [0.5, 0.5, 0.5] : [0.9, 0.9, 0.9],
@@ -58,9 +58,17 @@ export function LocationCard() {
          ],
          scale: 1,
          onRender: (state) => {
-            // state.phi = 4.25 + r.get()
             state.phi = phi + r.get()
-            phi += 0.005
+
+            if (state.phi > 5.5) direction = -1
+            else if (state.phi < 3.25) direction = 1
+
+            if (direction === 1) {
+               phi += 0.001
+            } else {
+               phi -= 0.001
+            }
+
             state.width = width * 2
             state.height = width * 2
          },
@@ -73,7 +81,7 @@ export function LocationCard() {
    }, [r, resolvedTheme])
 
    return (
-      <div className="relative col-span-2 col-start-6 row-span-2 row-start-2 flex h-40 flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 dark:bg-neutral-900">
+      <div className="card-border relative col-span-2 col-start-6 row-span-2 row-start-2 flex h-40 flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out dark:bg-neutral-900 dark:hover:bg-neutral-800">
          <div className="z-10 flex items-center gap-2">
             <Globe className="size-[18px]" />
             <h2 className="text-sm font-light">Copenhagen</h2>

@@ -3,7 +3,7 @@ import Link from "next/link"
 
 export default function Home() {
    return (
-      <main className="flex min-h-screen flex-col">
+      <main className="mt-48 flex flex-1 flex-col">
          <h1 className="mb-1 mt-0 text-2xl font-medium dark:text-white">
             hi, I&apos;m Oliver ✌️
          </h1>
@@ -18,15 +18,14 @@ export default function Home() {
                >
                   <span className="text-neutral-400">/</span>work
                </Link>{" "}
-               at{" "}
+               as a full-stack developer at{" "}
                <a
                   href="https://hifranklin.com"
-                  className="border-orange-300 text-neutral-900 after:text-sm after:content-['_↗'] hover:border-b dark:text-neutral-50"
+                  className="border-b border-transparent text-neutral-900 after:text-sm after:content-['_↗'] hover:border-orange-300 dark:text-neutral-50"
                >
                   Franklin
-               </a>{" "}
-               as a full-stack developer, building a fintech banking solution
-               for e-commerce.
+               </a>
+               , a fintech startup building a banking solution for e-commerce.
             </p>
          </section>
 
