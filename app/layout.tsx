@@ -34,7 +34,7 @@ export default function RootLayout({
                enableSystem
                disableTransitionOnChange
             >
-               <div className="container max-w-2xl pt-40">
+               <div className="container flex min-h-screen max-w-2xl flex-col">
                   <Header />
                   {children}
                   <Footer />
