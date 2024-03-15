@@ -24,7 +24,7 @@ export default function RootLayout({
       <html lang="en">
          <body
             className={cn(
-               "bg-neutral-100 dark:bg-neutral-950",
+               "bg-neutral-100 text-neutral-700 dark:bg-neutral-950 dark:text-neutral-300",
                epilogue.className,
             )}
          >
@@ -40,7 +40,7 @@ export default function RootLayout({
                   <Footer />
                </div>
             </ThemeProvider>
-            <div className="pointer-events-none fixed inset-0 z-[99] h-full w-full overflow-hidden bg-[url(/assets/noise.png)] opacity-[0.12]" />
+            <div className="pointer-events-none fixed inset-0 z-[99] h-full w-full overflow-hidden bg-[url(/assets/noise.png)] opacity-30 dark:opacity-[0.17]" />
          </body>
       </html>
    )
