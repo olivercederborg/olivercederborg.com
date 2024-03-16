@@ -24,8 +24,8 @@ export default function Home() {
                   className="border-b border-transparent text-neutral-900 after:text-sm after:content-['_↗'] hover:border-orange-300 dark:text-neutral-50"
                >
                   Franklin
-               </a>
-               , a fintech startup building a banking solution for e-commerce.
+               </a>{" "}
+               - a fintech startup, building a banking solution for e-commerce.
             </p>
          </section>
 
