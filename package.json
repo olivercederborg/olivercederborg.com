@@ -1,43 +1,43 @@
 {
-  "name": "olivercederborg.com",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@radix-ui/react-dropdown-menu": "^2.0.6",
-    "@radix-ui/react-slot": "^1.0.2",
-    "@t3-oss/env-nextjs": "^0.9.2",
-    "class-variance-authority": "^0.7.0",
-    "clsx": "^2.1.0",
-    "cobe": "^0.6.3",
-    "framer-motion": "^11.0.8",
-    "lucide-react": "^0.344.0",
-    "next": "14.1.1",
-    "next-themes": "^0.2.1",
-    "octokit": "^3.1.2",
-    "react": "^18",
-    "react-dom": "^18",
-    "react-spring": "^9.7.3",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss-animate": "^1.0.7",
-    "zod": "^3.22.4"
-  },
-  "devDependencies": {
-    "@types/node": "^20",
-    "@types/react": "^18",
-    "@types/react-dom": "^18",
-    "autoprefixer": "^10.0.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.1.1",
-    "postcss": "^8",
-    "prettier": "^3.0.3",
-    "prettier-plugin-tailwindcss": "^0.5.5",
-    "tailwindcss": "^3.3.0",
-    "typescript": "^5"
-  }
+   "name": "olivercederborg.com",
+   "version": "0.1.0",
+   "private": true,
+   "scripts": {
+      "dev": "next dev",
+      "build": "next build",
+      "start": "next start",
+      "lint": "next lint"
+   },
+   "dependencies": {
+      "@radix-ui/react-dropdown-menu": "^2.0.6",
+      "@radix-ui/react-slot": "^1.0.2",
+      "@t3-oss/env-nextjs": "^0.9.2",
+      "class-variance-authority": "^0.7.0",
+      "clsx": "^2.1.0",
+      "cobe": "^0.6.3",
+      "framer-motion": "^11.0.8",
+      "lucide-react": "^0.344.0",
+      "next": "14.1.1",
+      "next-themes": "^0.2.1",
+      "octokit": "^3.1.2",
+      "react": "^18",
+      "react-dom": "^18",
+      "react-spring": "^9.7.3",
+      "tailwind-merge": "^2.2.1",
+      "tailwindcss-animate": "^1.0.7",
+      "zod": "^3.22.4"
+   },
+   "devDependencies": {
+      "@types/node": "^20",
+      "@types/react": "^18",
+      "@types/react-dom": "^18",
+      "autoprefixer": "^10.0.1",
+      "eslint": "^8",
+      "eslint-config-next": "14.1.1",
+      "postcss": "^8",
+      "prettier": "^3.0.3",
+      "prettier-plugin-tailwindcss": "^0.5.5",
+      "tailwindcss": "^3.3.0",
+      "typescript": "^5"
+   }
 }
