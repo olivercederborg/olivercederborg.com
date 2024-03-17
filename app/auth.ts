@@ -8,10 +8,5 @@ export const {
    signIn,
    signOut,
 } = NextAuth({
-   providers: [
-      GitHub({
-         clientId: env.GITHUB_CLIENT_ID,
-         clientSecret: env.GITHUB_CLIENT_SECRET,
-      }),
-   ],
+   providers: [GitHub],
 })
