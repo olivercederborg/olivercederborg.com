@@ -5,12 +5,41 @@ import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Epilogue } from "next/font/google"
 import "./globals.css"
+import { Analytics } from "@vercel/analytics/react"
 
 const epilogue = Epilogue({ subsets: ["latin"] })
 
+const metainfo = {
+   name: "Oliver Cederborg",
+   description: "Full-stack developer and designer from Copenhagen, Denmark.",
+   url: "https://olivercederborg.com",
+   image: "/meta/meta.png",
+   twitter: "@olivercederborg",
+}
+
 export const metadata: Metadata = {
-   title: "Oliver Cederborg - Full-stack Developer",
-   description: "Coming soon...",
+   metadataBase: new URL(metainfo.url),
+   title: metainfo.name,
+   description: metainfo.description,
+   authors: {
+      name: metainfo.name,
+      url: metainfo.url,
+   },
+   creator: metainfo.name,
+   openGraph: {
+      type: "website",
+      url: metainfo.url,
+      title: metainfo.name,
+      description: metainfo.description,
+      images: metainfo.image,
+   },
+   twitter: {
+      card: "summary_large_image",
+      title: metainfo.name,
+      description: metainfo.description,
+      creator: metainfo.twitter,
+      images: metainfo.image,
+   },
 }
 
 export default function RootLayout({
@@ -39,6 +68,7 @@ export default function RootLayout({
                </div>
             </ThemeProvider>
             <div className="pointer-events-none fixed inset-0 z-[99] h-full w-full overflow-hidden bg-[url(/assets/noise.png)] opacity-30 dark:opacity-[0.17]" />
+            <Analytics />
          </body>
       </html>
    )
