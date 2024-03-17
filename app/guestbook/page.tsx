@@ -7,11 +7,15 @@ export default async function GuestbookPage() {
    const isLoggedIn = session?.user?.email
 
    return (
-      <div className="mt-40">
+      <main className="mt-40">
+         <p className="text-xl">leave a mark by signing my guestbook</p>
+         <form>
+            <Input />
+         </form>
          Logged in: {session?.user?.name || "no"}
          {!isLoggedIn ? <SignIn /> : <SignOut />}
          <h1>Guestbook</h1>
          <p>This is the guestbook page.</p>
-      </div>
+      </main>
    )
 }
