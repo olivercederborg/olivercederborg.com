@@ -1,12 +1,10 @@
+import { Footer } from "@/components/layouts/footer"
+import { Header } from "@/components/layouts/header"
 import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import { Epilogue } from "next/font/google"
 import "./globals.css"
-import { FloatingNav } from "@/components/ui/floating-navbar"
-import { ComponentProps } from "react"
-import { Header } from "@/components/layouts/header"
-import { cn } from "@/lib/utils"
-import { Footer } from "@/components/layouts/footer"
 
 const epilogue = Epilogue({ subsets: ["latin"] })
 
