@@ -6,10 +6,15 @@ export const env = createEnv({
       GITHUB_TOKEN: z.string().startsWith("github_pat"),
       AUTH_GITHUB_ID: z.string(),
       AUTH_GITHUB_SECRET: z.string(),
+      POSTGRES_DATABASE: z.string(),
+      POSTGRES_HOST: z.string(),
+      POSTGRES_PASSWORD: z.string(),
+      POSTGRES_URL: z.string().url(),
    },
    experimental__runtimeEnv: {
       GITHUB_TOKEN: process.env.GITHUB_TOKEN,
       AUTH_GITHUB_ID: process.env.AUTH_GITHUB_ID,
       AUTH_GITHUB_SECRET: process.env.AUTH_GITHUB_SECRET,
+      POSTGRES_URL: process.env.POSTGRES_URL,
    },
 })

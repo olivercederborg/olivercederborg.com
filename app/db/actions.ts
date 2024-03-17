@@ -17,15 +17,13 @@ async function getSession(): Promise<Session> {
 
 export async function saveGuestbookEntry(formData: FormData) {
    let session = await getSession()
-   let email = session.user?.email as string
-   let createdBy = session.user?.name as string
+   if (!session.user) throw new Error("Unauthorized")
 
-   if (!session.user) {
-      throw new Error("Unauthorized")
-   }
+   let email = session.user.email as string
+   let createdBy = session.user.name || email || "Anonymous"
 
-   let entry = formData.get("entry")?.toString().trim() || ""
-   let body = entry.slice(0, 500)
+   let entry = formData.get("entry")?.toString() || ""
+   let body = entry.slice(0, 500).trim()
 
    await db.insert(guestbook).values({
       createdBy,

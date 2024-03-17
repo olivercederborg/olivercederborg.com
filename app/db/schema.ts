@@ -1,10 +1,4 @@
-import {
-   pgTable,
-   serial,
-   text,
-   timestamp,
-   uniqueIndex,
-} from "drizzle-orm/pg-core"
+import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core"
 
 export const guestbook = pgTable("guestbook", {
    id: serial("id").primaryKey(),

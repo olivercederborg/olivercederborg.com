@@ -1,4 +1,3 @@
-import { env } from "@/app/env"
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 
