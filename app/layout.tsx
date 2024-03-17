@@ -2,10 +2,10 @@ import { Footer } from "@/components/layouts/footer"
 import { Header } from "@/components/layouts/header"
 import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
+import { Analytics } from "@vercel/analytics/react"
 import type { Metadata } from "next"
 import { Epilogue } from "next/font/google"
 import "./globals.css"
-import { Analytics } from "@vercel/analytics/react"
 
 const epilogue = Epilogue({ subsets: ["latin"] })
 
