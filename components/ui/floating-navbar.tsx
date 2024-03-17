@@ -9,6 +9,7 @@ import {
    useScroll,
 } from "framer-motion"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState } from "react"
 
 export const FloatingNav = ({
@@ -22,6 +23,7 @@ export const FloatingNav = ({
    }[]
    className?: string
 }) => {
+   const pathname = usePathname()
    const { scrollYProgress } = useScroll()
 
    const [visible, setVisible] = useState(true)
@@ -62,25 +64,31 @@ export const FloatingNav = ({
                className,
             )}
          >
-            <div className="flex space-x-4">
-               {/* <Link href="/">
-                  <Logo className="mr-4" />
-               </Link> */}
-               {navItems.map((navItem, idx: number) => (
-                  <Link
-                     key={`link=${idx}`}
-                     href={navItem.link}
-                     className={cn(
-                        "relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
-                     )}
-                  >
-                     <span className="block sm:hidden">{navItem.icon}</span>
-                     <span className="hidden text-sm sm:block">
-                        <span className="text-neutral-400">/</span>
-                        {navItem.name.toLowerCase()}
-                     </span>
-                  </Link>
-               ))}
+            <div className="flex space-x-5">
+               {navItems.map((navItem, idx: number) => {
+                  const isActive = pathname === navItem.link
+                  return (
+                     <Link
+                        key={`link=${idx}`}
+                        href={navItem.link}
+                        className={cn(
+                           "relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
+                        )}
+                     >
+                        <span className="block sm:hidden">{navItem.icon}</span>
+                        <span className="hidden text-sm sm:block">
+                           <span className="text-neutral-400">/</span>
+                           {navItem.name.toLowerCase()}
+                        </span>
+                        {isActive && (
+                           <motion.span
+                              layoutId="active-nav"
+                              className="absolute -inset-x-4 inset-y-auto z-[-1] h-9 rounded-full bg-neutral-200 dark:bg-neutral-800"
+                           />
+                        )}
+                     </Link>
+                  )
+               })}
             </div>
 
             <ThemeToggle />
