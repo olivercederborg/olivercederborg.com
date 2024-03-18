@@ -83,7 +83,7 @@ export const FloatingNav = ({
                         {isActive && (
                            <motion.span
                               layoutId="active-nav"
-                              className="absolute -inset-x-4 inset-y-auto z-[-1] h-9 rounded-full bg-neutral-200 dark:bg-neutral-800"
+                              className="absolute -inset-x-4 inset-y-auto z-[-1] hidden h-9 rounded-full bg-neutral-200 dark:bg-neutral-800 sm:flex"
                            />
                         )}
                      </Link>
