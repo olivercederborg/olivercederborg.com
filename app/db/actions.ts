@@ -25,6 +25,10 @@ export async function saveGuestbookEntry(formData: FormData) {
    let entry = formData.get("entry")?.toString() || ""
    let body = entry.slice(0, 500).trim()
 
+   if (!body) {
+      throw new Error("Entry is empty")
+   }
+
    await db.insert(guestbook).values({
       createdBy,
       email,

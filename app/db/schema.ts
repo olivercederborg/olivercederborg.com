@@ -7,3 +7,6 @@ export const guestbook = pgTable("guestbook", {
    createdBy: text("createdBy").notNull(),
    createdAt: timestamp("createdAt").defaultNow().notNull(),
 })
+
+export type SelectGuestbook = typeof guestbook.$inferSelect
+export type InsertGuestbook = typeof guestbook.$inferInsert

@@ -5,6 +5,7 @@ import { saveGuestbookEntry } from "@/app/db/actions"
 import { Button } from "@/components/ui/button"
 import { getGuestbookEntries } from "@/app/db/queries"
 import { Suspense } from "react"
+import { Entry } from "@/app/guestbook/entry"
 
 export default async function GuestbookPage() {
    const session = await auth()
@@ -14,40 +15,43 @@ export default async function GuestbookPage() {
    const entries = await getGuestbookEntries()
 
    return (
-      <main className="mt-40">
+      <main className="mt-40 flex flex-1 flex-col">
          <p className="text-xl">
             {isLoggedIn && <span>hi {session.user?.name} 👋 </span>}
             leave a mark by signing my guestbook
          </p>
+
          <div className="mt-8 space-y-2">
-            <div className="flex w-full gap-2">
-               <form action={saveGuestbookEntry} className="flex-1">
-                  <Input
-                     id="entry"
-                     name="entry"
-                     type="text"
-                     placeholder="elon was here"
-                     minLength={5}
-                  />
-                  <Button type="submit">sign</Button>
-               </form>
-            </div>
-            <SignOut />
+            {isLoggedIn ? (
+               <>
+                  <form
+                     action={saveGuestbookEntry}
+                     className="flex flex-1 gap-2"
+                  >
+                     <Input
+                        id="entry"
+                        name="entry"
+                        type="text"
+                        placeholder="elon was here"
+                        minLength={5}
+                     />
+                     <Button type="submit">sign</Button>
+                  </form>
+
+                  <SignOut />
+               </>
+            ) : (
+               <SignIn />
+            )}
          </div>
-         <div className="mt-10">
-            <Suspense fallback={<div>loading...</div>}>
+
+         <Suspense fallback={<div>loading...</div>}>
+            <div className="mb-8 mt-16 flex flex-col space-y-3">
                {entries.map((entry) => (
-                  <div key={entry.id} className="mb-4">
-                     <p>
-                        <span className="text-neutral-400">
-                           {entry.displayName}
-                        </span>
-                        : {entry.body}
-                     </p>
-                  </div>
+                  <Entry key={entry.id} entry={entry} />
                ))}
-            </Suspense>
-         </div>
+            </div>
+         </Suspense>
       </main>
    )
 }
