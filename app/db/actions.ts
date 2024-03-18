@@ -57,7 +57,7 @@ export async function saveGuestbookEntry(formData: FormData) {
    if (hasSigned) {
       return {
          success: false,
-         message: `You can sign again in ${hoursToSignAgain} minutes.`,
+         message: `You can sign again in ${hoursToSignAgain} hours.`,
       }
    }
 
