@@ -20,6 +20,10 @@ async function getSession(): Promise<Session> {
 export async function hasSignedToday(email: string) {
    const now = new Date()
 
+   if (email === "hey@olivercederborg.com") {
+      return { hasSigned: false }
+   }
+
    const lastSignage = await db
       .select()
       .from(guestbook)
