@@ -1,15 +1,12 @@
-import { SignIn, SignOut } from "@/app/guestbook/buttons"
 import { auth } from "@/app/auth"
-import { Input } from "@/components/ui/input"
-import { saveGuestbookEntry } from "@/app/db/actions"
-import { Button } from "@/components/ui/button"
 import { getGuestbookEntries } from "@/app/db/queries"
-import { Suspense } from "react"
+import { SignIn, SignOut } from "@/app/guestbook/buttons"
 import { Entry } from "@/app/guestbook/entry"
+import Form from "@/app/guestbook/form"
+import { Suspense } from "react"
 
 export default async function GuestbookPage() {
    const session = await auth()
-
    const isLoggedIn = session?.user?.email
 
    const entries = await getGuestbookEntries()
@@ -24,20 +21,7 @@ export default async function GuestbookPage() {
          <div className="mt-8 space-y-2">
             {isLoggedIn ? (
                <>
-                  <form
-                     action={saveGuestbookEntry}
-                     className="flex flex-1 gap-2"
-                  >
-                     <Input
-                        id="entry"
-                        name="entry"
-                        type="text"
-                        placeholder="elon was here"
-                        minLength={5}
-                     />
-                     <Button type="submit">sign</Button>
-                  </form>
-
+                  <Form />
                   <SignOut />
                </>
             ) : (
@@ -46,7 +30,7 @@ export default async function GuestbookPage() {
          </div>
 
          <Suspense fallback={<div>loading...</div>}>
-            <div className="mb-8 mt-16 flex flex-col space-y-3">
+            <div className="mt-16 flex flex-col space-y-3 border-t border-white/5 py-8">
                {entries.map((entry) => (
                   <Entry key={entry.id} entry={entry} />
                ))}
