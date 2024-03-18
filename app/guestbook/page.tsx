@@ -5,6 +5,12 @@ import { Entry } from "@/app/guestbook/entry"
 import Form from "@/app/guestbook/form"
 import { Suspense } from "react"
 
+export const metadata = {
+   title: "guestbook - Oliver Cederborg",
+   description:
+      "Guestbook where visitors can leave a mark by signing my guestbook.",
+}
+
 export default async function GuestbookPage() {
    const session = await auth()
    const isLoggedIn = session?.user?.email
