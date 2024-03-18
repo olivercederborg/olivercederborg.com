@@ -43,8 +43,8 @@ export default function Form() {
          {state.message && (
             <p
                className={cn("text-sm", {
-                  "text-green-300": state.success,
-                  "text-red-300": !state.success,
+                  "text-green-400 dark:text-green-300": state.success,
+                  "text-red-400 dark:text-red-300": !state.success,
                })}
             >
                {state.message}

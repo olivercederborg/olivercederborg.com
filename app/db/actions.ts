@@ -1,9 +1,10 @@
 "use server"
+import { differenceInHours } from "date-fns"
 
 import { auth } from "@/app/auth"
 import { db } from "@/app/db"
 import { guestbook } from "@/app/db/schema"
-import { and, count, eq, gte } from "drizzle-orm"
+import { desc, eq } from "drizzle-orm"
 import { Session } from "next-auth"
 import { revalidatePath } from "next/cache"
 
@@ -16,18 +17,32 @@ async function getSession(): Promise<Session> {
    return session
 }
 
-export async function hasSignedThisWeek(email: string) {
-   let lastWeek = new Date()
-   lastWeek.setDate(lastWeek.getDate() - 7)
+export async function hasSignedToday(email: string) {
+   const now = new Date()
 
-   let entries = await db
-      .select({ value: count() })
+   const lastSignage = await db
+      .select()
       .from(guestbook)
-      .where(
-         and(eq(guestbook.email, email), gte(guestbook.createdAt, lastWeek)),
-      )
+      .where(eq(guestbook.email, email))
+      .orderBy(desc(guestbook.createdAt))
+      .limit(1)
 
-   return entries[0].value > 0
+   if (!lastSignage.length) {
+      return { hasSigned: false }
+   }
+
+   const hoursSinceLastSignage = differenceInHours(
+      now,
+      lastSignage[0].createdAt,
+   )
+
+   if (lastSignage.length && hoursSinceLastSignage < 24) {
+      const hoursToSignAgain = 24 - hoursSinceLastSignage
+
+      return { hasSigned: true, hoursToSignAgain }
+   }
+
+   return { hasSigned: false }
 }
 
 export async function saveGuestbookEntry(formData: FormData) {
@@ -37,10 +52,12 @@ export async function saveGuestbookEntry(formData: FormData) {
    let email = session.user.email as string
    let createdBy = session.user.name || email || "Anonymous"
 
-   if (await hasSignedThisWeek(email)) {
+   const { hasSigned, hoursToSignAgain } = await hasSignedToday(email)
+
+   if (hasSigned) {
       return {
          success: false,
-         message: "You have already signed this week",
+         message: `You can sign again in ${hoursToSignAgain} minutes.`,
       }
    }
 

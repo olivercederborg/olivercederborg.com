@@ -23,6 +23,7 @@
       "class-variance-authority": "^0.7.0",
       "clsx": "^2.1.0",
       "cobe": "^0.6.3",
+      "date-fns": "^3.6.0",
       "drizzle-orm": "^0.30.2",
       "framer-motion": "^11.0.8",
       "jiti": "^1.21.0",
