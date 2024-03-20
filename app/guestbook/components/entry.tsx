@@ -1,5 +1,8 @@
+"use client"
+
 import { SelectGuestbook } from "@/app/db/schema"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 
 type EntryProps = {
    entry: SelectGuestbook
@@ -10,7 +13,7 @@ export function Entry({ entry, className }: EntryProps) {
    const isAuthor = entry.email === "hey@olivercederborg.com"
 
    return (
-      <div
+      <motion.div
          className={cn(
             "flex flex-col flex-wrap items-start self-start text-pretty break-all rounded-xl border bg-neutral-200/10 px-3 py-2 text-sm leading-6 dark:border-white/5 dark:bg-neutral-900/10",
             {
@@ -26,6 +29,6 @@ export function Entry({ entry, className }: EntryProps) {
             </span>
             <span>{entry.body}</span>
          </p>
-      </div>
+      </motion.div>
    )
 }

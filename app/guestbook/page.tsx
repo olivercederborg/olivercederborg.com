@@ -1,9 +1,8 @@
 import { auth } from "@/app/auth"
 import { getGuestbookEntries } from "@/app/db/queries"
-import { SignIn, SignOut } from "@/app/guestbook/buttons"
-import { Entry } from "@/app/guestbook/entry"
-import Form from "@/app/guestbook/form"
-import { Suspense } from "react"
+import { SignIn, SignOut } from "@/app/guestbook/components/buttons"
+import { Entries } from "@/app/guestbook/components/entries"
+import Form from "@/app/guestbook/components/form"
 
 export const metadata = {
    title: "guestbook - Oliver Cederborg",
@@ -35,13 +34,7 @@ export default async function GuestbookPage() {
             )}
          </div>
 
-         <Suspense fallback={<div>loading...</div>}>
-            <div className="mt-16 flex flex-col space-y-3 border-t border-white/5 py-8">
-               {entries.map((entry) => (
-                  <Entry key={entry.id} entry={entry} />
-               ))}
-            </div>
-         </Suspense>
+         <Entries entries={entries} />
       </main>
    )
 }
