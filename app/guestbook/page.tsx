@@ -2,7 +2,8 @@ import { auth } from "@/app/auth"
 import { getGuestbookEntries } from "@/app/db/queries"
 import { SignIn, SignOut } from "@/app/guestbook/components/buttons"
 import { Entries } from "@/app/guestbook/components/entries"
-import Form from "@/app/guestbook/components/form"
+import Form, { FormShell } from "@/app/guestbook/components/form"
+import { Heading } from "@/app/guestbook/components/heading"
 
 export const metadata = {
    title: "guestbook - Oliver Cederborg",
@@ -18,12 +19,12 @@ export default async function GuestbookPage() {
 
    return (
       <main className="mt-40 flex flex-1 flex-col">
-         <p className="text-xl">
+         <Heading>
             {isLoggedIn && <span>hi {session.user?.name} 👋 </span>}
             leave a mark by signing my guestbook
-         </p>
+         </Heading>
 
-         <div className="mt-8 space-y-2">
+         <FormShell>
             {isLoggedIn ? (
                <>
                   <Form />
@@ -32,7 +33,7 @@ export default async function GuestbookPage() {
             ) : (
                <SignIn />
             )}
-         </div>
+         </FormShell>
 
          <Entries entries={entries} />
       </main>

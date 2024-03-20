@@ -1,9 +1,11 @@
 "use client"
 
 import { saveGuestbookEntry } from "@/app/db/actions"
+import { defaultVariants } from "@/app/guestbook/components/motion.variants"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"
+import { motion } from "framer-motion"
 import * as React from "react"
 import { useFormState } from "react-dom"
 
@@ -51,5 +53,19 @@ export default function Form() {
             </p>
          )}
       </div>
+   )
+}
+
+export function FormShell({ children }: { children: React.ReactNode }) {
+   return (
+      <motion.div
+         initial="hidden"
+         animate="visible"
+         exit="hidden"
+         variants={defaultVariants}
+         className="mt-8 space-y-2"
+      >
+         {children}
+      </motion.div>
    )
 }
