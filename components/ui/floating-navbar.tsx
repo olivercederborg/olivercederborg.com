@@ -24,40 +24,21 @@ export const FloatingNav = ({
    className?: string
 }) => {
    const pathname = usePathname()
-   const { scrollYProgress } = useScroll()
-
-   const [visible, setVisible] = useState(true)
-
-   useMotionValueEvent(scrollYProgress, "change", (current) => {
-      // Check if current is not undefined and is a number
-      if (typeof current === "number") {
-         let direction = current! - scrollYProgress.getPrevious()!
-
-         //  if (scrollYProgress.get() < 0.05) {
-         //     setVisible(false)
-         //  } else {
-         //     if (direction < 0) {
-         //        setVisible(true)
-         //     } else {
-         //        setVisible(false)
-         //     }
-         //  }
-      }
-   })
 
    return (
       <AnimatePresence mode="wait">
          <motion.div
             initial={{
-               opacity: 1,
-               y: -100,
+               opacity: 0,
+               y: -20,
             }}
             animate={{
-               y: visible ? 0 : -100,
-               opacity: visible ? 1 : 0,
+               y: 0,
+               opacity: 1,
             }}
             transition={{
-               duration: 0.2,
+               duration: 0.35,
+               delay: 0.25,
             }}
             className={cn(
                "fixed inset-x-0 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between space-x-4 rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-100 bg-opacity-75 px-8 py-3 filter backdrop-blur-sm dark:border-white/5 dark:bg-neutral-900/10",
