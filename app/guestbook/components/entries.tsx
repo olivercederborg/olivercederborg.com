@@ -1,8 +1,8 @@
 "use client"
 
-import { SelectGuestbook } from "@/app/db/schema"
+import { type SelectGuestbook } from "@/app/db/schema"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion, stagger } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 type EntriesProps = {
    entries: SelectGuestbook[]
