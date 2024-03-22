@@ -45,9 +45,13 @@ type EntryProps = {
 export function Entry({ entry, className }: EntryProps) {
    const { email, body, createdBy, createdAt } = entry
    const isAuthor = email === "hey@olivercederborg.com"
-   const timeSinceEntry = differenceInDays(new Date(), createdAt)
-      ? `${differenceInDays(new Date(), createdAt)} days ago`
-      : "today"
+   const daysSinceEntry = differenceInDays(new Date(), createdAt)
+   const timeSinceEntry =
+      daysSinceEntry > 1
+         ? `${daysSinceEntry} days ago`
+         : daysSinceEntry === 1
+           ? "yesterday"
+           : "today"
 
    return (
       <motion.div
