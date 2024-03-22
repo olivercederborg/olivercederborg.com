@@ -7,7 +7,7 @@ import { TimeCard } from "@/components/cards/time"
 
 export function Cards() {
    return (
-      <section className="mt-8 grid grid-cols-5 grid-rows-3 gap-4 md:grid-cols-7">
+      <section className="mt-8 grid grid-cols-8 grid-rows-5 gap-4 md:grid-cols-7 md:grid-rows-3">
          <MeCard />
          <GithubStatsCard />
          <DribbbleCard />

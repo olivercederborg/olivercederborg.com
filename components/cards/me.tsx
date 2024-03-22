@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export function MeCard() {
    return (
-      <div className="card-border relative col-span-2 row-span-3 overflow-hidden rounded-xl">
+      <div className="card-border relative col-span-4 row-span-3 overflow-hidden rounded-xl md:col-span-2 md:row-span-3">
          <Image
             alt="Oliver Cederborg"
             src="/assets/oliver-cederborg-portrait.jpg"

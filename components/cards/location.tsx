@@ -81,12 +81,12 @@ export function LocationCard() {
    }, [r, resolvedTheme])
 
    return (
-      <div className="card-border relative col-span-2 col-start-6 row-span-2 row-start-2 flex h-40 flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out dark:bg-neutral-900 dark:hover:bg-neutral-800">
+      <div className="card-border relative col-span-4 col-start-5 row-span-3 row-start-2 flex flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out dark:bg-neutral-900 dark:hover:bg-neutral-800 md:col-span-2 md:col-start-6 md:row-span-2 md:row-start-2 md:h-40">
          <div className="z-10 flex items-center gap-2">
             <Globe className="size-[18px]" />
             <h2 className="text-sm font-light">Copenhagen</h2>
          </div>
-         <div className="absolute inset-x-0 bottom-[-75%] mx-auto aspect-square h-[150%] translate-x-[-12.5%] [@media(max-width:420px)]:h-[320px] [@media(min-width:768px)_and_(max-width:858px)]:h-[350px]">
+         <div className="absolute inset-x-0 bottom-[-75%] mx-auto aspect-square h-[150%] translate-x-[-12.5%] [@media(max-width:420px)]:h-[320px]">
             <div
                style={{
                   width: "100%",
