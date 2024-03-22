@@ -3,6 +3,7 @@
 import { type SelectGuestbook } from "@/app/db/schema"
 import { defaultVariants } from "@/app/guestbook/components/motion.variants"
 import { cn } from "@/lib/utils"
+import { differenceInDays } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"
 
 type EntriesProps = {
@@ -42,7 +43,11 @@ type EntryProps = {
 }
 
 export function Entry({ entry, className }: EntryProps) {
-   const isAuthor = entry.email === "hey@olivercederborg.com"
+   const { email, body, createdBy, createdAt } = entry
+   const isAuthor = email === "hey@olivercederborg.com"
+   const timeSinceEntry = differenceInDays(new Date(), createdAt)
+      ? `${differenceInDays(new Date(), createdAt)} days ago`
+      : "today"
 
    return (
       <motion.div
@@ -65,9 +70,9 @@ export function Entry({ entry, className }: EntryProps) {
       >
          <p className="flex flex-col">
             <span className="text-xs text-neutral-500 dark:text-neutral-400">
-               {entry.createdBy}
+               {createdBy} • {timeSinceEntry}
             </span>
-            <span>{entry.body}</span>
+            <span>{body}</span>
          </p>
       </motion.div>
    )
