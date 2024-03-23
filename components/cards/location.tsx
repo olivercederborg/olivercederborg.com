@@ -49,7 +49,7 @@ export function LocationCard() {
          mapSamples: 36_000,
          mapBrightness: 2.5,
          baseColor: resolvedTheme === "dark" ? [0.5, 0.5, 0.5] : [1, 1, 1],
-         markerColor: [251 / 255, 100 / 255, 35 / 255],
+         markerColor: [1.5, 100 / 255, 100 / 255],
          glowColor:
             resolvedTheme === "dark" ? [0.5, 0.5, 0.5] : [0.9, 0.9, 0.9],
          markers: [
