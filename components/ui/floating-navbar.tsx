@@ -2,15 +2,9 @@
 
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
-import {
-   AnimatePresence,
-   motion,
-   useMotionValueEvent,
-   useScroll,
-} from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
 
 export const FloatingNav = ({
    navItems,
