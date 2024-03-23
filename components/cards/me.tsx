@@ -9,6 +9,7 @@ export function MeCard() {
             height={300}
             width={300}
             className="h-full object-cover"
+            priority
          />
       </div>
    )
