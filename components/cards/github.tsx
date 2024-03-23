@@ -1,4 +1,4 @@
-import { getGithubStats } from "@/lib/github-stats"
+import { getGithubStats } from "@/app/actions"
 import { Github } from "lucide-react"
 import Link from "next/link"
 

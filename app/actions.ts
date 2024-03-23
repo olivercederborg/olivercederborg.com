@@ -1,7 +1,9 @@
+"use server"
+
 import { octokit } from "@/lib/octokit"
 import { cache } from "react"
 
-export const getGithubStats = cache(async () => {
+export async function getGithubStats() {
    const gql = String.raw
    const { user } = await octokit.graphql<{
       user: {
@@ -63,4 +65,4 @@ export const getGithubStats = cache(async () => {
          0,
       ),
    }
-})
+}
