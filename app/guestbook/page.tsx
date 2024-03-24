@@ -18,7 +18,7 @@ export default async function GuestbookPage() {
    const entries = await getGuestbookEntries()
 
    return (
-      <main className="mt-40 flex flex-1 flex-col">
+      <section>
          <Heading>
             {isLoggedIn && <span>hi {session.user?.name} 👋 </span>}
             leave a mark by signing my guestbook
@@ -36,6 +36,6 @@ export default async function GuestbookPage() {
          </FormShell>
 
          <Entries entries={entries} />
-      </main>
+      </section>
    )
 }

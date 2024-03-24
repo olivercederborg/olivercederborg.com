@@ -63,7 +63,9 @@ export default function RootLayout({
             >
                <div className="container flex min-h-screen max-w-2xl flex-col">
                   <Header />
-                  {children}
+                  <main className="flex flex-1 flex-col pb-20 pt-40 md:pt-48">
+                     {children}
+                  </main>
                   <Footer />
                </div>
             </ThemeProvider>
