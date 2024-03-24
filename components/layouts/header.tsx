@@ -1,7 +1,12 @@
-import * as React from "react"
 import { FloatingNav } from "@/components/ui/floating-navbar"
 
-const navItems: React.ComponentProps<typeof FloatingNav>["navItems"] = [
+export type NavItem = {
+   name: string
+   link: string
+   icon?: JSX.Element
+}
+
+const navItems: NavItem[] = [
    { name: "Home", link: "/" },
    { name: "Work", link: "/work" },
    { name: "Guestbook", link: "/guestbook" },

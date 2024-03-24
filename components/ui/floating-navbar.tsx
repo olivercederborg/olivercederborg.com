@@ -1,8 +1,10 @@
 "use client"
 
+import { type NavItem } from "@/components/layouts/header"
+import { MobileNavigation } from "@/components/mobile-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -10,11 +12,7 @@ export const FloatingNav = ({
    navItems,
    className,
 }: {
-   navItems: {
-      name: string
-      link: string
-      icon?: JSX.Element
-   }[]
+   navItems: NavItem[]
    className?: string
 }) => {
    const pathname = usePathname()
@@ -35,11 +33,11 @@ export const FloatingNav = ({
             ease: "backOut",
          }}
          className={cn(
-            "fixed inset-x-4 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between space-x-4 rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-100 bg-opacity-75 px-8 py-3 filter backdrop-blur-sm dark:border-white/5 dark:bg-neutral-900/10",
+            "fixed inset-x-4 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-100 bg-opacity-75 px-8 py-3 filter backdrop-blur-sm dark:border-white/5 dark:bg-neutral-900/10",
             className,
          )}
       >
-         <div className="flex space-x-5">
+         <div className="hidden space-x-6 md:flex">
             {navItems.map((navItem, idx: number) => {
                const isActive = pathname === navItem.link
                return (
@@ -68,6 +66,9 @@ export const FloatingNav = ({
                   </Link>
                )
             })}
+         </div>
+         <div className="md:hidden">
+            <MobileNavigation navItems={navItems} />
          </div>
 
          <ThemeToggle />
