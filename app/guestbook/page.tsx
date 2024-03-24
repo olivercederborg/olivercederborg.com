@@ -6,9 +6,8 @@ import Form, { FormShell } from "@/app/guestbook/components/form"
 import { Heading } from "@/app/guestbook/components/heading"
 
 export const metadata = {
-   title: "guestbook - Oliver Cederborg",
-   description:
-      "Guestbook where visitors can leave a mark by signing my guestbook.",
+   title: "Guestbook - Oliver Cederborg",
+   description: "Guestbook where visitors can leave a comment by signing.",
 }
 
 export default async function GuestbookPage() {
