@@ -1,7 +1,6 @@
 "use server"
 
 import { octokit } from "@/lib/octokit"
-import { cache } from "react"
 
 export async function getGithubStats() {
    const gql = String.raw
