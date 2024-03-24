@@ -3,7 +3,7 @@ import { getGuestbookEntries } from "@/app/db/queries"
 import { SignIn, SignOut } from "@/app/guestbook/components/buttons"
 import { Entries } from "@/app/guestbook/components/entries"
 import Form, { FormShell } from "@/app/guestbook/components/form"
-import { Heading } from "@/app/guestbook/components/heading"
+import { Heading } from "@/components/heading"
 
 export const metadata = {
    title: "Guestbook - Oliver Cederborg",
@@ -19,8 +19,8 @@ export default async function GuestbookPage() {
    return (
       <section>
          <Heading>
-            {isLoggedIn && <span>hi {session.user?.name} 👋 </span>}
-            leave a mark by signing my guestbook
+            {isLoggedIn && <span>Hi {session.user?.name} 👋 </span>} <br />
+            Leave a mark by signing my guestbook
          </Heading>
 
          <FormShell>
