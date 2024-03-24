@@ -1,5 +1,7 @@
-import { JobCard } from "@/app/work/components/job-card"
-import { franklin, miinto, type Job } from "@/app/work/jobs"
+import { defaultVariants } from "@/app/guestbook/components/motion.variants"
+import { Jobs } from "@/app/work/components/jobs"
+import { WorkShell } from "@/app/work/components/work-shell"
+import { Heading } from "@/components/heading"
 
 export const metadata = {
    title: "Work - Oliver Cederborg",
@@ -8,30 +10,22 @@ export const metadata = {
 }
 
 export default async function WorkPage() {
-   const jobs: Job[] = [franklin, miinto]
    return (
       <section>
-         <h1 className="mb-1 mt-0 text-2xl font-medium dark:text-white">
-            my work experience
-         </h1>
+         <Heading className="mb-1 mt-0">My work experience</Heading>
 
-         <div className="prose prose-neutral dark:prose-invert mt-8 space-y-16">
+         <WorkShell
+            initial="hidden"
+            animate="visible"
+            variants={defaultVariants}
+         >
             <p>
                Learn more about my work experience, my focus areas, and what
                I&apos;m currently working on.
             </p>
 
-            <div className="flex flex-col items-center">
-               {jobs.map((job, index) => (
-                  <>
-                     {index !== 0 && (
-                        <div className="h-8 w-0 border border-dashed border-neutral-300 dark:border-neutral-500/20" />
-                     )}
-                     <JobCard job={job} key={job.company} />
-                  </>
-               ))}
-            </div>
-         </div>
+            <Jobs />
+         </WorkShell>
       </section>
    )
 }
