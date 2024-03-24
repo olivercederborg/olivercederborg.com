@@ -63,7 +63,7 @@ export function FormShell({ children }: { children: React.ReactNode }) {
          animate="visible"
          exit="hidden"
          variants={defaultVariants}
-         className="mt-8 space-y-2"
+         className="mt-12 space-y-2"
       >
          {children}
       </motion.div>

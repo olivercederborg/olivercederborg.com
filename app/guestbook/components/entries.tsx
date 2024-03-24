@@ -40,7 +40,6 @@ type EntryProps = {
    entry: SelectGuestbook
    className?: string
 }
-
 export function Entry({ entry, className }: EntryProps) {
    const { email, body, createdBy, createdAt } = entry
    const isAuthor = email === "hey@olivercederborg.com"
