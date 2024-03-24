@@ -4,28 +4,20 @@ import Link from "next/link"
 export default function Home() {
    return (
       <section>
-         <h1 className="mb-1 mt-0 text-2xl font-medium dark:text-white">
-            hi, I&apos;m Oliver ✌️
+         <h1 className="mb-1 mt-0 text-2xl font-medium leading-relaxed dark:text-white">
+            Hi, I&apos;m Oliver ✌️
          </h1>
 
-         <section className="mt-8 text-neutral-600 dark:text-neutral-400">
+         <section className="prose prose-neutral mt-8 max-w-full dark:prose-invert">
             <p>
                I&apos;m a developer with a passion for building beautiful and
                functional applications. I currently{" "}
-               <Link
-                  href={"/work"}
-                  className="text-neutral-900 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300"
-               >
+               <Link href={"/work"}>
                   <span className="text-neutral-400">/</span>work
                </Link>{" "}
                as a full-stack developer at{" "}
-               <a
-                  href="https://hifranklin.com"
-                  className="border-b border-transparent text-neutral-900 after:text-sm after:content-['_↗'] hover:border-orange-300 dark:text-neutral-50"
-               >
-                  Franklin
-               </a>{" "}
-               - a fintech startup, building a banking solution for e-commerce.
+               <a href="https://hifranklin.com">Franklin</a> - a fintech
+               startup, building a banking solution for e-commerce.
             </p>
          </section>
 
