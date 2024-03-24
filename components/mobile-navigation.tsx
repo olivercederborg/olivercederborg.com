@@ -3,12 +3,13 @@
 import { NavItem } from "@/components/layouts/header"
 import { Button } from "@/components/ui/button"
 import {
-   Popover,
-   PopoverContent,
-   PopoverTrigger,
-} from "@/components/ui/popover"
+   DropdownMenu,
+   DropdownMenuContent,
+   DropdownMenuItem,
+   DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { cn } from "@/lib/utils"
-import { Menu, MenuIcon, MenuSquare, MenuSquareIcon } from "lucide-react"
+import { Menu } from "lucide-react"
 import Link from "next/link"
 
 type MobileNavigationProps = {
@@ -17,32 +18,33 @@ type MobileNavigationProps = {
 
 export function MobileNavigation({ navItems }: MobileNavigationProps) {
    return (
-      <Popover>
-         <PopoverTrigger asChild className="m-0">
+      <DropdownMenu>
+         <DropdownMenuTrigger asChild className="m-0">
             <Button variant={"ghost"} size={"icon"}>
                <Menu className="size-[1.2rem]" />
             </Button>
-         </PopoverTrigger>
-         <PopoverContent
+         </DropdownMenuTrigger>
+         <DropdownMenuContent
             align="start"
-            className="flex flex-col gap-y-4 rounded-xl px-6 py-8 md:hidden"
+            className="flex w-screen max-w-[calc(100vw_-_6rem)] flex-col gap-y-4 rounded-xl p-4 py-6 md:hidden"
             asChild
          >
             <nav>
                {navItems.map((item, idx) => (
-                  <Link
+                  <DropdownMenuItem
+                     asChild
                      key={`mobile-link=${idx}`}
-                     href={item.link}
                      className={cn(
-                        "relative flex items-center space-x-1 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
+                        "relative flex items-center space-x-1 px-4 py-2 text-neutral-600 hover:text-neutral-500 dark:text-neutral-50 dark:hover:text-neutral-300",
                      )}
                   >
-                     <span className="">{item.icon}</span>
-                     <span className="text-xl">
-                        <span className="mr-px text-neutral-400">/</span>
-                        {item.name.toLowerCase()}
-                     </span>
-                     {/* {isActive && (
+                     <Link href={item.link}>
+                        <span className="">{item.icon}</span>
+                        <span className="text-xl">
+                           <span className="mr-px text-neutral-400">/</span>
+                           {item.name.toLowerCase()}
+                        </span>
+                        {/* {isActive && (
                         <motion.span
                            transition={{
                               ease: "backInOut",
@@ -52,10 +54,11 @@ export function MobileNavigation({ navItems }: MobileNavigationProps) {
                            className="absolute -inset-x-4 inset-y-auto z-[-1] hidden h-9 rounded-full bg-neutral-200 dark:bg-neutral-800 sm:flex"
                         />
                      )} */}
-                  </Link>
+                     </Link>
+                  </DropdownMenuItem>
                ))}
             </nav>
-         </PopoverContent>
-      </Popover>
+         </DropdownMenuContent>
+      </DropdownMenu>
    )
 }
