@@ -1,7 +1,6 @@
 "use client"
 
 import { type SelectGuestbook } from "@/app/db/schema"
-import { defaultVariants } from "@/app/guestbook/components/motion.variants"
 import { cn } from "@/lib/utils"
 import { differenceInDays } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"
@@ -74,7 +73,7 @@ export function Entry({ entry, className }: EntryProps) {
       >
          <p className="flex flex-col">
             <span className="text-xs text-neutral-500 dark:text-neutral-400">
-               {createdBy} • {timeSinceEntry}
+               {createdBy} — {timeSinceEntry}
             </span>
             <span>{body}</span>
          </p>
