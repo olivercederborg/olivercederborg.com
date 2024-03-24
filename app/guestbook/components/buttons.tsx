@@ -7,7 +7,7 @@ import { signIn, signOut } from "next-auth/react"
 export function SignIn() {
    return (
       <Button onClick={async () => signIn("github")}>
-         log in <Github className="ml-2 h-4 w-4" />
+         <Github className="mr-2 h-4 w-4" /> log in with github
       </Button>
    )
 }
