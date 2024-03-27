@@ -28,7 +28,7 @@ export function Jobs() {
             className="flex flex-col items-center"
          >
             {jobs.map((job, index) => (
-               <>
+               <React.Fragment key={job.company}>
                   {index !== 0 && (
                      <motion.div
                         variants={{
@@ -45,8 +45,8 @@ export function Jobs() {
                         className="z-[-1] mt-[9px] h-6 w-px origin-top bg-neutral-200 dark:bg-neutral-500/20"
                      />
                   )}
-                  <JobCard job={job} key={job.company} />
-               </>
+                  <JobCard job={job} />
+               </React.Fragment>
             ))}
          </motion.div>
       </AnimatePresence>
