@@ -27,10 +27,7 @@ export function Text({
          animate="visible"
          exit="hidden"
          variants={defaultVariants}
-         className={cn(
-            "text-base font-normal leading-relaxed dark:text-white",
-            className,
-         )}
+         className={cn("text-base font-normal leading-relaxed", className)}
       >
          {children}
       </Comp>
