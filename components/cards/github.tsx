@@ -1,13 +1,23 @@
-import { getGithubStats } from "@/app/actions"
+"use client"
+
+import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
+import { motion } from "framer-motion"
 import { Github } from "lucide-react"
 import Link from "next/link"
 
-export async function GithubStatsCard() {
-   const { followers, stars } = await getGithubStats()
+export function GithubStatsCard({
+   followers,
+   stars,
+}: {
+   followers: number
+   stars: number
+}) {
+   const MotionLink = motion(Link)
    return (
-      <Link
+      <MotionLink
          href="https://github.com/olivercederborg"
          target="_blank"
+         variants={defaultVariantsNoDelay}
          className="card-border relative col-span-4 row-span-2 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out hover:bg-neutral-200 dark:bg-neutral-900 dark:hover:bg-neutral-800 md:col-span-3 md:col-start-3 md:row-span-2 md:row-start-1"
       >
          <div className="flex h-full flex-col justify-between gap-2">
@@ -21,7 +31,7 @@ export async function GithubStatsCard() {
                <GithubStatItem label="Stars" value={stars} />
             </div>
          </div>
-      </Link>
+      </MotionLink>
    )
 }
 

@@ -1,6 +1,8 @@
 "use client"
 
+import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
 import createGlobe from "cobe"
+import { motion } from "framer-motion"
 import { Globe } from "lucide-react"
 import { useTheme } from "next-themes"
 import * as React from "react"
@@ -81,7 +83,10 @@ export function LocationCard() {
    }, [r, resolvedTheme])
 
    return (
-      <div className="card-border relative col-span-4 col-start-5 row-span-3 row-start-2 flex flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out dark:bg-neutral-900 dark:hover:bg-neutral-800 md:col-span-2 md:col-start-6 md:row-span-2 md:row-start-2 md:h-40">
+      <motion.div
+         variants={defaultVariantsNoDelay}
+         className="card-border relative col-span-4 col-start-5 row-span-3 row-start-2 flex flex-col gap-6 overflow-hidden rounded-xl bg-white p-4 transition-colors duration-200 ease-in-out dark:bg-neutral-900 dark:hover:bg-neutral-800 md:col-span-2 md:col-start-6 md:row-span-2 md:row-start-2 md:h-40"
+      >
          <div className="z-10 flex items-center gap-2">
             <Globe className="size-[18px]" />
             <h2 className="text-sm font-light">Copenhagen</h2>
@@ -156,6 +161,6 @@ export function LocationCard() {
                </div>
             </div>
          </div>
-      </div>
+      </motion.div>
    )
 }
