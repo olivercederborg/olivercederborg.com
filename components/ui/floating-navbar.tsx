@@ -33,7 +33,7 @@ export const FloatingNav = ({
             ease: "backOut",
          }}
          className={cn(
-            "fixed inset-x-4 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-100 bg-opacity-75 px-8 py-3 filter backdrop-blur-sm dark:border-white/5 dark:bg-neutral-900/10",
+            "fixed inset-x-4 top-5 z-[49] mx-auto flex max-w-2xl items-center justify-between rounded-full border border-neutral-950 border-opacity-[0.03] bg-neutral-50/75 px-8 py-3 filter backdrop-blur-sm dark:border-white/5 dark:bg-neutral-900/75",
             className,
          )}
       >
