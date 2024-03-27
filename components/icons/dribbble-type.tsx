@@ -8,7 +8,6 @@ export function DribbbleType(props: React.SVGProps<SVGSVGElement>) {
          fill="none"
          {...props}
       >
-         <title>Dribbble: the community for graphic design</title>
          <path
             fillRule="evenodd"
             clipRule="evenodd"

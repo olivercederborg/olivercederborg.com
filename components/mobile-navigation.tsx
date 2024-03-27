@@ -19,7 +19,7 @@ type MobileNavigationProps = {
 export function MobileNavigation({ navItems }: MobileNavigationProps) {
    return (
       <DropdownMenu>
-         <DropdownMenuTrigger asChild className="m-0">
+         <DropdownMenuTrigger asChild className="m-0" aria-label="Menu">
             <Button variant={"ghost"} size={"icon"}>
                <Menu className="size-[1.2rem]" />
             </Button>
