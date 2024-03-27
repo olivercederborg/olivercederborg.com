@@ -1,6 +1,7 @@
 "use client"
 
 import { type SelectGuestbook } from "@/app/db/schema"
+import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
 import { cn } from "@/lib/utils"
 import { differenceInDays } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"
@@ -53,14 +54,7 @@ export function Entry({ entry, className }: EntryProps) {
 
    return (
       <motion.div
-         variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: {
-               opacity: 1,
-               y: 0,
-               transition: { duration: 0.35, ease: "backOut" },
-            },
-         }}
+         variants={defaultVariantsNoDelay}
          className={cn(
             "flex flex-col flex-wrap items-start self-start text-pretty break-all rounded-xl border bg-neutral-200/10 px-3 py-2 text-sm leading-6 dark:border-white/5 dark:bg-neutral-900/10",
             {

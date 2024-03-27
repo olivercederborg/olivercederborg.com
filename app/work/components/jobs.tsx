@@ -1,5 +1,6 @@
 "use client"
 
+import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
 import { franklin, miinto, type Job } from "@/app/work/data"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
@@ -61,14 +62,7 @@ export function JobCard({ job, ...props }: JobCardProps) {
    const currentJob = job.to === "now"
    return (
       <motion.div
-         variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: {
-               opacity: 1,
-               y: 0,
-               transition: { duration: 0.35, ease: "backOut" },
-            },
-         }}
+         variants={defaultVariantsNoDelay}
          className={cn(
             "card-border relative flex flex-col rounded-xl bg-white p-6 py-8 transition-colors duration-200 ease-in-out dark:bg-neutral-900",
             {
