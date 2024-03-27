@@ -1,15 +1,15 @@
 import { Cards } from "@/components/cards"
+import { Heading } from "@/components/heading"
+import { Text } from "@/components/text"
 import Link from "next/link"
 
 export default function Home() {
    return (
       <section>
-         <h1 className="mb-1 mt-0 text-2xl font-medium leading-relaxed dark:text-white">
-            Hi, I&apos;m Oliver ✌️
-         </h1>
+         <Heading>Hi, I&apos;m Oliver ✌️</Heading>
 
          <section className="prose prose-neutral mt-8 max-w-full dark:prose-invert">
-            <p>
+            <Text>
                I&apos;m a developer with a passion for building beautiful and
                functional applications. I currently{" "}
                <Link href={"/work"}>
@@ -18,7 +18,7 @@ export default function Home() {
                as a full-stack developer at{" "}
                <a href="https://hifranklin.com">Franklin</a> - a fintech
                startup, building a banking solution for e-commerce.
-            </p>
+            </Text>
          </section>
 
          <Cards />
