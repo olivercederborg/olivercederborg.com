@@ -60,7 +60,7 @@ export const FloatingNav = ({
                               duration: 0.35,
                            }}
                            layoutId="active-nav"
-                           className="absolute -inset-x-4 inset-y-auto z-[-1] hidden h-9 rounded-full bg-neutral-200 dark:bg-neutral-800 sm:flex"
+                           className="absolute -inset-x-4 inset-y-auto z-[-1] hidden h-9 rounded-full bg-neutral-200/50 dark:bg-neutral-800 sm:flex"
                         />
                      )}
                   </Link>
