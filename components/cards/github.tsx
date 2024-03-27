@@ -1,6 +1,6 @@
 "use client"
 
-import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
+import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { motion } from "framer-motion"
 import { Github } from "lucide-react"
 import Link from "next/link"

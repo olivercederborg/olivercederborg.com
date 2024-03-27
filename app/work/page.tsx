@@ -1,7 +1,7 @@
-import { defaultVariants } from "@/app/guestbook/components/motion.variants"
 import { Jobs } from "@/app/work/components/jobs"
 import { WorkShell } from "@/app/work/components/work-shell"
 import { Heading } from "@/components/heading"
+import { defaultVariants } from "@/components/motion.variants"
 
 export const metadata = {
    title: "Work - Oliver Cederborg",

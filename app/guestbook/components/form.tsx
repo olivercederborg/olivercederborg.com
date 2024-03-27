@@ -1,7 +1,7 @@
 "use client"
 
 import { saveGuestbookEntry } from "@/app/db/actions"
-import { defaultVariants } from "@/app/guestbook/components/motion.variants"
+import { defaultVariants } from "@/components/motion.variants"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { cn } from "@/lib/utils"

@@ -1,7 +1,7 @@
 "use client"
 
-import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
 import { franklin, miinto, type Job } from "@/app/work/data"
+import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { AnimatePresence, MotionProps, motion } from "framer-motion"

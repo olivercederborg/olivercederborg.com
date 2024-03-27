@@ -1,9 +1,6 @@
 "use client"
 
-import {
-   defaultVariants,
-   defaultVariantsNoDelay,
-} from "@/app/guestbook/components/motion.variants"
+import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { motion } from "framer-motion"
 import Image from "next/image"
 

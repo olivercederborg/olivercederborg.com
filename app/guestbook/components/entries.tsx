@@ -1,7 +1,7 @@
 "use client"
 
 import { type SelectGuestbook } from "@/app/db/schema"
-import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
+import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { cn } from "@/lib/utils"
 import { differenceInDays } from "date-fns"
 import { AnimatePresence, motion } from "framer-motion"

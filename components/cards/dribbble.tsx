@@ -1,8 +1,8 @@
 "use client"
 
-import { defaultVariantsNoDelay } from "@/app/guestbook/components/motion.variants"
 import { Dribbble } from "@/components/icons/dribbble"
 import { DribbbleType } from "@/components/icons/dribbble-type"
+import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { motion } from "framer-motion"
 import Link from "next/link"
 

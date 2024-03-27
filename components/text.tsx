@@ -1,6 +1,6 @@
 "use client"
 
-import { defaultVariants } from "@/app/guestbook/components/motion.variants"
+import { defaultVariants } from "@/components/motion.variants"
 import { cn } from "@/lib/utils"
 import { Slot } from "@radix-ui/react-slot"
 import { MotionProps, motion } from "framer-motion"
