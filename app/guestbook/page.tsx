@@ -19,7 +19,11 @@ export default async function GuestbookPage() {
    return (
       <section>
          <Heading>
-            {isLoggedIn && <span>Hi {session.user?.name} 👋 </span>} <br />
+            {isLoggedIn && (
+               <>
+                  <span>Hi {session.user?.name} 👋 </span> <br />
+               </>
+            )}
             Leave a mark by signing my guestbook
          </Heading>
 
