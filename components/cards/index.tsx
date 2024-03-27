@@ -16,7 +16,7 @@ export async function Cards() {
          animate="visible"
          variants={{
             visible: {
-               transition: { delayChildren: 0.35, staggerChildren: 0.1 },
+               transition: { delayChildren: 0.25, staggerChildren: 0.1 },
             },
          }}
       >
