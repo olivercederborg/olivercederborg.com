@@ -1,4 +1,4 @@
-import { getGithubStats } from "@/app/actions"
+import { getGithubContributions, getGithubStats } from "@/app/actions"
 import { DribbbleCard } from "@/components/cards/dribbble"
 import { GithubStatsCard } from "@/components/cards/github"
 import { LinkedInCard } from "@/components/cards/linkedin"
@@ -9,6 +9,7 @@ import { Motion } from "@/components/motion"
 
 export async function Cards() {
    const { followers, stars } = await getGithubStats()
+   const contributions = await getGithubContributions()
 
    return (
       <Motion
@@ -22,7 +23,11 @@ export async function Cards() {
       >
          <section className="mt-8 grid grid-cols-8 grid-rows-5 gap-4 md:grid-cols-7 md:grid-rows-3">
             <MeCard />
-            <GithubStatsCard followers={followers} stars={stars} />
+            <GithubStatsCard
+               followers={followers}
+               stars={stars}
+               contributions={contributions}
+            />
             <DribbbleCard />
             <LocationCard />
             <LinkedInCard />
