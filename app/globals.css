@@ -78,7 +78,7 @@
 @layer components {
    .card-border {
       &::before {
-         @apply pointer-events-none absolute inset-0 rounded-xl bg-gradient-to-b from-neutral-800/50 to-transparent mix-blend-difference content-[''] dark:from-neutral-200/50 dark:mix-blend-soft-light;
+         @apply pointer-events-none absolute inset-0 rounded-xl content-[''] dark:bg-gradient-to-b dark:from-neutral-200/50 dark:to-transparent dark:mix-blend-soft-light;
          padding: 1px;
          -webkit-mask:
             linear-gradient(#fff 0 0) content-box,
