@@ -8,6 +8,7 @@ export function MeCard() {
    return (
       <motion.div
          variants={defaultVariantsNoDelay}
+         whileHover={{ scale: 1.05 }}
          className="card-border relative col-span-4 row-span-3 overflow-hidden rounded-xl md:col-span-2 md:row-span-3"
       >
          <Image
