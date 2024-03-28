@@ -65,3 +65,63 @@ export async function getGithubStats() {
       ),
    }
 }
+
+export async function getGithubContributions() {
+   const gql = String.raw
+   const { user } = await octokit.graphql<{
+      user: {
+         contributionsCollection: {
+            contributionCalendar: {
+               totalContributions: number
+               weeks: {
+                  contributionDays: {
+                     contributionCount: number
+                     date: string
+                  }[]
+               }[]
+            }
+         }
+      }
+   }>(
+      gql`
+         query ($login: String!) {
+            user(login: $login) {
+               contributionsCollection {
+                  contributionCalendar {
+                     totalContributions
+                     weeks {
+                        contributionDays {
+                           contributionCount
+                           date
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      `,
+      { login: "olivercederborg" },
+   )
+
+   const weeklyContributions =
+      user.contributionsCollection.contributionCalendar.weeks
+
+   // find the day with the highest contribution count.
+   let maxContributionDay = { contributionCount: 0, date: "" }
+
+   for (let week of weeklyContributions) {
+      for (let day of week.contributionDays) {
+         if (day.contributionCount > maxContributionDay.contributionCount) {
+            maxContributionDay = day
+         }
+      }
+   }
+   const latestContributions = weeklyContributions.slice(-11)
+   const totalContributions =
+      user.contributionsCollection.contributionCalendar.totalContributions
+   return {
+      totalContributions,
+      latestContributions,
+      maxContributionDay,
+   }
+}
