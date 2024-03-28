@@ -75,6 +75,7 @@ export async function getGithubContributions() {
                totalContributions: number
                weeks: {
                   contributionDays: {
+                     color: string
                      contributionCount: number
                      date: string
                   }[]
@@ -91,6 +92,7 @@ export async function getGithubContributions() {
                      totalContributions
                      weeks {
                         contributionDays {
+                           color
                            contributionCount
                            date
                         }
@@ -107,7 +109,7 @@ export async function getGithubContributions() {
       user.contributionsCollection.contributionCalendar.weeks
 
    // find the day with the highest contribution count.
-   let maxContributionDay = { contributionCount: 0, date: "" }
+   let maxContributionDay = { contributionCount: 0, date: "", color: "" }
 
    for (let week of weeklyContributions) {
       for (let day of week.contributionDays) {

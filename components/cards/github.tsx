@@ -1,7 +1,7 @@
 "use client"
 
 import { getGithubContributions } from "@/app/actions"
-import { getDailyContributionsColor } from "@/components/cards/utils"
+import { contributionsColorMap } from "@/components/cards/constants"
 import { defaultVariantsNoDelay } from "@/components/motion.variants"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
@@ -67,7 +67,7 @@ function ContributionsGraph({
 }) {
    return (
       <ul className="absolute inset-y-0 right-0 z-0 flex max-h-full gap-1 overflow-hidden opacity-50">
-         <div className="absolute inset-0 bg-gradient-to-t from-neutral-50 via-neutral-50/50 to-neutral-50/50 dark:from-neutral-950 dark:via-neutral-950/75 dark:to-transparent" />
+         <div className="absolute inset-0 bg-gradient-to-t from-neutral-50 via-neutral-50/50 to-neutral-50/50 dark:from-neutral-950/95 dark:via-neutral-950/65 dark:to-transparent" />
          {contributions.latestContributions.map((week) => {
             if (week.contributionDays.length < 7) {
                // fill in the missing days
@@ -75,6 +75,7 @@ function ContributionsGraph({
                const missingDays = 7 - days
                for (let i = 0; i < missingDays; i++) {
                   week.contributionDays.push({
+                     color: "",
                      contributionCount: 0,
                      date: "",
                   })
@@ -86,16 +87,13 @@ function ContributionsGraph({
                   className="flex aspect-[1/8] size-full flex-col gap-1"
                >
                   {week.contributionDays.map((day) => {
-                     const color = getDailyContributionsColor(
-                        day.contributionCount,
-                        contributions.maxContributionDay.contributionCount,
-                     )
                      return (
                         <div
                            key={day.date}
-                           className={cn("flex aspect-square rounded-[3px]", {
-                              [color]: true,
-                           })}
+                           className={cn(
+                              "flex aspect-square rounded-[3px]",
+                              contributionsColorMap[day.color],
+                           )}
                         />
                      )
                   })}
