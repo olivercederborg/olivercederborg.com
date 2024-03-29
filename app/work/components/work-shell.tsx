@@ -16,7 +16,7 @@ export function WorkShell({ children, className, ...props }: WorkShellProps) {
    return (
       <motion.div
          className={cn(
-            "prose prose-neutral mt-8 max-w-full space-y-16 text-pretty dark:prose-invert",
+            "prose prose-neutral mt-8 max-w-full text-pretty dark:prose-invert",
             className,
          )}
          {...props}

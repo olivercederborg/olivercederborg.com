@@ -23,7 +23,6 @@ export default async function WorkPage() {
                Learn more about my work experience, my focus areas, and what
                I&apos;m currently working on.
             </p>
-
             <Jobs />
          </WorkShell>
       </section>

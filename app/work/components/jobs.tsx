@@ -26,7 +26,7 @@ export function Jobs() {
                   },
                },
             }}
-            className="flex flex-col items-center"
+            className="mt-16 flex flex-col items-center"
          >
             {jobs.map((job, index) => (
                <React.Fragment key={job.company}>
@@ -71,7 +71,7 @@ export function JobCard({ job, ...props }: JobCardProps) {
             },
          )}
       >
-         <h2 className="m-0 mb-1 flex justify-between text-lg font-normal dark:text-white">
+         <h2 className="m-0 mb-1 flex justify-between text-xl font-normal dark:text-white">
             {job.company}{" "}
             <span className="text-sm text-neutral-500 dark:text-neutral-400">
                {job.from} — {job.to}
