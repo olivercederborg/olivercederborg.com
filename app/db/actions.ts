@@ -1,12 +1,15 @@
 "use server"
+
 import { differenceInHours } from "date-fns"
+import { desc, eq } from "drizzle-orm"
+import { Session } from "next-auth"
+import { revalidatePath } from "next/cache"
+import { Resend } from "resend"
 
 import { auth } from "@/app/auth"
 import { db } from "@/app/db"
 import { guestbook } from "@/app/db/schema"
-import { desc, eq } from "drizzle-orm"
-import { Session } from "next-auth"
-import { revalidatePath } from "next/cache"
+import { env } from "@/app/env"
 
 async function getSession(): Promise<Session> {
    let session = await auth()
@@ -17,7 +20,7 @@ async function getSession(): Promise<Session> {
    return session
 }
 
-export async function hasSignedToday(email: string) {
+async function hasSignedToday(email: string) {
    const now = new Date()
 
    if (email === "hey@olivercederborg.com") {
@@ -48,6 +51,8 @@ export async function hasSignedToday(email: string) {
 
    return { hasSigned: false }
 }
+
+const resend = new Resend(env.RESEND_API_KEY)
 
 export async function saveGuestbookEntry(formData: FormData) {
    let session = await getSession()
@@ -80,6 +85,13 @@ export async function saveGuestbookEntry(formData: FormData) {
          createdBy,
          email,
          body,
+      })
+
+      await resend.emails.send({
+         from: `Guestbook <guestbook@olivercederborg.com>`,
+         to: ["hey@olivercederborg.com"],
+         subject: "Guestbook Entry",
+         text: `From: ${createdBy}\nEntry: ${body}`,
       })
    } catch (error) {
       console.error(error)
