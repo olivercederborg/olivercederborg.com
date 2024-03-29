@@ -29,14 +29,14 @@ export function GithubStatsCard({
          <div className="relative z-10 flex h-full flex-col justify-between gap-2">
             <div className="flex items-center gap-2">
                <Github className="size-[18px]" />
-               <h2 className="text-sm font-light">Github Stats</h2>
+               <h2 className="text-sm font-light">Stats</h2>
             </div>
 
-            <div className="flex flex-wrap items-end gap-3">
+            <div className="flex flex-wrap items-end gap-4">
                <GithubStatItem label="Followers" value={followers} />
                <GithubStatItem label="Stars" value={stars} />
                <GithubStatItem
-                  label="Commits"
+                  label="Contributions"
                   value={contributions.totalContributions}
                />
             </div>
@@ -49,11 +49,11 @@ export function GithubStatsCard({
 
 function GithubStatItem({ label, value }: { label: string; value: number }) {
    return (
-      <div className="col-span-1 flex flex-col justify-center">
-         <p className="text-xl font-semibold text-neutral-700 dark:text-white">
+      <div className="col-span-1 flex flex-col items-start">
+         <p className="text-lg font-semibold text-neutral-700 dark:text-white">
             {value}
          </p>
-         <p className="text-sm text-neutral-400 dark:text-neutral-400">
+         <p className="text-xs text-neutral-500 dark:text-neutral-400">
             {label}
          </p>
       </div>
