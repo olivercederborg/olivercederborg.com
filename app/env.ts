@@ -10,6 +10,7 @@ export const env = createEnv({
       POSTGRES_HOST: z.string(),
       POSTGRES_PASSWORD: z.string(),
       POSTGRES_URL: z.string().url(),
+      RESEND_API_KEY: z.string(),
    },
    experimental__runtimeEnv: {
       // GITHUB_TOKEN: process.env.GITHUB_TOKEN,
