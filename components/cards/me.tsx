@@ -16,7 +16,7 @@ export function MeCard() {
             src="/assets/oliver-cederborg-portrait.jpg"
             height={300}
             width={300}
-            className="h-full object-cover"
+            className="h-full object-cover grayscale-[0.35] filter"
             priority
          />
       </motion.div>
