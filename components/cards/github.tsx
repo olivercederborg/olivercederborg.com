@@ -68,7 +68,7 @@ function ContributionsGraph({
    return (
       <ul className="absolute inset-y-0 right-0 z-0 flex max-h-full gap-1 overflow-hidden opacity-50">
          <div className="absolute inset-0 bg-gradient-to-t from-neutral-50 via-neutral-50/50 to-neutral-50/50 dark:from-neutral-950/95 dark:via-neutral-950/65 dark:to-transparent" />
-         {contributions.latestContributions.map((week) => {
+         {contributions.latestContributions.map((week, weekIndex) => {
             if (week.contributionDays.length < 7) {
                // fill in the missing days
                const days = week.contributionDays.length
@@ -83,13 +83,13 @@ function ContributionsGraph({
             }
             return (
                <li
-                  key={`${week.contributionDays[0].date}-${week.contributionDays.at(-1)?.date}`}
+                  key={`contributions-week-${weekIndex}`}
                   className="flex aspect-[1/8] size-full flex-col gap-1"
                >
                   {week.contributionDays.map((day) => {
                      return (
                         <div
-                           key={day.date}
+                           key={`contribution-week-${weekIndex}-day-${day.date}`}
                            className={cn(
                               "flex aspect-square rounded-[3px]",
                               contributionsColorMap[day.color],
