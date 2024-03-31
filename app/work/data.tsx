@@ -15,9 +15,9 @@ export const franklin: Job = {
          I currently work at <a href="https://hifranklin.com">Franklin</a>,
          where I help build and maintain our Next.js application.
          <br />
-         <i className="mt-4 block">
+         <span className="mt-4 block">
             More information about my current work at Franklin is coming soon...
-         </i>
+         </span>
       </>
    ),
    from: "2024",
@@ -32,9 +32,9 @@ export const miinto: Job = {
          I joined the <a href="https://miinto.dk">Miinto</a> storefront team to
          help build a new frontend and design system for the storefront.
          <br />
-         <i className="mt-4 block">
+         <span className="mt-4 block">
             Deeper dive of my previous work at Miinto is underway.
-         </i>
+         </span>
       </>
    ),
    from: "2022",
